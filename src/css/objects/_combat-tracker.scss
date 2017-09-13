@@ -1,0 +1,58 @@
+.combat-tracker {
+  @include flex-box(column);
+  @include flex-item(1, 1, auto);
+  border: 1px solid $black;
+  justify-content: flex-start;
+
+  &__header {
+    @include flex-box(row);
+    @include flex-item(0, 0, auto);
+    border: 1px solid $black;
+  }
+
+  &__body {
+    @include flex-box(row);
+    @include flex-item(1, 0, auto);
+    border: 1px solid $black;
+  }
+
+  &__sequence {
+    @include flex-box(column);
+    @include flex-item(1, 1, auto);
+    border: 1px solid $black;
+    justify-content: flex-start;
+
+    &>ul {
+      @include flex-box(row);
+      @include flex-item(0, 0, auto);
+      border-bottom: 2px solid $divider-color;
+      justify-content: flex-start;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      & li {
+        @include flex-item(1, 1, auto);
+        padding: 8px;
+      }
+    }
+  }
+
+  &__party {
+    @include flex-box(column);
+    @include flex-item(1, 1, auto);
+    border: 1px solid $black;
+  }
+
+  &__monsters {
+    @include flex-box(row);
+    @include flex-item(1, 1, auto);
+    border: 1px solid $black;
+  }
+
+  &__quick-view {
+    @include flex-box(row);
+    @include flex-item(1, 1, auto);
+    border: 1px solid $black;
+  }
+}

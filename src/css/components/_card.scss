@@ -1,0 +1,22 @@
+.card {
+  background: $white;
+  @include box-shadow();
+  @include flex-box(column);
+  justify-content: flex-start;
+
+  &>div {
+    @include flex-item(0, 0, auto);
+  }
+
+  &>.heading{
+    background: $primary;
+    @include heading-text(white);
+    @include flex-item();
+    padding: 6px;
+  }
+
+  &>.body{
+    padding: 6px;
+    @include flex-item(0, 1, auto);
+  }
+}

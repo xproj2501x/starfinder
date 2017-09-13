@@ -1,0 +1,16 @@
+.tab-bar {
+  border-bottom: solid 1px $gray-light;
+  @include flex-item();
+  @include flex-box();
+
+  &>.tab {
+    @include flex-item(1, 1, 0);
+    justify-content: center;
+    padding: 14px 0;
+    text-align: center;
+
+    &:hover {
+      background: $gray-light;
+    }
+  }
+}

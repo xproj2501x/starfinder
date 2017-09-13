@@ -1,0 +1,145 @@
+/**
+ * Starfinder - Component
+ * ===
+ *
+ * @module component
+ */
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// Class
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Component
+ * @class
+ */
+class Component {
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Static Properties
+  //////////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Private Properties
+  //////////////////////////////////////////////////////////////////////////////
+  /**
+   * The UUID of the parent entity
+   * @private
+   * @type {string}
+   */
+  _id;
+
+  /**
+   * The type of the component
+   * @private
+   * @type {string}
+   */
+  _type;
+
+  /**
+   * The state properties of the component
+   * @private
+   * @type {object}
+   */
+  _state;
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Properties
+  //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Get _id
+   * @readonly
+   * @return {string}
+   */
+  get id() { // eslint-disable-line id-length
+    return this._id;
+  }
+
+  /**
+   * Get _type
+   * @readonly
+   * @return {string}
+   */
+  get type() {
+    return this._type;
+  }
+
+  /**
+   * Get _state
+   * @readonly
+   * @return {object}
+   */
+  get state() {
+    return this._state;
+  }
+
+  /**
+   * Component
+   * @constructor
+   * @param {int} id - the UUID of the parent entity
+   * @param {string} type - the type of the component to be created
+   * @param {object} state - the initial state of the component
+   */
+  constructor(id, type, state) { // eslint-disable-line id-length
+    if (id === null) {
+      throw new Error('Component id cannot be null');
+    }
+    if (type === null) {
+      throw new Error('Component type cannot be null');
+    }
+    if (state === null) {
+      throw new Error('Component state cannot be null');
+    }
+    this._id = id;
+    this._type = type;
+    this._state = Object.assign({}, state);
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Methods
+  //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Updates the state of the component with new values
+   * @param {object} state - the new state of the component
+   */
+  update(state) {
+    for (const KEY in state) {
+      if (!this._state.hasOwnProperty(KEY)) {
+        throw new Error(`Invalid property ${KEY} for component type ${this._type}`);
+      }
+    }
+    this._state = Object.assign({}, this._state, state);
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Private Methods
+  //////////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Static Methods
+  //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Static factory method
+   * @static
+   * @param {object} data - configuration for the component to be created
+   * @return {Component}
+   */
+  static create(data) {
+    if (data === null) {
+      throw new Error('Component configuration missing');
+    }
+    return new Component(data.id, data.type, data.state);
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Exports
+////////////////////////////////////////////////////////////////////////////////
+export default Component;
