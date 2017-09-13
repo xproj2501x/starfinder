@@ -1,0 +1,57 @@
+{
+  "name": "starfinder",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Josh Gwaltney",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xproj2501x/starfinder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xproj2501x/starfinder/issues"
+  },
+  "homepage": "https://github.com/xproj2501x/starfinder#readme",
+  "license": "MIT",
+  "scripts": {
+    "build": "set NODE_ENV=dev && webpack --progress --colors --profile --watch",
+    "clean": "",
+    "lint": "eslint --max-warnings 100 --format compact src/**/*.js",
+    "start": "babel-node index.js",
+    "test": "mocha --compilers js:babel-core/register test/**/*.test.js"
+  },
+  "dependencies": {
+    "babel-polyfill": "latest",
+    "babel-runtime": "latest",
+    "body-parser": "latest",
+    "compression": "latest",
+    "express": "latest",
+    "morgan": "latest",
+    "serve-favicon": "latest"
+  },
+  "devDependencies": {
+    "babel-cli": "latest",
+    "babel-core": "latest",
+    "babel-eslint": "latest",
+    "babel-loader": "latest",
+    "babel-plugin-transform-regenerator": "latest",
+    "babel-plugin-transform-runtime": "latest",
+    "babel-preset-es2015": "latest",
+    "babel-preset-es2016": "latest",
+    "babel-preset-es2017": "latest",
+    "babel-preset-stage-0": "latest",
+    "babel-preset-stage-2": "^6.24.1",
+    "chai": "latest",
+    "css-loader": "latest",
+    "eslint": "latest",
+    "eslint-config-google": "latest",
+    "extract-text-webpack-plugin": "latest",
+    "file-loader": "latest",
+    "jsdoc": "latest",
+    "mocha": "latest",
+    "node-sass": "latest",
+    "sass-loader": "latest",
+    "style-loader": "latest",
+    "webpack": "latest"
+  }
+}

@@ -1,0 +1,23 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  @include flex-box(column);
+  font-family: $primary-font;
+  font-size: $medium-text;
+}
+
+.hidden {
+  display: none !important;
+}

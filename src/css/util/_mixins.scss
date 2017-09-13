@@ -1,0 +1,40 @@
+@mixin box-shadow(){
+	box-shadow: 0 3px 4px 0.08px rgba($black, .33);
+}
+
+@mixin flex(){
+	display: flex;
+}
+
+@mixin flex-row($wrap: nowrap){
+	flex-flow: row $wrap;
+}
+
+@mixin flex-column($wrap: nowrap){
+	flex-flow: column $wrap;
+}
+
+@mixin flex-box($align: row){
+	@include flex;
+	@if $align == row {
+		@include flex-row();
+	} @else {
+		@include flex-column();
+	}
+}
+
+@mixin flex-item($grow: 0, $shrink: 0, $size: auto){
+	flex: $grow $shrink $size;
+}
+
+@mixin hide(){
+	display: none;
+}
+
+@mixin make-breakpoints($breakpoints){
+  @each $bp in $breakpoints {
+    @media screen and (min-width: $bp) {
+
+    }
+  }
+}

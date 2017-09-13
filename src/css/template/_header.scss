@@ -1,0 +1,45 @@
+.header {
+  @include box-shadow();
+  background: white;
+  padding: 16px;
+  z-index: 100;
+
+  &__left {
+
+  }
+
+  &__right {
+
+  }
+}
+
+@media screen and (max-width: $small){
+  .header {
+    @include flex-box(column);
+    @include flex-item(0, 1, 128px);
+
+    &__left {
+      @include flex-item(1, 1, 100%);
+      border-bottom: solid 1px $black;
+    }
+
+    &__right {
+      @include flex-item(1, 1, 100%);
+    }
+  }
+}
+
+@media screen and (min-width: 481px){
+  .header {
+    @include flex-box(row);
+    @include flex-item(0, 1, 64px);
+
+    &__left {
+      @include flex-item(1, 1, 50%);
+    }
+
+    &__right {
+      @include flex-item(1, 1, 50%);
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.content-area {
+  @include flex-box(column);
+  @include flex-item(1, 1, auto);
+  background: $gray-bright;
+
+  &__title {
+    @include box-shadow();
+    @include flex-item(0, 0, 64px);
+    background: $gray-light;
+    padding: $gutter;
+    z-index: 80;
+  }
+
+  &__body {
+    @include box-shadow();
+    @include flex-box(column);
+    @include flex-item(1, 1, auto);
+    padding: $gutter;
+    position: relative;
+    z-index: 70;
+  }
+
+  &__footer {
+    @include flex-item(0, 0, 64px);
+    background: #FEFEFE;
+    padding: $gutter;
+  }
+
+}
+
+@media screen and (max-width: $small){
+
+}
+
+
+@media screen and (min-width: 481px){
+  .content-area {
+    margin-left: 64px;
+  }
+}

@@ -1,0 +1,72 @@
+.diagnostics {
+  background: $white;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  z-index: 1400;
+
+  &--collapsed {
+    height: 64px;
+    overflow: hidden;
+    width: 64px;
+  }
+
+  &:not(&--collapsed) {
+    @include box-shadow();
+    @include flex-box(column);
+    top: 48px;
+    width: 480px;
+  }
+
+  &__header {
+    @include flex-item(0, 0, 64px);
+    background: $primary-color-dark;
+    padding: 8px 0 4px 16px;
+
+    &--heading {
+      color: $white;
+      letter-spacing: 1.3px;
+      font-size: $xx-large-text;
+      font-weight: $semibold;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &__body {
+    @include flex-box(column);
+    @include flex-item(1, 0, auto);
+
+    &>.body__row {
+      @include flex-box(row);
+      @include flex-item(0, 0, auto);
+      padding: $gutter 0;
+    }
+
+    & .body__section {
+      @include flex-item(1, 1, 100%);
+      padding: 0 $gutter;
+
+
+      &>.section-title {
+        color: $primary-color-dark;
+        font-size: $large-text;
+        font-weight: $normal;
+        letter-spacing: 1.1px;
+        margin: 0;
+        padding-bottom: $gutter;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $small){
+
+}
+
+
+@media screen and (min-width: 481px){
+  .content-area {
+    margin-left: 64px;
+  }
+}

@@ -1,0 +1,49 @@
+.left-nav {
+  @include flex-box(column);
+  background: $primary-color-dark;
+  bottom: 0;
+  left: -192px;
+  list-style: none;
+  justify-content: flex-start;
+  margin: 0;
+  padding: $gutter;
+  position: fixed;
+  top: 64px;
+  width: 256px;
+  z-index: 100;
+
+  &:hover {
+    transition: 1s;
+    left: 0;
+    -webkit-animation: slide 0.2s forwards;
+    -webkit-animation-delay: 0.2s;
+    animation: slide 0.2s forwards;
+    animation-delay: 0.2s;
+
+    &>.nav {
+      padding: 0;
+    }
+  }
+
+  &__item {
+    @include flex-item(0, 0, auto);
+
+    &>a {
+      color: $white;
+    }
+  }
+}
+
+@-webkit-keyframes slide {
+  100% { left: 0; }
+}
+
+@keyframes slide {
+  100% { left: 0; }
+}
+
+@media screen and (max-width: $small){
+  .left-nav {
+    display: none;
+  }
+}

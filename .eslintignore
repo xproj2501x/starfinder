@@ -1,0 +1,23 @@
+##############################################################################
+#
+# `.eslintignore`
+# ===
+# This file tells ESLint which directories and files to ignore.
+#
+# SEE: [ESLint: Configuring: Ignoring Files and Directories](http://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories)
+#
+##############################################################################
+
+#
+# Generic
+#
+
+# Ignore anything NPM anywhere
+**/node_modules
+**/npm_*
+
+# Distributables are obfuscated and minified
+**/dist
+**/test
+
+# WARN: Do NOT lint this file (see file for explanation)

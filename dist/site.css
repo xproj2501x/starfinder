@@ -1,0 +1,415 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900);body {
+  margin: 0; }
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block; }
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline; }
+
+a {
+  background-color: transparent; }
+
+a:active,
+a:hover {
+  outline: 0; }
+
+b,
+strong {
+  font-weight: bold; }
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+small {
+  font-size: 80%; }
+
+img {
+  border: 0; }
+
+pre {
+  overflow: auto; }
+
+code,
+kbd,
+pre,
+samp {
+  font-family: "Roboto", "Open Sans", monospace; }
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0; }
+
+button {
+  overflow: visible; }
+
+button,
+select {
+  text-transform: none; }
+
+textarea {
+  overflow: auto; }
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden; }
+
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  font-family: "Roboto", "Open Sans", monospace;
+  font-size: 12px; }
+
+.hidden {
+  display: none !important; }
+
+/*! Imperium 4X (Web) - Button Component Styles */
+/* VARIABLES */
+:root {
+  /* ... */ }
+
+/* STYLES */
+/***
+  title: Button
+  section: Components
+  description:
+  example: |
+
+***/
+/*! Imperium 4X (Web) - Form Component Styles */
+/* VARIABLES */
+:root {
+  /* ... */ }
+
+/* STYLES */
+/***
+  title: Form
+  section: Components
+  description: These components are commonly used in forms
+  example: |
+
+***/
+.c-form {
+  margin-bottom: 4px;
+  padding-top: 16px; }
+
+.form-group {
+  position: relative; }
+
+.form-control {
+  background: transparent;
+  border-bottom: 1px solid #E0E0E0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  box-shadow: none;
+  color: #212121;
+  display: block;
+  font-size: 12px;
+  height: 20px;
+  line-height: 1.846153846;
+  transition: border-color ease-in-out .25s, box-shadow ease-in-out .25s;
+  width: 100%; }
+
+.form-control:focus {
+  border-color: #212121;
+  box-shadow: none;
+  outline: 0; }
+
+.form-control ~ label {
+  bottom: 0;
+  font-size: 10px;
+  font-weight: 400;
+  left: 0;
+  margin-bottom: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: 0.2s ease all;
+  opacity: 0.5;
+  top: 0; }
+
+.form-control:focus ~ label {
+  color: #212121;
+  opacity: 1; }
+
+.form-control.floating-label ~ label {
+  top: 19px;
+  font-size: 16px; }
+
+.form-control.floating-label:focus ~ label,
+.form-control.floating-label:active ~ label {
+  color: #212121;
+  opacity: 1;
+  top: 0;
+  font-size: 12px; }
+
+.tab-bar {
+  border-bottom: solid 1px #E0E0E0;
+  flex: 0 0 auto;
+  display: flex;
+  flex-flow: row nowrap; }
+  .tab-bar > .tab {
+    flex: 1 1 0;
+    justify-content: center;
+    padding: 14px 0;
+    text-align: center; }
+    .tab-bar > .tab:hover {
+      background: #E0E0E0; }
+
+.table {
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0;
+  width: 100%; }
+  .table thead:first-child > tr:first-child > th {
+    border-top: 0; }
+  .table thead > tr > th {
+    border-bottom: 2px solid #BDBDBD;
+    color: inherit;
+    font-weight: 500;
+    line-height: 1.846153846;
+    vertical-align: baseline; }
+
+.table-condensed > thead > tr > th {
+  padding: 5px; }
+
+.table-condensed > tbody > tr > td {
+  border-top: 1px solid #BDBDBD;
+  line-height: 1.846153846;
+  padding: 5px;
+  vertical-align: middle; }
+
+th {
+  text-align: left; }
+
+.window {
+  border: solid 1px #0A0A0A;
+  background: #FEFEFE;
+  position: absolute; }
+
+.combat-tracker {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 1 auto;
+  border: 1px solid #0A0A0A;
+  justify-content: flex-start; }
+  .combat-tracker__header {
+    display: flex;
+    flex-flow: row nowrap;
+    flex: 0 0 auto;
+    border: 1px solid #0A0A0A; }
+  .combat-tracker__body {
+    display: flex;
+    flex-flow: row nowrap;
+    flex: 1 0 auto;
+    border: 1px solid #0A0A0A; }
+  .combat-tracker__sequence {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1 1 auto;
+    border: 1px solid #0A0A0A;
+    justify-content: flex-start; }
+    .combat-tracker__sequence > ul {
+      display: flex;
+      flex-flow: row nowrap;
+      flex: 0 0 auto;
+      border-bottom: 2px solid #BDBDBD;
+      justify-content: flex-start;
+      list-style: none;
+      margin: 0;
+      padding: 0; }
+      .combat-tracker__sequence > ul li {
+        flex: 1 1 auto;
+        padding: 8px; }
+  .combat-tracker__party {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1 1 auto;
+    border: 1px solid #0A0A0A; }
+  .combat-tracker__monsters {
+    display: flex;
+    flex-flow: row nowrap;
+    flex: 1 1 auto;
+    border: 1px solid #0A0A0A; }
+  .combat-tracker__quick-view {
+    display: flex;
+    flex-flow: row nowrap;
+    flex: 1 1 auto;
+    border: 1px solid #0A0A0A; }
+
+.header {
+  box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
+  background: white;
+  padding: 16px;
+  z-index: 100; }
+
+@media screen and (max-width: 480px) {
+  .header {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 0 1 128px; }
+    .header__left {
+      flex: 1 1 100%;
+      border-bottom: solid 1px #0A0A0A; }
+    .header__right {
+      flex: 1 1 100%; } }
+
+@media screen and (min-width: 481px) {
+  .header {
+    display: flex;
+    flex-flow: row nowrap;
+    flex: 0 1 64px; }
+    .header__left {
+      flex: 1 1 50%; }
+    .header__right {
+      flex: 1 1 50%; } }
+
+.left-nav {
+  display: flex;
+  flex-flow: column nowrap;
+  background: #455A64;
+  bottom: 0;
+  left: -192px;
+  list-style: none;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 16px;
+  position: fixed;
+  top: 64px;
+  width: 256px;
+  z-index: 100; }
+  .left-nav:hover {
+    transition: 1s;
+    left: 0;
+    -webkit-animation: slide 0.2s forwards;
+    -webkit-animation-delay: 0.2s;
+    animation: slide 0.2s forwards;
+    animation-delay: 0.2s; }
+    .left-nav:hover > .nav {
+      padding: 0; }
+  .left-nav__item {
+    flex: 0 0 auto; }
+    .left-nav__item > a {
+      color: #FEFEFE; }
+
+@-webkit-keyframes slide {
+  100% {
+    left: 0; } }
+
+@keyframes slide {
+  100% {
+    left: 0; } }
+
+@media screen and (max-width: 480px) {
+  .left-nav {
+    display: none; } }
+
+.content-area {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 1 auto;
+  background: #F5F5F5; }
+  .content-area__title {
+    box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
+    flex: 0 0 64px;
+    background: #E0E0E0;
+    padding: 16px;
+    z-index: 80; }
+  .content-area__body {
+    box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1 1 auto;
+    padding: 16px;
+    position: relative;
+    z-index: 70; }
+  .content-area__footer {
+    flex: 0 0 64px;
+    background: #FEFEFE;
+    padding: 16px; }
+
+@media screen and (min-width: 481px) {
+  .content-area {
+    margin-left: 64px; } }
+
+.diagnostics {
+  background: #FEFEFE;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  z-index: 1400; }
+  .diagnostics--collapsed {
+    height: 64px;
+    overflow: hidden;
+    width: 64px; }
+  .diagnostics:not(.diagnostics--collapsed) {
+    box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
+    display: flex;
+    flex-flow: column nowrap;
+    top: 48px;
+    width: 480px; }
+  .diagnostics__header {
+    flex: 0 0 64px;
+    background: #455A64;
+    padding: 8px 0 4px 16px; }
+    .diagnostics__header--heading {
+      color: #FEFEFE;
+      letter-spacing: 1.3px;
+      font-size: 32px;
+      font-weight: 600;
+      margin: 0;
+      padding: 0; }
+  .diagnostics__body {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1 0 auto; }
+    .diagnostics__body > .body__row {
+      display: flex;
+      flex-flow: row nowrap;
+      flex: 0 0 auto;
+      padding: 16px 0; }
+    .diagnostics__body .body__section {
+      flex: 1 1 100%;
+      padding: 0 16px; }
+      .diagnostics__body .body__section > .section-title {
+        color: #455A64;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 1.1px;
+        margin: 0;
+        padding-bottom: 16px; }
+
+@media screen and (min-width: 481px) {
+  .content-area {
+    margin-left: 64px; } }

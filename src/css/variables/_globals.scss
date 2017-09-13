@@ -1,0 +1,30 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900);
+
+$gutter: 16px !default;
+
+// font weights
+$light: 300 !default;
+$normal: 400 !default
+$semibold: 600 !default;
+$bold: 700 !default;
+
+// font sizes
+$small-text: 10px;
+$medium-text: 12px;
+$large-text: 18px;
+$x-large-text: 24px;
+$xx-large-text: 32px;
+
+// breakpoints
+$small: 480px !default;
+$medium: 760px !default;
+$large: 960px !default;
+$x-large: 1280px !default;
+$xx-large: 1900px !default;
+
+$breakpoints: $small, $medium, $large, $x-large, $xx-large !default;
+
+// fonts
+$primary-font: 'Roboto', 'Open Sans', monospace !default;
+$secondary-font: 'Open Sans' !default;
+$monospace-font: monospace !default;
