@@ -88,15 +88,6 @@ class Component {
    * @param {object} state - the initial state of the component
    */
   constructor(id, type, state) { // eslint-disable-line id-length
-    if (id === null) {
-      throw new Error('Component id cannot be null');
-    }
-    if (type === null) {
-      throw new Error('Component type cannot be null');
-    }
-    if (state === null) {
-      throw new Error('Component state cannot be null');
-    }
     this._id = id;
     this._type = type;
     this._state = Object.assign({}, state);

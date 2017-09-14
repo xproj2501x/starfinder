@@ -106,6 +106,23 @@ body {
   example: |
 
 ***/
+.card {
+  background: #FEFEFE;
+  box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  overflow: hidden; }
+  .card__heading {
+    flex: 0 0 auto;
+    background: #FF5252;
+    color: #FEFEFE;
+    padding: 16px; }
+  .card__body {
+    padding: 16px;
+    flex: 1 0 auto; }
+
 /*! Imperium 4X (Web) - Form Component Styles */
 /* VARIABLES */
 :root {
@@ -178,27 +195,36 @@ body {
   flex: 0 0 auto;
   display: flex;
   flex-flow: row nowrap; }
-  .tab-bar > .tab {
+  .tab-bar > __tab {
     flex: 1 1 0;
     justify-content: center;
     padding: 14px 0;
     text-align: center; }
-    .tab-bar > .tab:hover {
+    .tab-bar > __tab:hover {
       background: #E0E0E0; }
 
 .table {
   background-color: transparent;
   border-collapse: collapse;
   border-spacing: 0;
-  margin: 0;
-  width: 100%; }
+  margin: 0; }
   .table thead:first-child > tr:first-child > th {
     border-top: 0; }
+  .table > tr {
+    display: table-row;
+    vertical-align: middle; }
   .table thead > tr > th {
-    border-bottom: 2px solid #BDBDBD;
+    border-bottom: 2px solid #607D8B;
     color: inherit;
     font-weight: 500;
     line-height: 1.846153846;
+    padding: 6px 8px 4px; }
+  .table tbody {
+    display: table-row-group;
+    vertical-align: middle; }
+  .table td {
+    padding: 6px 8px 4px;
+    border-bottom: 2px solid #CFD8DC;
     vertical-align: baseline; }
 
 .table-condensed > thead > tr > th {
@@ -218,55 +244,71 @@ th {
   background: #FEFEFE;
   position: absolute; }
 
+.section {
+  flex: 1 1 auto; }
+
 .combat-tracker {
   display: flex;
-  flex-flow: column nowrap;
-  flex: 1 1 auto;
-  border: 1px solid #0A0A0A;
-  justify-content: flex-start; }
-  .combat-tracker__header {
-    display: flex;
-    flex-flow: row nowrap;
-    flex: 0 0 auto;
-    border: 1px solid #0A0A0A; }
-  .combat-tracker__body {
-    display: flex;
-    flex-flow: row nowrap;
-    flex: 1 0 auto;
-    border: 1px solid #0A0A0A; }
-  .combat-tracker__sequence {
-    display: flex;
-    flex-flow: column nowrap;
-    flex: 1 1 auto;
-    border: 1px solid #0A0A0A;
-    justify-content: flex-start; }
-    .combat-tracker__sequence > ul {
-      display: flex;
-      flex-flow: row nowrap;
-      flex: 0 0 auto;
-      border-bottom: 2px solid #BDBDBD;
-      justify-content: flex-start;
-      list-style: none;
-      margin: 0;
-      padding: 0; }
-      .combat-tracker__sequence > ul li {
-        flex: 1 1 auto;
-        padding: 8px; }
-  .combat-tracker__party {
-    display: flex;
-    flex-flow: column nowrap;
-    flex: 1 1 auto;
-    border: 1px solid #0A0A0A; }
-  .combat-tracker__monsters {
+  flex-flow: row nowrap;
+  flex: 1 1 auto; }
+  .combat-tracker > .card:first-child {
+    margin-left: 0; }
+  .combat-tracker > .card {
+    margin-right: 16px;
+    margin-left: 16px;
+    flex: 0 1 50%; }
+  .combat-tracker > .card:last-child {
+    margin-right: 0; }
+  .combat-tracker .section + .tracker {
     display: flex;
     flex-flow: row nowrap;
     flex: 1 1 auto;
-    border: 1px solid #0A0A0A; }
-  .combat-tracker__quick-view {
-    display: flex;
-    flex-flow: row nowrap;
-    flex: 1 1 auto;
-    border: 1px solid #0A0A0A; }
+    overflow: hidden; }
+  .combat-tracker .table {
+    flex: 1 1 50%; }
+  .combat-tracker .character > .initiative {
+    border-left: solid 1px #CFD8DC;
+    border-right: solid 1px #CFD8DC;
+    text-align: center;
+    width: 30px; }
+    .combat-tracker .character > .initiative input[type=text] {
+      border: 0 transparent;
+      font-family: "Roboto", "Open Sans", monospace;
+      font-size: 12px;
+      outline: none;
+      text-align: center;
+      width: 100%; }
+      .combat-tracker .character > .initiative input[type=text]:active, .combat-tracker .character > .initiative input[type=text]:focus, .combat-tracker .character > .initiative input[type=text]:hover {
+        border: 0 transparent; }
+  .combat-tracker .character > .name {
+    border-left: solid 1px #CFD8DC;
+    border-right: solid 1px #CFD8DC;
+    text-align: left; }
+  .combat-tracker .character > .stamina {
+    border-left: solid 1px #CFD8DC;
+    border-right: solid 1px #CFD8DC;
+    text-align: center; }
+  .combat-tracker .character > .hit-points {
+    border-left: solid 1px #CFD8DC;
+    border-right: solid 1px #CFD8DC;
+    text-align: center; }
+  .combat-tracker .character > .kinetic-armor-class {
+    border-left: solid 1px #CFD8DC;
+    border-right: solid 1px #CFD8DC;
+    text-align: center; }
+  .combat-tracker .character > .energy-armor-class {
+    border-left: solid 1px #CFD8DC;
+    border-right: solid 1px #CFD8DC;
+    text-align: center; }
+  .combat-tracker .character > .quick-actions {
+    border-left: solid 1px #CFD8DC;
+    border-right: solid 1px #CFD8DC; }
+  .combat-tracker .rounds-section {
+    overflow: scroll; }
+  .combat-tracker .round {
+    border-left: solid 1px #CFD8DC;
+    border-right: solid 1px #CFD8DC;
+    text-align: center; }
 
 .header {
   box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);

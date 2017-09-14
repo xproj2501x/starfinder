@@ -1,0 +1,3 @@
+[submodule "src/js/shared/framework"]
+	path = src/js/shared/framework
+	url = https://github.com/xproj2501x/framework.git

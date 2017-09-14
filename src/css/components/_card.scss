@@ -2,21 +2,19 @@
   background: $white;
   @include box-shadow();
   @include flex-box(column);
+  @include flex-item(1, 1, auto);
   justify-content: flex-start;
+  overflow: hidden;
 
-  &>div {
+  &__heading{
     @include flex-item(0, 0, auto);
+    background: $accent-color;
+    color: $white;
+    padding: $gutter;
   }
 
-  &>.heading{
-    background: $primary;
-    @include heading-text(white);
-    @include flex-item();
-    padding: 6px;
-  }
-
-  &>.body{
-    padding: 6px;
-    @include flex-item(0, 1, auto);
+  &__body{
+    padding: $gutter;
+    @include flex-item(1, 0, auto);
   }
 }

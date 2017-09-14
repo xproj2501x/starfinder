@@ -1,58 +1,177 @@
-.combat-tracker {
-  @include flex-box(column);
+.section {
   @include flex-item(1, 1, auto);
-  border: 1px solid $black;
-  justify-content: flex-start;
+}
 
-  &__header {
-    @include flex-box(row);
-    @include flex-item(0, 0, auto);
-    border: 1px solid $black;
+.combat-tracker {
+  @include flex-box(row);
+  @include flex-item(1, 1, auto);
+
+  &>.card:first-child {
+    margin-left: 0;
   }
 
-  &__body {
-    @include flex-box(row);
-    @include flex-item(1, 0, auto);
-    border: 1px solid $black;
+  &>.card {
+    margin-right: $gutter;
+    margin-left: $gutter;
+    @include flex-item(0, 1, 50%);
   }
 
-  &__sequence {
-    @include flex-box(column);
+  &>.card:last-child {
+    margin-right: 0;
+  }
+
+  .section + .tracker {
+    @include flex-box(row);
     @include flex-item(1, 1, auto);
-    border: 1px solid $black;
-    justify-content: flex-start;
+    overflow: hidden;
+  }
+  .tracker {
 
-    &>ul {
-      @include flex-box(row);
-      @include flex-item(0, 0, auto);
-      border-bottom: 2px solid $divider-color;
-      justify-content: flex-start;
-      list-style: none;
-      margin: 0;
-      padding: 0;
+  }
 
-      & li {
-        @include flex-item(1, 1, auto);
-        padding: 8px;
+  .table {
+    @include flex-item(1, 1, 50%);
+  }
+
+  .character {
+
+    &>.initiative {
+      border-left: solid 1px $primary-color-light;
+      border-right: solid 1px $primary-color-light;
+      text-align: center;
+      width: 30px;
+
+      & input[type=text] {
+        border: 0 transparent;
+        font-family: $primary-font;
+        font-size: 12px;
+        outline: none;
+        text-align: center;
+        width: 100%;
+
+        &:active,
+        &:focus,
+        &:hover {
+          border: 0 transparent;
+        }
       }
+    }
+
+    &>.name {
+      border-left: solid 1px $primary-color-light;
+      border-right: solid 1px $primary-color-light;
+      text-align: left;
+      //width: 33%;
+    }
+
+    &>.stamina {
+      border-left: solid 1px $primary-color-light;
+      border-right: solid 1px $primary-color-light;
+      text-align: center;
+      //width: 12%;
+    }
+
+    &>.hit-points {
+      border-left: solid 1px $primary-color-light;
+      border-right: solid 1px $primary-color-light;
+      text-align: center;
+      //width: 12%;
+    }
+
+    &>.kinetic-armor-class {
+      border-left: solid 1px $primary-color-light;
+      border-right: solid 1px $primary-color-light;
+      text-align: center;
+      //width: 7%;
+    }
+
+    &>.energy-armor-class {
+      border-left: solid 1px $primary-color-light;
+      border-right: solid 1px $primary-color-light;
+      text-align: center;
+      //width: 7%;
+    }
+
+    &>.quick-actions {
+      border-left: solid 1px $primary-color-light;
+      border-right: solid 1px $primary-color-light;
+      //width: 20%;
     }
   }
 
-  &__party {
-    @include flex-box(column);
-    @include flex-item(1, 1, auto);
-    border: 1px solid $black;
+  .rounds-section {
+    overflow: scroll;
   }
+  .round {
+    border-left: solid 1px $primary-color-light;
+    border-right: solid 1px $primary-color-light;
+    text-align: center;
+    //width: 32px;
+    //height: 32px;
+}
+  //justify-content: flex-start;
 
-  &__monsters {
-    @include flex-box(row);
-    @include flex-item(1, 1, auto);
-    border: 1px solid $black;
-  }
+  //&__header {
+  //  @include flex-box(row);
+  //  @include flex-item(0, 0, auto);
+  //  border: 1px solid $black;
+  //}
+  //
+  //&__body {
+  //  @include flex-box(row);
+  //  @include flex-item(1, 0, auto);
+  //  border: 1px solid $black;
+  //}
+  //
+  //&__sequence {
+  //  @include flex-box(column);
+  //  @include flex-item(1, 1, auto);
+  //  border: 1px solid $black;
+  //  justify-content: flex-start;
+  //
+  //  &>ul {
+  //    @include flex-box(row);
+  //    @include flex-item(0, 0, auto);
+  //    border-bottom: 2px solid $divider-color;
+  //    justify-content: flex-start;
+  //    list-style: none;
+  //    margin: 0;
+  //    padding: 0;
+  //
+  //    & li {
+  //      @include flex-item(1, 1, auto);
+  //      padding: 8px;
+  //    }
+  //  }
+  //}
 
-  &__quick-view {
-    @include flex-box(row);
-    @include flex-item(1, 1, auto);
-    border: 1px solid $black;
-  }
+  //&__party {
+  //  @include flex-box(column);
+  //  @include flex-item(1, 1, auto);
+  //  border: 1px solid $black;
+  //}
+  //
+  //&__monsters {
+  //  @include flex-box(row);
+  //  @include flex-item(1, 1, auto);
+  //  border: 1px solid $black;
+  //}
+  //
+  //&__quick-view {
+  //  @include flex-box(row);
+  //  @include flex-item(1, 1, auto);
+  //  border: 1px solid $black;
+  //}
+}
+
+@media screen and (max-width: $small) {
+
+}
+
+@media screen and (min-width: 481px) {
+
+}
+
+@media screen and (min-width: $x-large) {
+
 }

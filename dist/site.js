@@ -9022,7 +9022,7 @@ module.exports = function (regExp, replace) {
 
 __webpack_require__(328);
 
-var _combatTracker = __webpack_require__(330);
+var _combatTracker = __webpack_require__(329);
 
 var _combatTracker2 = _interopRequireDefault(_combatTracker);
 
@@ -9038,16 +9038,35 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
 var COMBAT_TRACKER = new _combatTracker2.default();
+var MAX = 2400000;
+
+for (var idx = 1; idx < 39; idx++) {
+  var POWER1 = Math.pow(2, idx);
+  var REMAINDER1 = MAX % POWER1;
+
+  for (var jdx = 39; jdx > 0; jdx--) {
+    var POWER2 = Math.pow(2, jdx);
+    var REMAINDER2 = REMAINDER1 % POWER2;
+
+    if (REMAINDER2 > 0) {
+      console.log('2 ^ ' + idx + ': ' + POWER1 + ' * 2 ^ ' + jdx + ': ' + POWER2 + ' = ' + (MAX - REMAINDER2) + ' remainder: ' + REMAINDER2);
+    }
+  }
+}
+
+function solve(size, iteration) {
+  var POWER = Math.pow(2, iteration);
+  var REMAINDER = size % POWER;
+}
 
 /***/ }),
 /* 328 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: \r\n    background: $primary;\r\n               ^\r\n      Undefined variable: \"$primary\".\r\n      in C:\\Users\\joshg\\Documents\\GitHub\\starfinder\\src\\css\\components\\_card.scss (line 12, column 17)\n    at runLoaders (C:\\Users\\joshg\\Documents\\GitHub\\starfinder\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\Users\\joshg\\Documents\\GitHub\\starfinder\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\Users\\joshg\\Documents\\GitHub\\starfinder\\node_modules\\loader-runner\\lib\\LoaderRunner.js:230:18\n    at context.callback (C:\\Users\\joshg\\Documents\\GitHub\\starfinder\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (C:\\Users\\joshg\\Documents\\GitHub\\starfinder\\node_modules\\sass-loader\\lib\\loader.js:55:13)\n    at Object.<anonymous> (C:\\Users\\joshg\\Documents\\GitHub\\starfinder\\node_modules\\async\\dist\\async.js:2244:31)\n    at Object.callback (C:\\Users\\joshg\\Documents\\GitHub\\starfinder\\node_modules\\async\\dist\\async.js:906:16)\n    at options.error (C:\\Users\\joshg\\Documents\\GitHub\\starfinder\\node_modules\\node-sass\\lib\\index.js:294:32)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 329 */,
-/* 330 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9057,9 +9076,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _classCallCheck2 = __webpack_require__(331);
+var _classCallCheck2 = __webpack_require__(330);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(337);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9077,7 +9100,85 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
-
+var CHARACTERS = [{
+  init: 0,
+  name: 'Player 1',
+  stamina: {
+    max: 25,
+    current: 25
+  },
+  hitPoints: {
+    max: 25,
+    current: 25
+  },
+  kac: 17,
+  eac: 17
+}, {
+  init: 0,
+  name: 'Player 2',
+  stamina: {
+    max: 21,
+    current: 2
+  },
+  hitPoints: {
+    max: 21,
+    current: 21
+  },
+  kac: 12,
+  eac: 12
+}, {
+  init: 0,
+  name: 'Player 3',
+  stamina: {
+    max: 30,
+    current: 30
+  },
+  hitPoints: {
+    max: 30,
+    current: 30
+  },
+  kac: 20,
+  eac: 18
+}, {
+  init: 0,
+  name: 'Player 4',
+  stamina: {
+    max: 30,
+    current: 30
+  },
+  hitPoints: {
+    max: 30,
+    current: 30
+  },
+  kac: 20,
+  eac: 18
+}, {
+  init: 0,
+  name: 'Player 5',
+  stamina: {
+    max: 21,
+    current: 2
+  },
+  hitPoints: {
+    max: 21,
+    current: 21
+  },
+  kac: 12,
+  eac: 12
+}, {
+  init: 0,
+  name: 'Player 6',
+  stamina: {
+    max: 21,
+    current: 2
+  },
+  hitPoints: {
+    max: 21,
+    current: 21
+  },
+  kac: 12,
+  eac: 12
+}];
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
@@ -9085,34 +9186,187 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * CombatTracker
  * @class
  */
-var CombatTracker =
 
-/**
- * CombatTracker
- * @constructor
- */
+var CombatTracker = function () {
+  /**
+   * CombatTracker
+   * @constructor
+   */
+  function CombatTracker() {
+    (0, _classCallCheck3.default)(this, CombatTracker);
+    this.viewModel = {
+      isRunning: false,
+      currentRound: null,
+      characters: [],
+      index: null
+    };
 
-//////////////////////////////////////////////////////////////////////////////
-// Private Properties
-//////////////////////////////////////////////////////////////////////////////
-function CombatTracker() {
-  (0, _classCallCheck3.default)(this, CombatTracker);
+    this._init();
+  }
 
-  this._startButton = document.getElementById('start-button');
-  this._startButton.addEventListener('click', function (event) {
-    alert('click');
-  });
-}
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Methods
+  //////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////////////////
-// Public Methods
-//////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
+  // Private Properties
+  //////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////////////////
-// Private Methods
-//////////////////////////////////////////////////////////////////////////////
 
-;
+  (0, _createClass3.default)(CombatTracker, [{
+    key: 'toggle',
+    value: function toggle() {
+      var START_BUTTON = document.getElementById('start-button');
+      var NEXT_BUTTON = document.getElementById('next-button');
+      var PREVIOUS_BUTTON = document.getElementById('previous-button');
+
+      var ROUND = document.getElementById('round');
+
+      if (!this.viewModel.isRunning) {
+        START_BUTTON.textContent = 'Pause';
+        NEXT_BUTTON.disabled = false;
+        PREVIOUS_BUTTON.disabled = false;
+        this.viewModel.isRunning = true;
+        this.viewModel.round = 0;
+        this.viewModel.index = 0;
+      } else {
+        START_BUTTON.textContent = 'Start';
+        this.viewModel.isRunning = false;
+        NEXT_BUTTON.disabled = true;
+        PREVIOUS_BUTTON.disabled = true;
+      }
+      ROUND.textContent = this.viewModel.round;
+    }
+  }, {
+    key: 'next',
+    value: function next() {
+      var NEXT = this.viewModel.index + 1;
+      var ROUND = document.getElementById('round');
+
+      if (NEXT === this.viewModel.characters.length) {
+        this.viewModel.round += 1;
+        this.viewModel.index = 0;
+      } else {
+        this.viewModel.index = NEXT;
+      }
+      ROUND.textContent = this.viewModel.round;
+    }
+  }, {
+    key: 'previous',
+    value: function previous() {
+      var NEXT = this.viewModel.index - 1;
+      var ROUND = document.getElementById('round');
+
+      if (NEXT === -1) {
+        this.viewModel.round -= 1;
+        this.viewModel.index = this.viewModel.characters.length - 1;
+      } else {
+        this.viewModel.index = NEXT;
+      }
+      ROUND.textContent = this.viewModel.round;
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    // Private Methods
+    //////////////////////////////////////////////////////////////////////////////
+
+  }, {
+    key: '_init',
+    value: function _init() {
+      var _this = this;
+
+      var START_BUTTON = document.getElementById('start-button');
+      var NEXT_BUTTON = document.getElementById('next-button');
+      var PREVIOUS_BUTTON = document.getElementById('previous-button');
+
+      START_BUTTON.addEventListener('click', function (event) {
+        return _this.toggle(event);
+      });
+      NEXT_BUTTON.addEventListener('click', function (event) {
+        return _this.next(event);
+      });
+      PREVIOUS_BUTTON.addEventListener('click', function (event) {
+        return _this.previous(event);
+      });
+      this.viewModel.characters = CHARACTERS;
+      this.viewModel.characters.forEach(function (character) {
+        _this._addCharacterRow(character);
+        _this._addTurnRow();
+      });
+    }
+  }, {
+    key: '_addCharacterRow',
+    value: function _addCharacterRow(character) {
+      var PARENT = document.getElementById('characters');
+      var ELEMENT = document.createElement('tr');
+
+      ELEMENT.classList.add('character');
+
+      var INITIATIVE = document.createElement('td');
+
+      INITIATIVE.classList.add('initiative');
+
+      var INPUT = document.createElement('input');
+
+      INPUT.type = 'text';
+      INPUT.value = character.init;
+      INITIATIVE.append(INPUT);
+      ELEMENT.append(INITIATIVE);
+
+      var NAME = document.createElement('td');
+
+      NAME.classList.add('name');
+      NAME.textContent = character.name;
+      ELEMENT.append(NAME);
+
+      var STAMINA = document.createElement('td');
+
+      STAMINA.classList.add('stamina');
+      STAMINA.textContent = character.stamina.max + ' / ' + character.stamina.current;
+      ELEMENT.append(STAMINA);
+
+      var HIT_POINTS = document.createElement('td');
+
+      HIT_POINTS.classList.add('hit-points');
+      HIT_POINTS.textContent = character.hitPoints.max + ' / ' + character.hitPoints.current;
+      ELEMENT.append(HIT_POINTS);
+
+      var KAC = document.createElement('td');
+
+      KAC.classList.add('kinetic-armor-class');
+      KAC.textContent = character.kac;
+      ELEMENT.append(KAC);
+
+      var EAC = document.createElement('td');
+
+      EAC.classList.add('energy-armor-class');
+      EAC.textContent = character.eac;
+      ELEMENT.append(EAC);
+
+      var QUICK = document.createElement('td');
+
+      QUICK.classList.add('quick-actions');
+      QUICK.textContent = '. . .';
+      ELEMENT.append(QUICK);
+      PARENT.appendChild(ELEMENT);
+    }
+  }, {
+    key: '_addTurnRow',
+    value: function _addTurnRow() {
+      var PARENT = document.getElementById('rounds');
+      var TR = document.createElement('tr');
+
+      for (var idx = 0; idx < 30; idx++) {
+        var TD = document.createElement('td');
+
+        TD.classList.add('round');
+        TD.textContent = '25';
+        TR.append(TD);
+      }
+      PARENT.append(TR);
+    }
+  }]);
+  return CombatTracker;
+}();
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
@@ -9122,7 +9376,7 @@ function CombatTracker() {
 exports.default = CombatTracker;
 
 /***/ }),
-/* 331 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9135,6 +9389,321 @@ exports.default = function (instance, Constructor) {
     throw new TypeError("Cannot call a class as a function");
   }
 };
+
+/***/ }),
+/* 331 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__(336)(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+/* 332 */
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+
+/***/ }),
+/* 333 */
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
+
+
+/***/ }),
+/* 334 */
+/***/ (function(module, exports) {
+
+var core = module.exports = { version: '2.5.1' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+
+
+/***/ }),
+/* 335 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var anObject = __webpack_require__(345);
+var IE8_DOM_DEFINE = __webpack_require__(346);
+var toPrimitive = __webpack_require__(348);
+var dP = Object.defineProperty;
+
+exports.f = __webpack_require__(331) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if (IE8_DOM_DEFINE) try {
+    return dP(O, P, Attributes);
+  } catch (e) { /* empty */ }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
+};
+
+
+/***/ }),
+/* 336 */
+/***/ (function(module, exports) {
+
+module.exports = function (exec) {
+  try {
+    return !!exec();
+  } catch (e) {
+    return true;
+  }
+};
+
+
+/***/ }),
+/* 337 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _defineProperty = __webpack_require__(338);
+
+var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      (0, _defineProperty2.default)(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+/***/ }),
+/* 338 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(339), __esModule: true };
+
+/***/ }),
+/* 339 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(340);
+var $Object = __webpack_require__(334).Object;
+module.exports = function defineProperty(it, key, desc) {
+  return $Object.defineProperty(it, key, desc);
+};
+
+
+/***/ }),
+/* 340 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__(341);
+// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
+$export($export.S + $export.F * !__webpack_require__(331), 'Object', { defineProperty: __webpack_require__(335).f });
+
+
+/***/ }),
+/* 341 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__(333);
+var core = __webpack_require__(334);
+var ctx = __webpack_require__(342);
+var hide = __webpack_require__(344);
+var PROTOTYPE = 'prototype';
+
+var $export = function (type, name, source) {
+  var IS_FORCED = type & $export.F;
+  var IS_GLOBAL = type & $export.G;
+  var IS_STATIC = type & $export.S;
+  var IS_PROTO = type & $export.P;
+  var IS_BIND = type & $export.B;
+  var IS_WRAP = type & $export.W;
+  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
+  var expProto = exports[PROTOTYPE];
+  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE];
+  var key, own, out;
+  if (IS_GLOBAL) source = name;
+  for (key in source) {
+    // contains in native
+    own = !IS_FORCED && target && target[key] !== undefined;
+    if (own && key in exports) continue;
+    // export native or passed
+    out = own ? target[key] : source[key];
+    // prevent global pollution for namespaces
+    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
+    // bind timers to global for call from export context
+    : IS_BIND && own ? ctx(out, global)
+    // wrap global constructors for prevent change them in library
+    : IS_WRAP && target[key] == out ? (function (C) {
+      var F = function (a, b, c) {
+        if (this instanceof C) {
+          switch (arguments.length) {
+            case 0: return new C();
+            case 1: return new C(a);
+            case 2: return new C(a, b);
+          } return new C(a, b, c);
+        } return C.apply(this, arguments);
+      };
+      F[PROTOTYPE] = C[PROTOTYPE];
+      return F;
+    // make static versions for prototype methods
+    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
+    if (IS_PROTO) {
+      (exports.virtual || (exports.virtual = {}))[key] = out;
+      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
+      if (type & $export.R && expProto && !expProto[key]) hide(expProto, key, out);
+    }
+  }
+};
+// type bitmap
+$export.F = 1;   // forced
+$export.G = 2;   // global
+$export.S = 4;   // static
+$export.P = 8;   // proto
+$export.B = 16;  // bind
+$export.W = 32;  // wrap
+$export.U = 64;  // safe
+$export.R = 128; // real proto method for `library`
+module.exports = $export;
+
+
+/***/ }),
+/* 342 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// optional / simple context binding
+var aFunction = __webpack_require__(343);
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+
+/***/ }),
+/* 343 */
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+
+/***/ }),
+/* 344 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__(335);
+var createDesc = __webpack_require__(349);
+module.exports = __webpack_require__(331) ? function (object, key, value) {
+  return dP.f(object, key, createDesc(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+
+
+/***/ }),
+/* 345 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(332);
+module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+
+/***/ }),
+/* 346 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = !__webpack_require__(331) && !__webpack_require__(336)(function () {
+  return Object.defineProperty(__webpack_require__(347)('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+/* 347 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(332);
+var document = __webpack_require__(333).document;
+// typeof document.createElement is 'object' in old IE
+var is = isObject(document) && isObject(document.createElement);
+module.exports = function (it) {
+  return is ? document.createElement(it) : {};
+};
+
+
+/***/ }),
+/* 348 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = __webpack_require__(332);
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function (it, S) {
+  if (!isObject(it)) return it;
+  var fn, val;
+  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+
+/***/ }),
+/* 349 */
+/***/ (function(module, exports) {
+
+module.exports = function (bitmap, value) {
+  return {
+    enumerable: !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable: !(bitmap & 4),
+    value: value
+  };
+};
+
 
 /***/ })
 /******/ ]);

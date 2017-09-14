@@ -17,45 +17,99 @@
   <div class="content-area">
     <div class="content-area__title">
     </div>
-    <div class="content-area__body" id="root">
+    <div class="content-area__body">
       <div class="combat-tracker">
-        <div class="combat-tracker__header">
-          <button id="start-button">Start</button>
+        <div class="card">
+          <div class="card__heading">heading</div>
+          <div class="card__body">
+            <div class="section">
+              <select>
+                <option></option>
+                <option>Encounter 1</option>
+                <option>Encounter 2</option>
+                <option>Encounter 3</option>
+                <option>Encounter 4</option>
+              </select>
+              <button id="start-button">Start</button>
+              <button id="previous-button" disabled><</button>
+              <button id="next-button"disabled>></button>
+              Round: <span id="round"></span>
+            </div>
+            <div class="section tracker">
+
+                <table class="table">
+                  <thead>
+                  <tr class="character">
+                    <th class="initiative">Init</th>
+                    <th class="name">Character</th>
+                    <th class="stamina">Stam</th>
+                    <th class="hit-points">HP</th>
+                    <th class="kinetic-armor-class">KAC</th>
+                    <th class="energy-armor-class">EAC</th>
+                    <th class="quick-actions"></th>
+                  </thead>
+                  <tbody id="characters">
+                  </tbody>
+                </table>
+
+                <table class="table">
+                  <thead>
+                  <tr class="character">
+                    <th class="round">1</th>
+                    <th class="round">2</th>
+                    <th class="round">3</th>
+                    <th class="round">4</th>
+                    <th class="round">5</th>
+                    <th class="round">6</th>
+                    <th class="round">7</th>
+                    <th class="round">8</th>
+                    <th class="round">9</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                    <th class="round">10</th>
+                  </tr>
+                  </thead>
+                  <tbody id="rounds">
+                  </tbody>
+                </table>
+
+            </div>
+          </div>
         </div>
-        <div class="combat-tracker__body">
-          <div class="combat-tracker__sequence">
-            <table>
-              <thead>
-              <th>Init</th>
-              <th>Character</th>
-              <th>STA</th>
-              <th>HP</th>
-              <th>KAC</th>
-              <th>EAC</th>
-              <th></th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>0</td>
-                  <td>Character</td>
-                  <td>25 / 25</td>
-                  <td>25 / 25</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="combat-tracker__party">
-            Party
-          </div>
-          <div class="combat-tracker__monsters">
-            Monsters
-          </div>
-          <div class="combat-tracker__quick-view">
-            Quick View
-          </div>
+        <div class="card">
+          <div class="card__heading">heading</div>
+          <div class="card__body">body</div>
         </div>
       </div>
     </div>
