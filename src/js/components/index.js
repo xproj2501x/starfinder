@@ -12,15 +12,7 @@ const MODIFIER = {
   STATE: 3
 };
 
-const CHARACTER_DATA_STRUCTURE = {
-  NAME: 0x0000,   // STRING - 32 BYTES
-  CLASS: 0x0021,  // INT - 4 BYTES
-                  // 0x0021 CLASS - INT - 2 BITS - Pointer to class table
-                  // 0x0023 LEVEL - INT - 3 BITS
-                  // ...026
-                  // 0x0027 EXPERIENCE - INT
-  ABILITIES: 0X00
-};
+
 
 class Entity {
   _id;

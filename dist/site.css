@@ -93,7 +93,7 @@ body {
 .hidden {
   display: none !important; }
 
-/*! Imperium 4X (Web) - Button Component Styles */
+/*! Starfinder - Button Component Styles */
 /* VARIABLES */
 :root {
   /* ... */ }
@@ -106,6 +106,8 @@ body {
   example: |
 
 ***/
+/*! Starfinder - Card Component Styles */
+/* VARIABLES */
 .card {
   background: #FEFEFE;
   box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
@@ -123,7 +125,7 @@ body {
     padding: 16px;
     flex: 1 0 auto; }
 
-/*! Imperium 4X (Web) - Form Component Styles */
+/*! Starfinder - Form Component Styles */
 /* VARIABLES */
 :root {
   /* ... */ }
@@ -190,6 +192,10 @@ body {
   top: 0;
   font-size: 12px; }
 
+/*! Starfinder - Modal Component Styles */
+/* VARIABLES */
+/*! Starfinder - Tab Component Styles */
+/* VARIABLES */
 .tab-bar {
   border-bottom: solid 1px #E0E0E0;
   flex: 0 0 auto;
@@ -203,6 +209,7 @@ body {
     .tab-bar > __tab:hover {
       background: #E0E0E0; }
 
+/*! Starfinder - Table Component Styles */
 .table {
   background-color: transparent;
   border-collapse: collapse;

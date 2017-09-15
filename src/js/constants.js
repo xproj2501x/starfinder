@@ -1,16 +1,10 @@
 /**
- * Starfinder - App
+ * Starfinder - Constants
  * ===
  *
  */
 
 ////////////////////////////////////////////////////////////////////////////////
-// Imports
+// Definitions
 ////////////////////////////////////////////////////////////////////////////////
-import '../css/_site.scss';
-import CombatTracker from './views/combat-tracker';
-
-
-// (x * 2^n1) * (y * 2^n2) + z = 2400000
-
-
+const DEBUG = (location.search === '?DEBUG');
