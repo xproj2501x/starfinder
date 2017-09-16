@@ -11,6 +11,14 @@
 import createUUID from '../utility/uuid';
 
 ////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+const MAP = {
+  ID: 0x000000,
+  COMPONENTS: 0x000001
+};
+
+////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
@@ -23,39 +31,33 @@ class Entity {
   // Private Properties
   //////////////////////////////////////////////////////////////////////////////
   /**
-   * The UUID of the entity
+   * The id and components of the entity
    * @private
-   * @type {string}
+   * @type {Array}
    */
-  _id;
-
-  /**
-   * The components currently attached to the entity
-   * @private
-   * @type {object}
-   */
-  _components;
+  _data;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
 
   /**
-   * Get _id
+   * Returns the UUID of the entity
    * @readonly
    * @return {string}
    */
   get id() { // eslint-disable-line id-length
-    return this._id;
+    return this._data[MAP.ID];
   }
 
   /**
    * Entity
    * @constructor
+   * @param {string} id - the UUID of the entity
    */
-  constructor() {
-    this._id = createUUID(); // eslint-disable-line id-length
-    this._components = {};
+  constructor(id) { // eslint-disable-line id-length
+    this._data = [];
+    this._data[MAP.ID] = id || createUUID();
   }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -63,14 +65,15 @@ class Entity {
   //////////////////////////////////////////////////////////////////////////////
   /**
    * Attaches a component to the entity
-   * @param {string} type - the component type to be attached
    * @param {Component} component - the component to be attached
    */
-  attachComponent(type, component) {
-    if (this._components[type]) {
-      throw new Error(`Component type ${type} already attached to entity ${this._id}`);
+  attachComponent(component) {
+    const TYPE = component.type;
+
+    if (this._components[TYPE]) {
+      throw new Error(`Component type: ${TYPE} already attached to entity id: ${this.id}`);
     }
-    this._components[type] = component;
+    this._components[TYPE] = component;
   }
 
   /**
@@ -79,21 +82,28 @@ class Entity {
    */
   detachComponent(type) {
     if (!this._components[type]) {
-      throw new Error(`Component type ${type} is not attached to entity ${this._id}`);
+      throw new Error(`Component type: ${type} is not attached to entity id: ${this.id}`);
     }
-    delete this._components[type];
+    this._components[type] = 0;
   }
 
   /**
-   * Finds a component attached to the entity
-   * @param {string} type - the type of component to be retrieved
-   * @return {Component}
+   * Determines if the entity can be used by the calling system
+   * @param {Array} key - the access key for the system
+   * @return {Array}
    */
-  findComponent(type) {
-    if (!this._components[type]) {
-      throw new Error(`Component type ${type} is not attached to entity ${this._id}`);
+  unlock(key) {
+    const LOCK = [];
+
+    for (let idx = 0; idx < key.length - 1; idx++) {
+      const INDEX = key[0] + idx;
+
+      if (key[idx + 1] && !this._data[INDEX]) {
+        throw new Error(`Invalid key: ${key} for entity id: ${this.id}`);
+      }
+      LOCK.push(this._data[INDEX]);
     }
-    return this._components[type];
+    return LOCK;
   }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -102,10 +112,11 @@ class Entity {
   /**
    * Static factory method
    * @static
-   * @param {int} id - the id number for the entity
+   * @param {string} id - the UUID of the entity
    * @return {Entity}
    */
   static create(id) { // eslint-disable-line id-length
+    id = id || null;
     return new Entity(id);
   }
 }

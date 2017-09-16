@@ -9026,6 +9026,14 @@ var _combatTracker = __webpack_require__(329);
 
 var _combatTracker2 = _interopRequireDefault(_combatTracker);
 
+var _entity = __webpack_require__(392);
+
+var _entity2 = _interopRequireDefault(_entity);
+
+var _component = __webpack_require__(393);
+
+var _component2 = _interopRequireDefault(_component);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -9038,6 +9046,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
 var COMBAT_TRACKER = new _combatTracker2.default();
+var ENTITY = new _entity2.default.create();
+var COMPONENT_DATA = {
+  id: ENTITY.id,
+  type: 2,
+  state: {
+    foo: 'asdfasf',
+    bar: 25
+  }
+};
+var COMPONENT = _component2.default.create(COMPONENT_DATA);
+
+console.log(COMPONENT.state);
+
 // (x * 2^n1) * (y * 2^n2) + z = 2400000
 
 /***/ }),
@@ -10362,6 +10383,492 @@ module.exports = function (exec, skipClosing) {
   } catch (e) { /* empty */ }
   return safe;
 };
+
+
+/***/ }),
+/* 391 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * Starfinder - UUID
+ * ===
+ *
+ */
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Creates a UUID
+ * @return {string}
+ */
+function createUUID() {
+  var STRING = [];
+  var HEX_DIGITS = '01234567890abcdef';
+
+  for (var idx = 0; idx < 36; idx++) {
+    STRING[idx] = HEX_DIGITS.substr(Math.floor(Math.random() * 0x10), 1);
+  }
+  STRING[14] = '4';
+  STRING[19] = HEX_DIGITS.substr(STRING[19] & 0x3 | 0x1, 1);
+  STRING[8] = STRING[13] = STRING[18] = STRING[23] = '-';
+  return STRING.join('');
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Exports
+////////////////////////////////////////////////////////////////////////////////
+exports.default = createUUID;
+
+/***/ }),
+/* 392 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = __webpack_require__(330);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(337);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _uuid = __webpack_require__(391);
+
+var _uuid2 = _interopRequireDefault(_uuid);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+var MAP = {
+  ID: 0x000000,
+  COMPONENTS: 0x000001
+};
+
+////////////////////////////////////////////////////////////////////////////////
+// Class
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Entity
+ * @class
+ */
+/**
+ * Starfinder - Entity
+ * ===
+ *
+ * @module entity
+ */
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports
+////////////////////////////////////////////////////////////////////////////////
+
+var Entity = function () {
+  (0, _createClass3.default)(Entity, [{
+    key: 'id',
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Public Properties
+    //////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Returns the UUID of the entity
+     * @readonly
+     * @return {string}
+     */
+    get: function get() {
+      // eslint-disable-line id-length
+      return this._data[MAP.ID];
+    }
+
+    /**
+     * Entity
+     * @constructor
+     * @param {string} id - the UUID of the entity
+     */
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Private Properties
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * The id and components of the entity
+     * @private
+     * @type {Array}
+     */
+
+  }]);
+
+  function Entity(id) {
+    (0, _classCallCheck3.default)(this, Entity);
+    // eslint-disable-line id-length
+    this._data = [];
+    this._data[MAP.ID] = id || (0, _uuid2.default)();
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Methods
+  //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Attaches a component to the entity
+   * @param {Component} component - the component to be attached
+   */
+
+
+  (0, _createClass3.default)(Entity, [{
+    key: 'attachComponent',
+    value: function attachComponent(component) {
+      var TYPE = component.type;
+
+      if (this._components[TYPE]) {
+        throw new Error('Component type: ' + TYPE + ' already attached to entity id: ' + this.id);
+      }
+      this._components[TYPE] = component;
+    }
+
+    /**
+     * Detaches a component currently attached to the entity
+     * @param {string} type - the component type to be detached
+     */
+
+  }, {
+    key: 'detachComponent',
+    value: function detachComponent(type) {
+      if (!this._components[type]) {
+        throw new Error('Component type: ' + type + ' is not attached to entity id: ' + this.id);
+      }
+      this._components[type] = 0;
+    }
+
+    /**
+     * Determines if the entity can be used by the calling system
+     * @param {Array} key - the access key for the system
+     * @return {Array}
+     */
+
+  }, {
+    key: 'unlock',
+    value: function unlock(key) {
+      var LOCK = [];
+
+      for (var idx = 0; idx < key.length - 1; idx++) {
+        var INDEX = key[0] + idx;
+
+        if (key[idx + 1] && !this._data[INDEX]) {
+          throw new Error('Invalid key: ' + key + ' for entity id: ' + this.id);
+        }
+        LOCK.push(this._data[INDEX]);
+      }
+      return LOCK;
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Static Methods
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * Static factory method
+     * @static
+     * @param {string} id - the UUID of the entity
+     * @return {Entity}
+     */
+
+  }], [{
+    key: 'create',
+    value: function create(id) {
+      // eslint-disable-line id-length
+      id = id || null;
+      return new Entity(id);
+    }
+  }]);
+  return Entity;
+}();
+
+////////////////////////////////////////////////////////////////////////////////
+// Exports
+////////////////////////////////////////////////////////////////////////////////
+
+
+exports.default = Entity;
+
+/***/ }),
+/* 393 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _assign = __webpack_require__(394);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _classCallCheck2 = __webpack_require__(330);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(337);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Starfinder - Component
+ * ===
+ *
+ * @module component
+ */
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+var MAP = {
+  ID: 0x000000,
+  TYPE: 0x000001,
+  STATE: 0x00002
+};
+
+////////////////////////////////////////////////////////////////////////////////
+// Class
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Component
+ * @class
+ */
+
+var Component = function () {
+  (0, _createClass3.default)(Component, [{
+    key: 'id',
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Public Properties
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * Returns the UUID of the parent entity
+     * @readonly
+     * @return {string}
+     */
+    get: function get() {
+      // eslint-disable-line id-length
+      return this._data[MAP.ID];
+    }
+
+    /**
+     * Returns the type of the component
+     * @readonly
+     * @return {int}
+     */
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Static Properties
+    //////////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Private Properties
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * The UUID of the parent entity, type, and state of the component
+     * @private
+     * @type {Array}
+     */
+
+  }, {
+    key: 'type',
+    get: function get() {
+      return this._data[MAP.TYPE];
+    }
+
+    /**
+     * Returns the state of the component
+     * @readonly
+     * @return {object}
+     */
+
+  }, {
+    key: 'state',
+    get: function get() {
+      return this._data[MAP.STATE];
+    }
+
+    /**
+     * Component
+     * @constructor
+     * @param {string} id - the UUID of the parent entity
+     * @param {int} type - the type of the component to be created
+     * @param {object} state - the initial state of the component
+     */
+
+  }]);
+
+  function Component(id, type, state) {
+    (0, _classCallCheck3.default)(this, Component);
+    // eslint-disable-line id-length
+    this._data = [];
+    this._data[MAP.ID] = id;
+    this._data[MAP.TYPE] = type;
+    this._data[MAP.STATE] = (0, _assign2.default)({}, state);
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Methods
+  //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Updates the state of the component with new values
+   * @param {object} state - the new state of the component
+   */
+
+
+  (0, _createClass3.default)(Component, [{
+    key: 'update',
+    value: function update(state) {
+      var LAST_STATE = this._data[MAP.STATE];
+
+      for (var KEY in state) {
+        if (!LAST_STATE.hasOwnProperty(KEY)) {
+          throw new Error('Invalid property: ' + KEY + ' for component type: ' + this._data[MAP.TYPE]);
+        }
+      }
+      this._data[MAP.STATE] = (0, _assign2.default)({}, LAST_STATE, state);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Private Methods
+    //////////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Static Methods
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * Static factory method
+     * @static
+     * @param {object} data - configuration for the component to be created
+     * @return {Component}
+     */
+
+  }], [{
+    key: 'create',
+    value: function create(data) {
+      if (data === null) {
+        throw new Error('Component configuration missing');
+      }
+      return new Component(data.id, data.type, data.state);
+    }
+  }]);
+  return Component;
+}();
+
+////////////////////////////////////////////////////////////////////////////////
+// Exports
+////////////////////////////////////////////////////////////////////////////////
+
+
+exports.default = Component;
+
+/***/ }),
+/* 394 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(395), __esModule: true };
+
+/***/ }),
+/* 395 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(396);
+module.exports = __webpack_require__(334).Object.assign;
+
+
+/***/ }),
+/* 396 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__(341);
+
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(397) });
+
+
+/***/ }),
+/* 397 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// 19.1.2.1 Object.assign(target, source, ...)
+var getKeys = __webpack_require__(377);
+var gOPS = __webpack_require__(398);
+var pIE = __webpack_require__(399);
+var toObject = __webpack_require__(365);
+var IObject = __webpack_require__(379);
+var $assign = Object.assign;
+
+// should work with symbols and should have deterministic property order (V8 bug)
+module.exports = !$assign || __webpack_require__(336)(function () {
+  var A = {};
+  var B = {};
+  // eslint-disable-next-line no-undef
+  var S = Symbol();
+  var K = 'abcdefghijklmnopqrst';
+  A[S] = 7;
+  K.split('').forEach(function (k) { B[k] = k; });
+  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
+}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
+  var T = toObject(target);
+  var aLen = arguments.length;
+  var index = 1;
+  var getSymbols = gOPS.f;
+  var isEnum = pIE.f;
+  while (aLen > index) {
+    var S = IObject(arguments[index++]);
+    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
+    var length = keys.length;
+    var j = 0;
+    var key;
+    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
+  } return T;
+} : $assign;
+
+
+/***/ }),
+/* 398 */
+/***/ (function(module, exports) {
+
+exports.f = Object.getOwnPropertySymbols;
+
+
+/***/ }),
+/* 399 */
+/***/ (function(module, exports) {
+
+exports.f = {}.propertyIsEnumerable;
 
 
 /***/ })

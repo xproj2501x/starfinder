@@ -12,6 +12,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
+const MAP = {
+  ID: 0x000000,
+  TYPE: 0x000001,
+  STATE: 0x00002
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 // Class
@@ -30,67 +35,55 @@ class Component {
   // Private Properties
   //////////////////////////////////////////////////////////////////////////////
   /**
-   * The UUID of the parent entity
+   * The UUID of the parent entity, type, and state of the component
    * @private
-   * @type {string}
+   * @type {Array}
    */
-  _id;
+  _data;
 
-  /**
-   * The type of the component
-   * @private
-   * @type {string}
-   */
-  _type;
-
-  /**
-   * The state properties of the component
-   * @private
-   * @type {object}
-   */
-  _state;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
   /**
-   * Get _id
+   * Returns the UUID of the parent entity
    * @readonly
    * @return {string}
    */
   get id() { // eslint-disable-line id-length
-    return this._id;
+    return this._data[MAP.ID];
   }
 
   /**
-   * Get _type
+   * Returns the type of the component
    * @readonly
-   * @return {string}
+   * @return {int}
    */
   get type() {
-    return this._type;
+    return this._data[MAP.TYPE];
   }
 
   /**
-   * Get _state
+   * Returns the state of the component
    * @readonly
    * @return {object}
    */
   get state() {
-    return this._state;
+    return this._data[MAP.STATE];
   }
 
   /**
    * Component
    * @constructor
-   * @param {int} id - the UUID of the parent entity
-   * @param {string} type - the type of the component to be created
+   * @param {string} id - the UUID of the parent entity
+   * @param {int} type - the type of the component to be created
    * @param {object} state - the initial state of the component
    */
   constructor(id, type, state) { // eslint-disable-line id-length
-    this._id = id;
-    this._type = type;
-    this._state = Object.assign({}, state);
+    this._data = [];
+    this._data[MAP.ID] = id;
+    this._data[MAP.TYPE] = type;
+    this._data[MAP.STATE] = Object.assign({}, state);
   }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -101,12 +94,14 @@ class Component {
    * @param {object} state - the new state of the component
    */
   update(state) {
+    const LAST_STATE = this._data[MAP.STATE];
+
     for (const KEY in state) {
-      if (!this._state.hasOwnProperty(KEY)) {
-        throw new Error(`Invalid property ${KEY} for component type ${this._type}`);
+      if (!LAST_STATE.hasOwnProperty(KEY)) {
+        throw new Error(`Invalid property: ${KEY} for component type: ${this._data[MAP.TYPE]}`);
       }
     }
-    this._state = Object.assign({}, this._state, state);
+    this._data[MAP.STATE] = Object.assign({}, LAST_STATE, state);
   }
 
   //////////////////////////////////////////////////////////////////////////////

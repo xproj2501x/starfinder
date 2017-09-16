@@ -1,5 +1,11 @@
 // DATA STRUCTURES
 
+const COMPONENTS = {
+  ID:         0x000000,   // STRING - 5 BYTES - UUID of parent entity
+  TYPE:       0x000029,   // INT - 2 BITS - point to Component Type table
+
+};
+
 const CHARACTER = {
   NAME:       0x00000000, // STRING - 16 BYTES
   CLASS:      0x00000011, // INT - 4 BYTES
