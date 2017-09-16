@@ -9022,44 +9022,75 @@ module.exports = function (regExp, replace) {
 
 __webpack_require__(328);
 
+var _constants = __webpack_require__(402);
+
+var CONSTANTS = _interopRequireWildcard(_constants);
+
 var _combatTracker = __webpack_require__(329);
 
 var _combatTracker2 = _interopRequireDefault(_combatTracker);
 
-var _entity = __webpack_require__(392);
+var _entity = __webpack_require__(400);
 
 var _entity2 = _interopRequireDefault(_entity);
 
-var _component = __webpack_require__(393);
+var _component = __webpack_require__(401);
 
 var _component2 = _interopRequireDefault(_component);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * Starfinder - App
- * ===
- *
- */
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var COMBAT_TRACKER = new _combatTracker2.default(); /**
+                                                     * Starfinder - App
+                                                     * ===
+                                                     *
+                                                     */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
-var COMBAT_TRACKER = new _combatTracker2.default();
-var ENTITY = new _entity2.default.create();
-var COMPONENT_DATA = {
-  id: ENTITY.id,
-  type: 2,
-  state: {
-    foo: 'asdfasf',
-    bar: 25
-  }
-};
-var COMPONENT = _component2.default.create(COMPONENT_DATA);
 
-console.log(COMPONENT.state);
+var CHARACTER = new _entity2.default.create();
+var NAME = _component2.default.create({
+  type: CONSTANTS.COMPONENT_TYPES.NAME,
+  state: 'Character 1'
+});
+var STRENGTH = _component2.default.create({
+  type: CONSTANTS.COMPONENT_TYPES.STRENGTH,
+  state: 10
+});
+var DEXTERITY = _component2.default.create({
+  type: CONSTANTS.COMPONENT_TYPES.DEXTERITY,
+  state: 10
+});
+var CONSTITUTION = _component2.default.create({
+  type: CONSTANTS.COMPONENT_TYPES.CONSTITUTION,
+  state: 10
+});
+var INTELLIGENCE = _component2.default.create({
+  type: CONSTANTS.COMPONENT_TYPES.INTELLIGENCE,
+  state: 10
+});
+var WISDOM = _component2.default.create({
+  type: CONSTANTS.COMPONENT_TYPES.WISDOM,
+  state: 10
+});
+var CHARISMA = _component2.default.create({
+  type: CONSTANTS.COMPONENT_TYPES.CHARISMA,
+  state: 10
+});
+var KEY = [2, 1, 1, 1, 1, 1, 1];
 
-// (x * 2^n1) * (y * 2^n2) + z = 2400000
+CHARACTER.attachComponent(NAME);
+CHARACTER.attachComponent(STRENGTH);
+CHARACTER.attachComponent(DEXTERITY);
+CHARACTER.attachComponent(CONSTITUTION);
+CHARACTER.attachComponent(INTELLIGENCE);
+CHARACTER.attachComponent(WISDOM);
+CHARACTER.attachComponent(CHARISMA);
+console.log(CHARACTER.unlock(KEY));
 
 /***/ }),
 /* 328 */
@@ -10431,7 +10462,15 @@ function createUUID() {
 exports.default = createUUID;
 
 /***/ }),
-/* 392 */
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10539,10 +10578,10 @@ var Entity = function () {
     value: function attachComponent(component) {
       var TYPE = component.type;
 
-      if (this._components[TYPE]) {
+      if (this._data[TYPE + 1]) {
         throw new Error('Component type: ' + TYPE + ' already attached to entity id: ' + this.id);
       }
-      this._components[TYPE] = component;
+      this._data[TYPE + 1] = component;
     }
 
     /**
@@ -10553,10 +10592,10 @@ var Entity = function () {
   }, {
     key: 'detachComponent',
     value: function detachComponent(type) {
-      if (!this._components[type]) {
+      if (!this._data[type + 1]) {
         throw new Error('Component type: ' + type + ' is not attached to entity id: ' + this.id);
       }
-      this._components[type] = 0;
+      this._data[type + 1] = 0;
     }
 
     /**
@@ -10569,11 +10608,12 @@ var Entity = function () {
     key: 'unlock',
     value: function unlock(key) {
       var LOCK = [];
+      var START = key.shift();
 
-      for (var idx = 0; idx < key.length - 1; idx++) {
-        var INDEX = key[0] + idx;
+      for (var idx = 0; idx < key.length; idx++) {
+        var INDEX = START + idx;
 
-        if (key[idx + 1] && !this._data[INDEX]) {
+        if (key[idx] && !this._data[INDEX]) {
           throw new Error('Invalid key: ' + key + ' for entity id: ' + this.id);
         }
         LOCK.push(this._data[INDEX]);
@@ -10610,7 +10650,7 @@ var Entity = function () {
 exports.default = Entity;
 
 /***/ }),
-/* 393 */
+/* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10619,10 +10659,6 @@ exports.default = Entity;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _assign = __webpack_require__(394);
-
-var _assign2 = _interopRequireDefault(_assign);
 
 var _classCallCheck2 = __webpack_require__(330);
 
@@ -10649,9 +10685,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 var MAP = {
-  ID: 0x000000,
-  TYPE: 0x000001,
-  STATE: 0x00002
+  TYPE: 0x000000,
+  STATE: 0x00001,
+  MODIFIERS: 0x00002
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -10664,26 +10700,25 @@ var MAP = {
 
 var Component = function () {
   (0, _createClass3.default)(Component, [{
-    key: 'id',
+    key: 'type',
 
 
     //////////////////////////////////////////////////////////////////////////////
     // Public Properties
     //////////////////////////////////////////////////////////////////////////////
     /**
-     * Returns the UUID of the parent entity
-     * @readonly
-     * @return {string}
-     */
-    get: function get() {
-      // eslint-disable-line id-length
-      return this._data[MAP.ID];
-    }
-
-    /**
      * Returns the type of the component
      * @readonly
      * @return {int}
+     */
+    get: function get() {
+      return this._data[MAP.TYPE];
+    }
+
+    /**
+     * Returns the state of the component
+     * @readonly
+     * @return {object}
      */
 
 
@@ -10701,18 +10736,6 @@ var Component = function () {
      */
 
   }, {
-    key: 'type',
-    get: function get() {
-      return this._data[MAP.TYPE];
-    }
-
-    /**
-     * Returns the state of the component
-     * @readonly
-     * @return {object}
-     */
-
-  }, {
     key: 'state',
     get: function get() {
       return this._data[MAP.STATE];
@@ -10721,27 +10744,26 @@ var Component = function () {
     /**
      * Component
      * @constructor
-     * @param {string} id - the UUID of the parent entity
      * @param {int} type - the type of the component to be created
      * @param {object} state - the initial state of the component
      */
 
   }]);
 
-  function Component(id, type, state) {
+  function Component(type, state) {
     (0, _classCallCheck3.default)(this, Component);
     // eslint-disable-line id-length
     this._data = [];
-    this._data[MAP.ID] = id;
     this._data[MAP.TYPE] = type;
-    this._data[MAP.STATE] = (0, _assign2.default)({}, state);
+    this._data[MAP.STATE] = state;
+    this._data[MAP.MODIFIERS] = [];
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
   /**
-   * Updates the state of the component with new values
+   * Updates the state of the component with the new value
    * @param {object} state - the new state of the component
    */
 
@@ -10749,14 +10771,7 @@ var Component = function () {
   (0, _createClass3.default)(Component, [{
     key: 'update',
     value: function update(state) {
-      var LAST_STATE = this._data[MAP.STATE];
-
-      for (var KEY in state) {
-        if (!LAST_STATE.hasOwnProperty(KEY)) {
-          throw new Error('Invalid property: ' + KEY + ' for component type: ' + this._data[MAP.TYPE]);
-        }
-      }
-      this._data[MAP.STATE] = (0, _assign2.default)({}, LAST_STATE, state);
+      this._data[MAP.STATE] = state;
     }
 
     //////////////////////////////////////////////////////////////////////////////
@@ -10779,7 +10794,7 @@ var Component = function () {
       if (data === null) {
         throw new Error('Component configuration missing');
       }
-      return new Component(data.id, data.type, data.state);
+      return new Component(data.type, data.state);
     }
   }]);
   return Component;
@@ -10793,83 +10808,35 @@ var Component = function () {
 exports.default = Component;
 
 /***/ }),
-/* 394 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(395), __esModule: true };
-
-/***/ }),
-/* 395 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(396);
-module.exports = __webpack_require__(334).Object.assign;
-
-
-/***/ }),
-/* 396 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(341);
-
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(397) });
-
-
-/***/ }),
-/* 397 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-// 19.1.2.1 Object.assign(target, source, ...)
-var getKeys = __webpack_require__(377);
-var gOPS = __webpack_require__(398);
-var pIE = __webpack_require__(399);
-var toObject = __webpack_require__(365);
-var IObject = __webpack_require__(379);
-var $assign = Object.assign;
 
-// should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__(336)(function () {
-  var A = {};
-  var B = {};
-  // eslint-disable-next-line no-undef
-  var S = Symbol();
-  var K = 'abcdefghijklmnopqrst';
-  A[S] = 7;
-  K.split('').forEach(function (k) { B[k] = k; });
-  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
-  var T = toObject(target);
-  var aLen = arguments.length;
-  var index = 1;
-  var getSymbols = gOPS.f;
-  var isEnum = pIE.f;
-  while (aLen > index) {
-    var S = IObject(arguments[index++]);
-    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
-    var length = keys.length;
-    var j = 0;
-    var key;
-    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
-  } return T;
-} : $assign;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * Starfinder - Constants
+ * ===
+ *
+ */
 
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+var DEBUG = exports.DEBUG = location.search === '?DEBUG';
 
-/***/ }),
-/* 398 */
-/***/ (function(module, exports) {
-
-exports.f = Object.getOwnPropertySymbols;
-
-
-/***/ }),
-/* 399 */
-/***/ (function(module, exports) {
-
-exports.f = {}.propertyIsEnumerable;
-
+var COMPONENT_TYPES = exports.COMPONENT_TYPES = {
+  NAME: 0x00000,
+  STRENGTH: 0x00001,
+  DEXTERITY: 0x00002,
+  CONSTITUTION: 0x00003,
+  INTELLIGENCE: 0x00004,
+  WISDOM: 0x00005,
+  CHARISMA: 0x00006
+};
 
 /***/ })
 /******/ ]);

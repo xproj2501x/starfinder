@@ -13,9 +13,9 @@
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 const MAP = {
-  ID: 0x000000,
-  TYPE: 0x000001,
-  STATE: 0x00002
+  TYPE: 0x000000,
+  STATE: 0x00001,
+  MODIFIERS: 0x00002
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -46,15 +46,6 @@ class Component {
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
   /**
-   * Returns the UUID of the parent entity
-   * @readonly
-   * @return {string}
-   */
-  get id() { // eslint-disable-line id-length
-    return this._data[MAP.ID];
-  }
-
-  /**
    * Returns the type of the component
    * @readonly
    * @return {int}
@@ -75,33 +66,25 @@ class Component {
   /**
    * Component
    * @constructor
-   * @param {string} id - the UUID of the parent entity
    * @param {int} type - the type of the component to be created
    * @param {object} state - the initial state of the component
    */
-  constructor(id, type, state) { // eslint-disable-line id-length
+  constructor(type, state) { // eslint-disable-line id-length
     this._data = [];
-    this._data[MAP.ID] = id;
     this._data[MAP.TYPE] = type;
-    this._data[MAP.STATE] = Object.assign({}, state);
+    this._data[MAP.STATE] = state;
+    this._data[MAP.MODIFIERS] = [];
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
   /**
-   * Updates the state of the component with new values
+   * Updates the state of the component with the new value
    * @param {object} state - the new state of the component
    */
   update(state) {
-    const LAST_STATE = this._data[MAP.STATE];
-
-    for (const KEY in state) {
-      if (!LAST_STATE.hasOwnProperty(KEY)) {
-        throw new Error(`Invalid property: ${KEY} for component type: ${this._data[MAP.TYPE]}`);
-      }
-    }
-    this._data[MAP.STATE] = Object.assign({}, LAST_STATE, state);
+    this._data[MAP.STATE] = state;
   }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -121,7 +104,7 @@ class Component {
     if (data === null) {
       throw new Error('Component configuration missing');
     }
-    return new Component(data.id, data.type, data.state);
+    return new Component(data.type, data.state);
   }
 }
 

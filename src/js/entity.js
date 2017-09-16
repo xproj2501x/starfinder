@@ -8,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
-import createUUID from '../utility/uuid';
+import createUUID from './utility/uuid';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -70,10 +70,10 @@ class Entity {
   attachComponent(component) {
     const TYPE = component.type;
 
-    if (this._components[TYPE]) {
+    if (this._data[TYPE + 1]) {
       throw new Error(`Component type: ${TYPE} already attached to entity id: ${this.id}`);
     }
-    this._components[TYPE] = component;
+    this._data[TYPE + 1] = component;
   }
 
   /**
@@ -81,10 +81,10 @@ class Entity {
    * @param {string} type - the component type to be detached
    */
   detachComponent(type) {
-    if (!this._components[type]) {
+    if (!this._data[type + 1]) {
       throw new Error(`Component type: ${type} is not attached to entity id: ${this.id}`);
     }
-    this._components[type] = 0;
+    this._data[type + 1] = 0;
   }
 
   /**
@@ -94,11 +94,12 @@ class Entity {
    */
   unlock(key) {
     const LOCK = [];
+    const START = key.shift();
 
-    for (let idx = 0; idx < key.length - 1; idx++) {
-      const INDEX = key[0] + idx;
+    for (let idx = 0; idx < key.length; idx++) {
+      const INDEX = START + idx;
 
-      if (key[idx + 1] && !this._data[INDEX]) {
+      if (key[idx] && !this._data[INDEX]) {
         throw new Error(`Invalid key: ${key} for entity id: ${this.id}`);
       }
       LOCK.push(this._data[INDEX]);
