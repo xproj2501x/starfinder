@@ -12,92 +12,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
-const CHARACTERS = [
-  {
-  init: 0,
-  name: 'Player 1',
-  stamina: {
-    max: 25,
-    current: 25,
-  },
-  hitPoints: {
-    max: 25,
-    current: 25,
-  },
-  kac: 17,
-  eac: 17
-},
-{
-  init: 0,
-  name: 'Player 2',
-  stamina: {
-    max: 21,
-    current: 2,
-  },
-  hitPoints: {
-    max: 21,
-    current: 21,
-  },
-  kac: 12,
-  eac: 12
-},
-{
-  init: 0,
-  name: 'Player 3',
-  stamina: {
-    max: 30,
-    current: 30,
-  },
-  hitPoints: {
-    max: 30,
-    current: 30,
-  },
-  kac: 20,
-  eac: 18
-},
-  {
-    init: 0,
-    name: 'Player 4',
-    stamina: {
-      max: 30,
-      current: 30,
-    },
-    hitPoints: {
-      max: 30,
-      current: 30,
-    },
-    kac: 20,
-    eac: 18
-  },
-  {
-    init: 0,
-    name: 'Player 5',
-    stamina: {
-      max: 21,
-      current: 2,
-    },
-    hitPoints: {
-      max: 21,
-      current: 21,
-    },
-    kac: 12,
-    eac: 12
-  },
-  {
-    init: 0,
-    name: 'Player 6',
-    stamina: {
-      max: 21,
-      current: 2,
-    },
-    hitPoints: {
-      max: 21,
-      current: 21,
-    },
-    kac: 12,
-    eac: 12
-  }
-];
+const COMBAT = require('../../../test/data/combat.json');
+
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
@@ -134,28 +50,25 @@ class CombatTracker {
     const NEXT_BUTTON = document.getElementById('next-button');
     const PREVIOUS_BUTTON = document.getElementById('previous-button');
 
-    const ROUND = document.getElementById('round');
-
     if (!this.viewModel.isRunning) {
       START_BUTTON.textContent = 'Pause';
       NEXT_BUTTON.disabled = false;
       PREVIOUS_BUTTON.disabled = false;
       this.viewModel.isRunning = true;
-      this.viewModel.round = 0;
+      this.viewModel.round = 1;
       this.viewModel.index = 0;
-
     } else {
       START_BUTTON.textContent = 'Start';
       this.viewModel.isRunning = false;
       NEXT_BUTTON.disabled = true;
       PREVIOUS_BUTTON.disabled = true;
     }
-    ROUND.textContent = this.viewModel.round;
+    this._clearCharacterRows();
+    this._drawCharacterRows();
   }
 
   next() {
     const NEXT = this.viewModel.index + 1;
-    const ROUND = document.getElementById('round');
 
     if (NEXT === this.viewModel.characters.length) {
       this.viewModel.round += 1;
@@ -163,12 +76,12 @@ class CombatTracker {
     } else {
       this.viewModel.index = NEXT;
     }
-    ROUND.textContent = this.viewModel.round;
+    this._clearCharacterRows();
+    this._drawCharacterRows();
   }
 
   previous() {
     const NEXT = this.viewModel.index - 1;
-    const ROUND = document.getElementById('round');
 
     if (NEXT === -1) {
       this.viewModel.round -= 1;
@@ -176,7 +89,31 @@ class CombatTracker {
     } else {
       this.viewModel.index = NEXT;
     }
-    ROUND.textContent = this.viewModel.round;
+    this._clearCharacterRows();
+    this._drawCharacterRows();
+  }
+
+  roll() {
+
+  }
+
+
+  sort() {
+    this.viewModel.characters.sort((char1, char2) => {
+      return (char1.init < char2.init);
+    });
+  }
+
+  add() {
+    const ENCOUNTER_DROPDOWN = document.getElementById('encounter-dropdown');
+    const ENCOUNTER = this.viewModel.encounters[ENCOUNTER_DROPDOWN.value];
+    const CHARACTERS = [...this.viewModel.characters, ...ENCOUNTER.monsters];
+
+    this.viewModel.characters = CHARACTERS;
+    this.sort();
+    this._clearCharacterRows();
+    this._drawCharacterRows();
+
   }
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
@@ -185,85 +122,102 @@ class CombatTracker {
     const START_BUTTON = document.getElementById('start-button');
     const NEXT_BUTTON = document.getElementById('next-button');
     const PREVIOUS_BUTTON = document.getElementById('previous-button');
+    const ROLL_BUTTON = document.getElementById('roll-button');
+    const SORT_BUTTON = document.getElementById('sort-button');
+    const ENCOUNTER_DROPDOWN = document.getElementById('encounter-dropdown');
+    const ADD_BUTTON = document.getElementById('add-button');
 
     START_BUTTON.addEventListener('click', (event) => this.toggle(event));
     NEXT_BUTTON.addEventListener('click', (event) => this.next(event));
     PREVIOUS_BUTTON.addEventListener('click', (event) => this.previous(event));
-    this.viewModel.characters = CHARACTERS;
-    this.viewModel.characters.forEach((character) => {
-      this._addCharacterRow(character);
-      this._addTurnRow();
-    });
+    ADD_BUTTON.addEventListener('click', (event) => this.add(event));
+    SORT_BUTTON.addEventListener('click', (event) => this.sort(event));
+    this.viewModel.index = -1;
+    this.viewModel.characters = COMBAT.players;
+    this.viewModel.encounters = COMBAT.encounters;
+    this._drawCharacterRows();
+    for (const IDX in this.viewModel.encounters) {
+      const ENCOUNTER = this.viewModel.encounters[IDX];
+      const OPTION = document.createElement('option');
+
+      OPTION.value = IDX;
+      OPTION.textContent = ENCOUNTER.name;
+
+      ENCOUNTER_DROPDOWN.append(OPTION);
+    }
 
   }
 
-  _addCharacterRow(character) {
-    const PARENT = document.getElementById('characters');
-    const ELEMENT = document.createElement('tr');
+  _drawCharacterRows() {
+    for (const IDX in this.viewModel.characters) {
+      const CHARACTER = this.viewModel.characters[IDX];
 
-    ELEMENT.classList.add('character');
+      this._addCharacterRow(CHARACTER, IDX);
+    }
+    this._toggleStyle(this.viewModel.index);
+  }
 
-    const INITIATIVE = document.createElement('td');
+  _addCharacterRow(character, index) {
+    const PARENT = document.getElementById('character-grid');
+    const ELEMENT = document.createElement('div');
 
-    INITIATIVE.classList.add('initiative');
-
-    const INPUT = document.createElement('input');
-
-    INPUT.type = 'text';
-    INPUT.value = character.init;
-    INITIATIVE.append(INPUT);
-    ELEMENT.append(INITIATIVE);
-
-    const NAME = document.createElement('td');
-
-    NAME.classList.add('name');
-    NAME.textContent = character.name;
-    ELEMENT.append(NAME);
-
-    const STAMINA = document.createElement('td');
-
-    STAMINA.classList.add('stamina');
-    STAMINA.textContent = `${character.stamina.max} / ${character.stamina.current}`;
-    ELEMENT.append(STAMINA);
-
-    const HIT_POINTS = document.createElement('td');
-
-    HIT_POINTS.classList.add('hit-points');
-    HIT_POINTS.textContent = `${character.hitPoints.max} / ${character.hitPoints.current}`;
-    ELEMENT.append(HIT_POINTS);
-
-    const KAC = document.createElement('td');
-
-    KAC.classList.add('kinetic-armor-class');
-    KAC.textContent = character.kac;
-    ELEMENT.append(KAC);
-
-    const EAC = document.createElement('td');
-
-    EAC.classList.add('energy-armor-class');
-    EAC.textContent = character.eac;
-    ELEMENT.append(EAC);
-
-    const QUICK = document.createElement('td');
-
-    QUICK.classList.add('quick-actions');
-    QUICK.textContent = '. . .';
-    ELEMENT.append(QUICK);
+    ELEMENT.classList.add('o-cell');
+    ELEMENT.classList.add('o-cell--column-12');
+    ELEMENT.classList.add('o-grid');
+    ELEMENT.classList.add('o-grid--no-spacing');
+    ELEMENT.classList.add('o-initiative-table__body');
+    ELEMENT.id = `character-${index}`;
+    ELEMENT.innerHTML = `<div class="o-cell o-cell--column-4">${character.name}</div>
+            <div class="o-cell o-cell--column-1 init"><input type="number" value="${character.init}" /></div>
+            <div class="o-cell o-cell--column-2 hit-points">${character.hitPoints.max} / ${character.hitPoints.current}</div>
+            <div class="o-cell o-cell--column-2 stamina">${character.stamina.max} / ${character.stamina.current}</div>
+            <div class="o-cell o-cell--column-1 kac">${character.kac}</div>
+            <div class="o-cell o-cell--column-1 eac">${character.eac}</div>
+            <div class="o-cell o-cell--column-1 quick-buttons"></div>`;
     PARENT.appendChild(ELEMENT);
   }
 
-  _addTurnRow(){
-    const PARENT = document.getElementById('rounds');
-    const TR = document.createElement('tr');
+  _clearCharacterRows() {
+    const PARENT = document.getElementById('character-grid');
+    const ELEMENTS = PARENT.getElementsByClassName('o-initiative-table__body');
 
-    for (let idx = 0; idx < 30; idx++) {
-      const TD = document.createElement('td');
-
-      TD.classList.add('round');
-      TD.textContent = '25';
-      TR.append(TD);
+    while (ELEMENTS[0]) {
+      ELEMENTS[0].parentNode.removeChild(ELEMENTS[0]);
     }
-    PARENT.append(TR);
+  }
+
+  _addTurnRow(){
+    // const PARENT = document.getElementById('character-grid');
+    // const ELEMENT = document.createElement('div');
+    //
+    // ELEMENT.classList.add('o-cell');
+    // ELEMENT.classList.add('o-cell--column-12');
+    // ELEMENT.classList.add('o-grid');
+    // ELEMENT.classList.add('o-grid--no-spacing');
+    // ELEMENT.classList.add('o-initiative-table__body');
+    // // ELEMENT.id = `character-${index}`;
+    //
+    // ELEMENT.innerHTML = `<div class="o-cell round"></div>
+    //
+    // PARENT.appendChild(ELEMENT);
+    //
+    // for (let idx = 0; idx < 30; idx++) {
+    //   const TD = document.createElement('td');
+    //
+    //   TD.classList.add('round');
+    //   TD.textContent = '25';
+    //   TR.append(TD);
+    // }
+    // PARENT.append(TR);
+  }
+
+  _toggleStyle(idx) {
+    if (idx >= 0) {
+      console.log(this.viewModel.characters);
+      const ELEMENT = document.getElementById(`character-${idx}`);
+
+      ELEMENT.classList.toggle('active-character');
+    }
   }
 }
 

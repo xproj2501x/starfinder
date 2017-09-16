@@ -38,3 +38,9 @@
     }
   }
 }
+
+@function make-breaks($breakpoints) {
+	@each $name, $value in $breakpoints {
+
+	}
+}

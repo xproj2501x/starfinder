@@ -2,23 +2,18 @@
 
 /* VARIABLES */
 
-.card {
-  background: $white;
+.c-card {
   @include box-shadow();
-  @include flex-box(column);
-  @include flex-item(1, 1, auto);
-  justify-content: flex-start;
+  background: $white;
   overflow: hidden;
 
   &__heading{
-    @include flex-item(0, 0, auto);
     background: $accent-color;
     color: $white;
     padding: $gutter;
   }
 
   &__body{
-    padding: $gutter;
-    @include flex-item(1, 0, auto);
+    padding-top: $gutter;
   }
 }

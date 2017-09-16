@@ -1,0 +1,77 @@
+.t-app {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+
+  &__header {
+    @include box-shadow();
+    background: $white;
+    height: 64px;
+    z-index: 100;
+  }
+
+  &__title {
+    @include box-shadow();
+    background: $gray-light;
+    height: 64px;
+    z-index: 80;
+
+    &--nav-collapsed {
+      padding: $gutter 0 0 (64px + $gutter);
+    }
+
+    &--nav-expanded {
+      padding: $gutter 0 0 (256px + $gutter);
+    }
+  }
+
+  &__main {
+    @include box-shadow();
+    background: $gray-bright;
+    height: calc(100% - 192px);
+    padding: $gutter 0 0 64px;
+    z-index: 70;
+
+    >.o-cell {
+      margin-bottom: $gutter;
+    }
+
+    &--nav-collapsed {
+      padding: $gutter 0 0 64px;
+    }
+
+    &--nav-expanded {
+      padding-left: $gutter 0 0 256px;
+    }
+  }
+
+  &__footer {
+    background: $white;
+    height: 64px;
+
+    &--nav-collapsed {
+      padding: $gutter 0 0 (64px + $gutter);
+    }
+
+    &--nav-expanded {
+      padding-left: $gutter 0 0 (256px + $gutter);
+    }
+  }
+
+  &__left-nav {
+    position: absolute;
+    background: $primary-color-dark;
+    bottom: 0;
+    top: 64px;
+    width: 256px;
+    z-index: 95;
+
+    &--collapsed {
+      left: -192px;
+    }
+
+    &--expanded {
+      left: 0;
+    }
+  }
+}

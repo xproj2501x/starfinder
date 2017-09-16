@@ -10,7 +10,7 @@
 import '../css/_site.scss';
 import CombatTracker from './views/combat-tracker';
 
-
+const COMBAT_TRACKER = new CombatTracker();
 // (x * 2^n1) * (y * 2^n2) + z = 2400000
 
 

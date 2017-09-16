@@ -23,14 +23,14 @@ $black: #0A0A0A !default;
 $white: #FEFEFE !default;
 
 $palette: (
-        'primary-color': $primary-color,
-        'primary-color-dark': $primary-color-dark,
-        'primary-color-light': $primary-color-light,
-        'accent-color': $accent-color,
-        'info-color': $info-color,
-        'success-color': $success-color,
-        'warning-color': $warning-color,
-        'danger-color': $danger-color,
+        'primary': $primary-color,
+        'primary-dark': $primary-color-dark,
+        'primary-light': $primary-color-light,
+        'accent': $accent-color,
+        'info': $info-color,
+        'success': $success-color,
+        'warning': $warning-color,
+        'danger': $danger-color,
 ) !default;
 
 @mixin set-text-color($bg: $primary-color, $text: $white){

@@ -8,68 +8,51 @@
   <link rel="stylesheet" href="site.css" />
 </head>
 <body>
-  <div class="header">
-    <div class="header__left">
-    </div>
-    <div class="header__right form-group">
-    </div>
-  </div>
-  <div class="content-area">
-    <div class="content-area__title">
-    </div>
-    <div class="content-area__body">
-      <div class="combat-tracker">
-        <div class="card">
-          <div class="card__heading">heading</div>
-          <div class="card__body">
-            <div class="section">
-              Round: <span id="round"></span>
-              <button id="start-button"> Start </button>
-              <button id="previous-button" disabled> < </button>
-              <button id="next-button" disabled> > </button>
-              <button> Roll Initiative </button>
-              <button> Sort </button>
-              <select>
-                <option></option>
-                <option>Encounter 1</option>
-                <option>Encounter 2</option>
-                <option>Encounter 3</option>
-                <option>Encounter 4</option>
-              </select>
-              <button> + </button>
-            </div>
-            <div class="section tracker">
-
-                <table class="table">
-                  <thead>
-                  <tr class="character">
-                    <th class="initiative">Init</th>
-                    <th class="name">Character</th>
-                    <th class="stamina">Stam</th>
-                    <th class="hit-points">HP</th>
-                    <th class="kinetic-armor-class">KAC</th>
-                    <th class="energy-armor-class">EAC</th>
-                    <th class="quick-actions"></th>
-                  </thead>
-                  <tbody id="characters">
-                  </tbody>
-                </table>
-            </div>
+  <div class="o-grid o-grid--no-spacing t-app">
+  <header class="o-cell o-cell--column-12 t-app__header o-grid o-grid--no-spacing">
+    <div class="o-cell o-cell--column-6">left</div>
+    <div class="o-cell o-cell--column-6">right</div>
+  </header>
+  <header class="o-cell o-cell--column-12 t-app__title t-app__title--nav-collapsed">title</header>
+  <main class="o-cell o-cell--column-12 t-app__main t-app__main--nav-collapsed o-grid">
+    <div class="o-cell o-cell--column-4 c-card t-combat">
+      <div class="c-card__body o-grid o-initiative-table" id="character-grid">
+        <div class="o-cell o-cell--column-6">
+          <button class="c-button c-button--primary" id="start-button">Start</button>
+          <button class="c-button c-button--primary" id="previous-button" disabled> < </button>
+          <button class="c-button c-button--primary" id="next-button" disabled> > </button>
+        </div>
+        <div class="o-cell o-cell--column-6">
+          <select id="encounter-dropdown">
+            <option></option>
+          </select>
+          <button class="c-button c-button--primary" id="add-button"> + </button>
+        </div>
+        <div class="o-cell o-cell--column-6">
+          <button class="c-button c-button--primary" id="roll-button"> Roll </button>
+          <button class="c-button c-button--primary" id="sort-button"> Sort </button>
+        </div>
+        <div class="o-cell o-cell--column-6">
+          <button class="c-button c-button--primary"> oth1 </button>
+          <button class="c-button c-button--primary"> oth2 </button>
+        </div>
+        <!--<div class="o-cell o-cell&#45;&#45;column-12 o-grid o-grid&#45;&#45;no-spacing o-initiative-table">-->
+          <div class="o-cell o-cell--column-12 o-grid o-grid--no-spacing o-initiative-table__heading">
+            <div class="o-cell o-cell--column-4">Name</div>
+            <div class="o-cell o-cell--column-1 init">Init</div>
+            <div class="o-cell o-cell--column-2 hit-points">HP</div>
+            <div class="o-cell o-cell--column-2 stamina">Stamina</div>
+            <div class="o-cell o-cell--column-1 kac">KAC</div>
+            <div class="o-cell o-cell--column-1 eac">EAC</div>
+            <div class="o-cell o-cell--column-1 quick-buttons"></div>
           </div>
-        </div>
-        <div class="card">
-          <div class="card__heading">heading</div>
-          <div class="card__body">body</div>
-        </div>
+        <!--</div>-->
       </div>
     </div>
-    <div class="content-area__footer">
-    </div>
+  </main>
+  <footer class="o-cell o-cell--column-12 t-app__footer t-app__footer--nav-collapsed">footer</footer>
+    <nav class="t-app__left-nav t-app__left-nav--collapsed">left nav</nav>
   </div>
-  <div class="left-nav">
-
-  </div>
-  <diagnostics></diagnostics>
   <script src="site.js" type="text/javascript"></script>
 </body>
 </html>

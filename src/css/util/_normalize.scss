@@ -1,3 +1,9 @@
+html {
+  font-family: $primary-font;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
 }
@@ -23,7 +29,11 @@ canvas,
 progress,
 video {
   display: inline-block;
-  vertical-align: baseline;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
 }
 
 a {
@@ -32,7 +42,7 @@ a {
 
 a:active,
 a:hover{
-  outline: 0;
+  outline-width: 0;
 }
 
 b,

@@ -2,11 +2,74 @@
 
 $gutter: 16px !default;
 
+// breakpoints
+$x-small: 480px !default;
+$small: 600px !default;
+$medium: 840px !default;
+$large: 960px !default;
+$x-large: 1280px !default;
+$xx-large: 1600px !default;
+
+// breakpoints 2
+// xs - mobile portrait: 0 - 480px
+// sm - mobile landscape: 480px - 600px
+// md - tablet portrait: 600px - 960px
+// lg - tablet landscape: 960px 1024px
+// xl - desktop: 1024px - 1280px
+// xxl - desktop large: 1280px+
+$xs: 480px !default;
+$sm: 600px !default;
+$md: 960px !default;
+$lg: 1024px !default;
+$xl: 1280px !default;
+
+$phone: $xs !default;
+$tablet: $md !default;
+$desktop: $xl !default;
+
+// Phone Portrait
+//@media (max-width: $xs) {
+//
+//}
+
+// Phone Landscape
+//@media (min-width: $xs) and (max-width: $sm) {
+//
+//}
+
+// Tablet Portrait
+//@media (min-width: $sm) and (max-width: $md) {
+//
+//}
+
+// Tablet Landscape
+//@media (min-width: $md) and (max-width: $lg) {
+//
+//}
+
+// Desktop
+//@media (min-width: $lg) and (max-width: $xl) {
+//
+//}
+
+// Desktop Large
+//@media (min-width: $xl) {
+//
+//}
+
+$breakpoints: $x-small, $small, $medium, $large, $x-large, $xx-large !default;
+$breakpoints2: $xs, $sm, $md, $lg, $xl !default;
+
+// fonts
+$primary-font: 'Roboto', 'Open Sans', monospace !default;
+$secondary-font: monospace !default;
+
 // font weights
-$light: 300 !default;
-$normal: 400 !default
-$semibold: 600 !default;
-$bold: 700 !default;
+$light-font: 300 !default;
+$normal-font: 400 !default
+$semi-bold-font: 600 !default;
+$bold-font: 700 !default;
+$extra-bold-font: 900 !default;
 
 // font sizes
 $small-text: 10px;
@@ -14,17 +77,3 @@ $medium-text: 12px;
 $large-text: 18px;
 $x-large-text: 24px;
 $xx-large-text: 32px;
-
-// breakpoints
-$small: 480px !default;
-$medium: 760px !default;
-$large: 960px !default;
-$x-large: 1280px !default;
-$xx-large: 1900px !default;
-
-$breakpoints: $small, $medium, $large, $x-large, $xx-large !default;
-
-// fonts
-$primary-font: 'Roboto', 'Open Sans', monospace !default;
-$secondary-font: 'Open Sans' !default;
-$monospace-font: monospace !default;

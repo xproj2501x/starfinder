@@ -16,6 +16,103 @@
 
 ***/
 
-.c-button {
+$button-styles: (
+  'flat',
+  'raised',
+  'floating'
+) !default;
 
+@mixin button-base {
+  background-image: none;
+  border: 1px solid transparent;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: $semi-bold-font;
+  margin: 0;
+  outline: 0;
+  padding: ($gutter / 2) $gutter;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+@mixin button {
+  .c-button {
+    @include button-base;
+    @each $name, $color in $palette {
+
+      &--#{$name} {
+        background: $color;
+
+        &:hover {
+          background: darken($color, 20%);
+        }
+      }
+
+      &--#{$name}--flat {
+        color: $color;
+        background: $white;
+        font-weight: $semi-bold-font;
+
+        &:hover {
+          background: $divider-color;
+          color: darken($color, 20%);
+        }
+      }
+    }
+
+    &--raised {
+      @include box-shadow();
+      transition: box-shadow ease-out .2s;
+
+      &:hover {
+        @include box-shadow();
+      }
+    }
+
+    &--floating {
+      @include box-shadow();
+      border-radius: 999px;
+      height: 44px;
+      padding: 0;
+      text-align: center;
+      transition: box-shadow ease-out .2s;
+      width: 44px;
+      vertical-align: middle;
+
+      &:hover {
+        @include box-shadow();
+      }
+    }
+  }
+}
+
+@include button();
+
+.c-button-group {
+  justify-content: flex-end;
+}
+
+.c-button-group--align-left {
+  justify-content: flex-start;
+}
+
+.c-button-group--align-center {
+  justify-content: center;
+}
+
+@media (max-width: $sm) {
+  .c-button-group,
+  [class*='c-button--group--'] {
+    display: block;
+  }
+
+  .c-button,
+  [class*='c-button--'] {
+    margin-bottom: $gutter;
+    width: 100%;
+  }
 }

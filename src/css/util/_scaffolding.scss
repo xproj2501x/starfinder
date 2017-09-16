@@ -13,11 +13,53 @@ html, body {
 }
 
 body {
-  @include flex-box(column);
+  color: $secondary-text-color;
   font-family: $primary-font;
   font-size: $medium-text;
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
+
 .hidden {
   display: none !important;
+}
+
+@media (max-width: $xs){
+ .hidden-mobile-portrait {
+   display: none;
+ }
+}
+
+@media (max-width: $sm) {
+  .hidden-mobile-landscape {
+    display: none;
+  }
+}
+
+@media (max-width: $md) {
+  .hidden-tablet-portrait {
+    display: none;
+  }
+}
+
+@media (max-width: $lg) {
+  .hidden-tablet-landscape {
+    display: none;
+  }
+}
+
+@media (max-width: $xl) {
+  .hidden-desktop {
+    display: none;
+  }
+}
+
+@media (min-width: $xl) {
+  .hidden-dekstop-large {
+    display: none;
+  }
 }

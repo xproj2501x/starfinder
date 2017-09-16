@@ -8,16 +8,100 @@
   -webkit-flex-flow: row wrap;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
-  margin-left: -12px;
-  margin-right: -12px;
-  -webkit-align-items: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  -ms-flex-pack: center;
-  justify-content: center;
-  padding: 0;
 }
 
+.o-grid--no-spacing {
+  margin: 0;
+}
+
+.o-cell {
+  flex: 0 0 auto;
+}
+
+// xs - mobile portrait: 0 - 480px
+// sm - mobile landscape: 480px - 600px
+// md - tablet portrait: 600px - 960px
+// lg - tablet landscape:
+// xl - desktop: 960px - 1280px
+// xxl - desktop large: 1280px+
+@function calculatePercentage($size, $max) {
+  @return (100% / ($max / $size));
+}
+
+@mixin makeResponsiveGridSize($name, $min, $max: '') {
+  $length: 12;
+
+  @media (min-width: $min) and (max-width: $max - 1) {
+
+    .o-cell {
+
+      &--hidden-#{$name} {
+        display: none !important;
+      }
+
+      @for $idx from 1 through $length {
+
+        &--order-#{$idx}-#{$name} {
+          -webkit-order: $idx;
+          -ms-flex-order: $idx;
+          order: $idx;
+        }
+      }
+    }
+  }
+
+}
+
+@mixin makeGrid() {
+  $max: 12;
+
+  @for $idx from 1 through $max {
+    $width: (100% / ($max / $idx));
+
+    .o-cell {
+
+      &--order-#{$idx} {
+        -webkit-order: $idx;
+        -ms-flex-order: $idx;
+        order: $idx;
+      }
+
+      &--column-#{$idx} {
+        margin: 0 $gutter;
+        width: calc(#{$width} - #{$gutter * 2});
+      }
+
+      .o-grid--no-spacing>&--column-#{$idx} {
+        margin: 0;
+        width: $width;
+      }
+
+      @if $idx != 12 {
+        &--offset-#{$idx} {
+          margin-left: calc(#{$width} + #{$gutter});
+        }
+
+        .o-grid--no-spacing>&--offset-#{$idx} {
+          margin-left: $width;
+        }
+      }
+    }
+
+  }
+
+  @include makeResponsiveGridSize('phone', 0, $phone);
+  @include makeResponsiveGridSize('tablet', $phone, $tablet);
+  @include makeResponsiveGridSize('desktop', $tablet, $desktop * 4);
+}
+
+@mixin makeGridBreakpoint($min, $max) {
+  @media (min-width: $min) and (max-width: $max) {
+    @include makeGrid();
+
+  }
+}
+
+@include makeGrid();
 .o-grid.o-grid--no-spacing {
     padding: 0;
 }
@@ -44,79 +128,15 @@
   -ms-flex-item-align: end;
   align-self: flex-end
 }
-
-.o-cell--stretch {
-  -webkit-align-self: stretch;
-  -ms-flex-item-align: stretch;
-  -ms-grid-row-align: stretch;
-  align-self: stretch
-}
-
-.o-grid.o-grid--no-spacing>.o-cell {
-  margin: 0
-}
-
-.o-cell--1 {
-  -webkit-order: 1;
-  -ms-flex-order: 1;
-  order: 1
-}
-.o-cell--2 {
-  -webkit-order: 2;
-  -ms-flex-order: 2;
-  order: 2
-}
-.o-cell--3 {
-  -webkit-order: 3;
-  -ms-flex-order: 3;
-  order: 3
-}
-.o-cell--4 {
-  -webkit-order: 4;
-  -ms-flex-order: 4;
-  order: 4
-}
-.o-cell--5 {
-  -webkit-order: 5;
-  -ms-flex-order: 5;
-  order: 5
-}
-.o-cell--6 {
-  -webkit-order: 6;
-  -ms-flex-order: 6;
-  order: 6
-}
-.o-cell--7 {
-  -webkit-order: 7;
-  -ms-flex-order: 7;
-  order: 7
-}
-.o-cell--8 {
-  -webkit-order: 8;
-  -ms-flex-order: 8;
-  order: 8
-}
-.o-cell--9 {
-  -webkit-order: 9;
-  -ms-flex-order: 9;
-  order: 9
-}
-.o-cell--10 {
-  -webkit-order: 10;
-  -ms-flex-order: 10;
-  order: 10
-}
-.o-cell--11 {
-  -webkit-order: 11;
-  -ms-flex-order: 11;
-  order: 11
-}
-.o-cell--12 {
-  -webkit-order: 12;
-  -ms-flex-order: 12;
-  order: 12;
-}
-
-@media screen and (max-width: $small){
-
-}
+//
+//.o-cell--stretch {
+//  -webkit-align-self: stretch;
+//  -ms-flex-item-align: stretch;
+//  -ms-grid-row-align: stretch;
+//  align-self: stretch
+//}
+//
+//.o-grid.o-grid--no-spacing>.o-cell {
+//  margin: 0
+//}
+//
