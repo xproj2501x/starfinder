@@ -1,8 +1,8 @@
 /**
- * Starfinder - Component
+ * Starfinder - Modifier
  * ===
  *
- * @module component
+ * @module modifier
  */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -14,18 +14,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 const MAP = {
   TYPE: 0x000000,
-  STATE: 0x00001,
-  MODIFIERS: 0x00002
+  TARGET: 0x00001,
+  SOURCE: 0x000002,
+  VALUE: 0x00003
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Component
+ * Modifier
  * @class
  */
-class Component {
+class Modifier {
 
   //////////////////////////////////////////////////////////////////////////////
   // Static Properties
@@ -46,7 +47,7 @@ class Component {
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
   /**
-   * Returns the type of the component
+   * Returns the type of the modifier
    * @readonly
    * @return {int}
    */
@@ -55,12 +56,22 @@ class Component {
   }
 
   /**
-   * Returns the state of the component
+   * Returns the component type for the modifier
    * @readonly
-   * @return {object}
+   * @return {int}
    */
-  get state() {
-    return this._data[MAP.STATE];
+  get componentType() {
+    return this._data[MAP.COMPONENT_TYPE];
+  }
+
+
+  /**
+   * Returns the value of the modifier
+   * @readonly
+   * @return {*}
+   */
+  get value() {
+    return this._data[MAP.VALUE];
   }
 
   /**
@@ -69,34 +80,21 @@ class Component {
    * @param {int} type - the type of the component to be created
    * @param {object} state - the initial state of the component
    */
-  constructor(type, state) { // eslint-disable-line id-length
+  constructor(type, componentType, value) {
     this._data = [];
     this._data[MAP.TYPE] = type;
-    this._data[MAP.STATE] = state;
-    this._data[MAP.MODIFIERS] = [];
+    this._data[MAP.COMPONENT_TYPE] = componentType;
+    this._data[MAP.VALUE] = value;
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Updates the state of the component with the new value
-   * @param {object} state - the new state of the component
-   */
-  update(state) {
-    this._data[MAP.STATE] = state;
-  }
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
-  _attachModifier(modifier) {
 
-  }
-
-  _detachModifier() {
-
-  }
   //////////////////////////////////////////////////////////////////////////////
   // Static Methods
   //////////////////////////////////////////////////////////////////////////////
@@ -104,17 +102,17 @@ class Component {
    * Static factory method
    * @static
    * @param {object} data - configuration for the component to be created
-   * @return {Component}
+   * @return {Modifier}
    */
   static create(data) {
     if (data === null) {
-      throw new Error('Component configuration missing');
+      throw new Error('Modifier configuration missing');
     }
-    return new Component(data.type, data.state);
+    return new Modifier(data.type, data.componentType, data.state);
   }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default Component;
+export default Modifier;

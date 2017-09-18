@@ -89,6 +89,7 @@ class Entity {
 
   /**
    * Determines if the entity can be used by the calling system
+   * @todo: Get lock segment as string and do a bitwise AND
    * @param {Array} key - the access key for the system
    * @return {Array}
    */
@@ -106,6 +107,10 @@ class Entity {
     }
     return LOCK;
   }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Private Methods
+  //////////////////////////////////////////////////////////////////////////////
 
   //////////////////////////////////////////////////////////////////////////////
   // Static Methods

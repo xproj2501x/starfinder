@@ -54,4 +54,7 @@ CHARACTER.attachComponent(WISDOM);
 CHARACTER.attachComponent(CHARISMA);
 console.log(CHARACTER.unlock(KEY));
 
+if ('1011' & '1011') {
+  console.log('true');
+}
 
