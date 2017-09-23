@@ -3,17 +3,17 @@
 /* VARIABLES */
 
 .c-card {
-  @include box-shadow();
-  background: $white;
-  overflow: hidden;
+   @include box-shadow();
+   background: $white;
+   overflow: hidden;
 
-  &__heading{
-    background: $accent-color;
-    color: $white;
-    padding: $gutter;
-  }
+   &__heading{
+     background: $accent-color;
+     color: $white;
+     padding: $gutter;
+   }
 
-  &__body{
-    padding-top: $gutter;
-  }
-}
+   &__body{
+     padding-top: $gutter;
+   }
+ }
