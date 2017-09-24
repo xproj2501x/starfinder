@@ -1,28 +1,52 @@
 /**
- * Starfinder - Character Model
+ * Starfinder - Health Component
  * ===
  *
- * @module characterModel
+ * @module healthComponent
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
-import EventBasedModel from './event-based-model';
+import ComponentModel from '../models/component-model';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
+/**
+ * Proeprty names for the component
+ * @enum {string}
+ */
+const KEYS = {
+  MAX_STAMINA: 'maxStamina',
+  CURRENT_STAMINA: 'currentStamina',
+  MAX_HIT_POINTS: 'maxHitPoints',
+  CURRENT_HIT_POINTS: 'currentHitPoints',
+  MAX_RESOLVE: 'maxResolve',
+  CURRENT_RESOLVE: 'currentResolve'
+};
 
+/**
+ * Default values for the component
+ * @enum {*}
+ */
+const DEFAULTS = {
+  maxStamina: 0,
+  currentStamina: 0,
+  maxHitPoints: 0,
+  currentHitPoints: 0,
+  maxResolve: 0,
+  currentResolve: 0
+};
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * CharacterModel
+ * HealthComponent
  * @class
- * @extends EventBasedModel
+ * @extends ComponentModel
  */
-class CharacterModel extends EventBasedModel {
+class HealthComponent extends ComponentModel {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
@@ -31,20 +55,38 @@ class CharacterModel extends EventBasedModel {
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
-  get abilities() {
-
+  get maxStamina() {
+    return this._getProperty(KEYS.MAX_STAMINA);
   }
 
-  get health() {
+  get currentStamina() {
+    return this._getProperty(KEYS.CURRENT_STAMINA);
+  }
 
+  get maxHitPoints() {
+    return this._getProperty(KEYS.MAX_HIT_POINTS);
+  }
+
+  get currentHitPoints() {
+    return this._getProperty(KEYS.CURRENT_HIT_POINTS);
+  }
+
+  get maxResolve() {
+    return this._getProperty(KEYS.MAX_RESOLVE);
+  }
+
+  get currentResolve() {
+    return this._getProperty(KEYS.CURRENT_RESOLVE);
   }
 
   /**
-   * CharacterModel
+   * AttributesComponent
    * @constructor
+   * @param {string} id - the id of the parent entity
+   * @param {object} state - the initial state of the component
    */
-  constructor(entity) {
-    super(entity);
+  constructor(id, state = {}) { // eslint-disable-line id-length
+    super(id, DEFAULTS, state);
   }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -61,13 +103,18 @@ class CharacterModel extends EventBasedModel {
   /**
    * Static factory method
    * @static
+   * @param {object} data - configuration for the component to be created
+   * @return {HealthComponent}
    */
-  static create() {
-
+  static create(data) {
+    if (data === null) {
+      throw new Error('Health component configuration missing');
+    }
+    return new HealthComponent(data.id, data.state);
   }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default CharacterModel;
+export default HealthComponent;

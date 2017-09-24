@@ -1,14 +1,13 @@
 /**
- * Starfinder - Character Model
+ * Starfinder - EventBasedModel
  * ===
  *
- * @module characterModel
+ * @module eventBasedModel
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
-import EventBasedModel from './event-based-model';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -18,56 +17,96 @@ import EventBasedModel from './event-based-model';
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * CharacterModel
+ * EventBasedModel
  * @class
- * @extends EventBasedModel
  */
-class CharacterModel extends EventBasedModel {
+class EventBasedModel {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
   //////////////////////////////////////////////////////////////////////////////
+  /**
+   * The UUID of the entity
+   * @private
+   * @type {string}
+   */
+  _id;
 
+  _version;
+  _base;
+  _events;
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
-  get abilities() {
 
-  }
-
-  get health() {
-
+  /**
+   * Returns the UUID of the entity
+   * @readonly
+   * @return {string}
+   */
+  get id() { // eslint-disable-line id-length
+    return this._id;
   }
 
   /**
-   * CharacterModel
+   * EventBasedModel
    * @constructor
+   * @param {object} entity - configuration of the entity
    */
   constructor(entity) {
-    super(entity);
+    this._id = entity.id;
+    this._version = 0;
+    this._base = Object.assign({}, entity.data);
+    this._events = [];
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
-
+  applyEvent(event) {
+    if (this._version++ === 5) {
+     this._replayEvents();
+    }
+    this._events.push(event);
+  }
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
+  _getProperty(key) {
+    let property = Object.assign({}, this._base);
 
+    this._events.forEach((event) => {
+      if (event.data.hasOwnProperty(key)) {
+        property = Object.assign(property, event.data[key]);
+      }
+    });
+  }
+
+  _replayEvents() {
+    if (this._events.length !== this._version) {
+      throw new Error(`Invalid state for entity: ${this.id}`);
+    }
+    while (this._events.length) {
+      const EVENT = this._events.shift();
+
+      this._base = Object.assign({}, this._base, EVENT.data);
+    }
+    this._version = 0;
+  }
   //////////////////////////////////////////////////////////////////////////////
   // Static Methods
   //////////////////////////////////////////////////////////////////////////////
   /**
    * Static factory method
    * @static
+   * @return {EventBasedModel}
    */
-  static create() {
-
+  static create(entity) { // eslint-disable-line id-length
+    return new EventBasedModel(entity);
   }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default CharacterModel;
+export default EventBasedModel;

@@ -9457,13 +9457,13 @@ var _combatTracker = __webpack_require__(358);
 
 var _combatTracker2 = _interopRequireDefault(_combatTracker);
 
-var _entity = __webpack_require__(391);
+var _entityModel = __webpack_require__(400);
 
-var _entity2 = _interopRequireDefault(_entity);
+var _entityModel2 = _interopRequireDefault(_entityModel);
 
-var _component = __webpack_require__(393);
+var _abilitiesComponent = __webpack_require__(419);
 
-var _component2 = _interopRequireDefault(_component);
+var _abilitiesComponent2 = _interopRequireDefault(_abilitiesComponent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9479,49 +9479,13 @@ var COMBAT_TRACKER = new _combatTracker2.default(); /**
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
 
-var CHARACTER = new _entity2.default.create();
-var NAME = _component2.default.create({
-  type: CONSTANTS.COMPONENT_TYPES.NAME,
-  state: 'Character 1'
-});
-var STRENGTH = _component2.default.create({
-  type: CONSTANTS.COMPONENT_TYPES.STRENGTH,
-  state: 10
-});
-var DEXTERITY = _component2.default.create({
-  type: CONSTANTS.COMPONENT_TYPES.DEXTERITY,
-  state: 10
-});
-var CONSTITUTION = _component2.default.create({
-  type: CONSTANTS.COMPONENT_TYPES.CONSTITUTION,
-  state: 10
-});
-var INTELLIGENCE = _component2.default.create({
-  type: CONSTANTS.COMPONENT_TYPES.INTELLIGENCE,
-  state: 10
-});
-var WISDOM = _component2.default.create({
-  type: CONSTANTS.COMPONENT_TYPES.WISDOM,
-  state: 10
-});
-var CHARISMA = _component2.default.create({
-  type: CONSTANTS.COMPONENT_TYPES.CHARISMA,
-  state: 10
-});
-var KEY = [2, 1, 1, 1, 1, 1, 1];
+var ENTITY_MODEL = _entityModel2.default.create();
 
-CHARACTER.attachComponent(NAME);
-CHARACTER.attachComponent(STRENGTH);
-CHARACTER.attachComponent(DEXTERITY);
-CHARACTER.attachComponent(CONSTITUTION);
-CHARACTER.attachComponent(INTELLIGENCE);
-CHARACTER.attachComponent(WISDOM);
-CHARACTER.attachComponent(CHARISMA);
-console.log(CHARACTER.unlock(KEY));
+var ABILITIES_COMPONENT = _abilitiesComponent2.default.create({ id: ENTITY_MODEL.id, state: { strength: 12, dexterity: 12 } });
 
-if ('1011' & '1011') {
-  console.log('true');
-}
+ENTITY_MODEL.attachComponent(ABILITIES_COMPONENT);
+console.log(ABILITIES_COMPONENT.strength);
+console.log(ABILITIES_COMPONENT.strengthModifier);
 
 /***/ }),
 /* 356 */
@@ -9550,46 +9514,8 @@ Object.defineProperty(exports, "__esModule", {
 ////////////////////////////////////////////////////////////////////////////////
 var DEBUG = exports.DEBUG = location.search === '?DEBUG';
 
-var COMPONENT_TYPES = exports.COMPONENT_TYPES = {
-  NAME: 0x000000,
-  STRENGTH: 0x000001,
-  DEXTERITY: 0x000002,
-  CONSTITUTION: 0x000003,
-  INTELLIGENCE: 0x000004,
-  WISDOM: 0x000005,
-  CHARISMA: 0x000006,
-  INITIATIVE: 0x000007,
-  TOTAL_STAMINA: 0x000008,
-  CURRENT_STAMINA: 0x000009,
-  TOTAL_HIT_POINTS: 0x00000A,
-  CURRENT_HIT_POINTS: 0x00000B,
-  TOTAL_RESOLVE: 0x00000C,
-  CURRENT_RESOLVE: 0x00000D,
-  ENERGY_ARMOR_CLASS: 0x00000E,
-  KINETIC_ARMOR_CLASS: 0x00000F,
-  ACROBATICS: 0x000010,
-  ATHLETICS: 0x000011,
-  BLUFF: 0x000012,
-  COMPUTERS: 0x000013,
-  CULTURE: 0x000014,
-  DIPLOMACY: 0x000015,
-  DISGUISE: 0x000016,
-  ENGINEERING: 0x000017,
-  INTIMIDATE: 0x000018,
-  LIFE_SCIENCE: 0x000019,
-  MEDICINE: 0x0000A0,
-  MYSTICISM: 0x0000A1,
-  PERCEPTION: 0x0000A2,
-  PHYSICAL_SCIENCE: 0x0000A3,
-  PILOTING: 0x0000A4,
-  PROFESSION: 0x0000A5,
-  SENSE_MOTIVE: 0x0000A6,
-  SLEIGHT_OF_HAND: 0x0000A7,
-  STEALTH: 0x0000A8,
-  SURVIVAL: 0x0000A9,
-  FORTITUDE: 0x0000B0,
-  REFLEX: 0x0000B1,
-  WILLPOWER: 0x0000B2
+var MESSAGES = exports.MESSAGES = {
+  PROPERTY_CHANGE: 'PROPERTY_CHANGE'
 };
 
 /***/ }),
@@ -10483,191 +10409,7 @@ $export($export.S + $export.F * !__webpack_require__(52), 'Object', { defineProp
 module.exports = {"players":[{"init":0,"initBonus":0,"name":"Player 1","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Player 2","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Player 3","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Player 4","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17}],"encounters":[{"name":"Encounter 1","monsters":[{"init":0,"initBonus":0,"name":"Monster 1","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Monster 2","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Monster 3","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Monster 4","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17}]},{"name":"Encounter 2","monsters":[{"init":0,"initBonus":0,"name":"Monster 1","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Monster 2","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Monster 3","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Monster 4","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17}]},{"name":"Encounter 3","monsters":[{"init":2,"initBonus":0,"name":"Monster 1","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":4,"initBonus":0,"name":"Monster 2","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":1,"initBonus":0,"name":"Monster 3","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Monster 4","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17}]}]}
 
 /***/ }),
-/* 391 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _classCallCheck2 = __webpack_require__(104);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(105);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _uuid = __webpack_require__(392);
-
-var _uuid2 = _interopRequireDefault(_uuid);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-////////////////////////////////////////////////////////////////////////////////
-// Definitions
-////////////////////////////////////////////////////////////////////////////////
-var MAP = {
-  ID: 0x000000,
-  COMPONENTS: 0x000001
-};
-
-////////////////////////////////////////////////////////////////////////////////
-// Class
-////////////////////////////////////////////////////////////////////////////////
-/**
- * Entity
- * @class
- */
-/**
- * Starfinder - Entity
- * ===
- *
- * @module entity
- */
-
-////////////////////////////////////////////////////////////////////////////////
-// Imports
-////////////////////////////////////////////////////////////////////////////////
-
-var Entity = function () {
-  (0, _createClass3.default)(Entity, [{
-    key: 'id',
-
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Public Properties
-    //////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Returns the UUID of the entity
-     * @readonly
-     * @return {string}
-     */
-    get: function get() {
-      // eslint-disable-line id-length
-      return this._data[MAP.ID];
-    }
-
-    /**
-     * Entity
-     * @constructor
-     * @param {string} id - the UUID of the entity
-     */
-
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Private Properties
-    //////////////////////////////////////////////////////////////////////////////
-    /**
-     * The id and components of the entity
-     * @private
-     * @type {Array}
-     */
-
-  }]);
-
-  function Entity(id) {
-    (0, _classCallCheck3.default)(this, Entity);
-    // eslint-disable-line id-length
-    this._data = [];
-    this._data[MAP.ID] = id || (0, _uuid2.default)();
-  }
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Public Methods
-  //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Attaches a component to the entity
-   * @param {Component} component - the component to be attached
-   */
-
-
-  (0, _createClass3.default)(Entity, [{
-    key: 'attachComponent',
-    value: function attachComponent(component) {
-      var TYPE = component.type;
-
-      if (this._data[TYPE + 1]) {
-        throw new Error('Component type: ' + TYPE + ' already attached to entity id: ' + this.id);
-      }
-      this._data[TYPE + 1] = component;
-    }
-
-    /**
-     * Detaches a component currently attached to the entity
-     * @param {string} type - the component type to be detached
-     */
-
-  }, {
-    key: 'detachComponent',
-    value: function detachComponent(type) {
-      if (!this._data[type + 1]) {
-        throw new Error('Component type: ' + type + ' is not attached to entity id: ' + this.id);
-      }
-      this._data[type + 1] = 0;
-    }
-
-    /**
-     * Determines if the entity can be used by the calling system
-     * @todo: Get lock segment as string and do a bitwise AND
-     * @param {Array} key - the access key for the system
-     * @return {Array}
-     */
-
-  }, {
-    key: 'unlock',
-    value: function unlock(key) {
-      var LOCK = [];
-      var START = key.shift();
-
-      for (var idx = 0; idx < key.length; idx++) {
-        var INDEX = START + idx;
-
-        if (key[idx] && !this._data[INDEX]) {
-          throw new Error('Invalid key: ' + key + ' for entity id: ' + this.id);
-        }
-        LOCK.push(this._data[INDEX]);
-      }
-      return LOCK;
-    }
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Private Methods
-    //////////////////////////////////////////////////////////////////////////////
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Static Methods
-    //////////////////////////////////////////////////////////////////////////////
-    /**
-     * Static factory method
-     * @static
-     * @param {string} id - the UUID of the entity
-     * @return {Entity}
-     */
-
-  }], [{
-    key: 'create',
-    value: function create(id) {
-      // eslint-disable-line id-length
-      id = id || null;
-      return new Entity(id);
-    }
-  }]);
-  return Entity;
-}();
-
-////////////////////////////////////////////////////////////////////////////////
-// Exports
-////////////////////////////////////////////////////////////////////////////////
-
-
-exports.default = Entity;
-
-/***/ }),
+/* 391 */,
 /* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10713,7 +10455,1458 @@ function createUUID() {
 exports.default = createUUID;
 
 /***/ }),
-/* 393 */
+/* 393 */,
+/* 394 */,
+/* 395 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports.f = __webpack_require__(42);
+
+
+/***/ }),
+/* 396 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__(50);
+var core = __webpack_require__(67);
+var LIBRARY = __webpack_require__(365);
+var wksExt = __webpack_require__(395);
+var defineProperty = __webpack_require__(51).f;
+module.exports = function (name) {
+  var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
+  if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: wksExt.f(name) });
+};
+
+
+/***/ }),
+/* 397 */
+/***/ (function(module, exports) {
+
+exports.f = {}.propertyIsEnumerable;
+
+
+/***/ }),
+/* 398 */
+/***/ (function(module, exports) {
+
+exports.f = Object.getOwnPropertySymbols;
+
+
+/***/ }),
+/* 399 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
+var $keys = __webpack_require__(374);
+var hiddenKeys = __webpack_require__(149).concat('length', 'prototype');
+
+exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+  return $keys(O, hiddenKeys);
+};
+
+
+/***/ }),
+/* 400 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof2 = __webpack_require__(401);
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+var _classCallCheck2 = __webpack_require__(104);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(105);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _uuid = __webpack_require__(392);
+
+var _uuid2 = _interopRequireDefault(_uuid);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// Class
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * EntityModel
+ * @class
+ */
+var EntityModel = function () {
+  (0, _createClass3.default)(EntityModel, [{
+    key: 'id',
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Public Properties
+    //////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Returns the UUID of the entity
+     * @readonly
+     * @return {string}
+     */
+    get: function get() {
+      // eslint-disable-line id-length
+      return this._id;
+    }
+
+    /**
+     * EntityModel
+     * @constructor
+     */
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Private Properties
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * The UUID of the entity
+     * @private
+     * @type {string}
+     */
+
+  }]);
+
+  function EntityModel() {
+    (0, _classCallCheck3.default)(this, EntityModel);
+    // eslint-disable-line id-length
+    this._id = (0, _uuid2.default)();
+    this._components = [];
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Methods
+  //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Attaches a component to the entity
+   * @param {Component} component - the component to be attached
+   */
+
+
+  (0, _createClass3.default)(EntityModel, [{
+    key: 'attachComponent',
+    value: function attachComponent(component) {
+      var TYPE = typeof component === 'undefined' ? 'undefined' : (0, _typeof3.default)(component);
+
+      if (this._findComponent(TYPE)) {
+        throw new Error('Component type: ' + TYPE + ' already attached to entity id: ' + this.id);
+      }
+      this._components.push(component);
+    }
+
+    /**
+     * Detaches a component currently attached to the entity
+     * @param {string} type - the component type to be detached
+     */
+
+  }, {
+    key: 'detachComponent',
+    value: function detachComponent(type) {
+      var COMPONENT = this._findComponent(type);
+
+      if (!COMPONENT) {
+        throw new Error('Component type: ' + type + ' is not attached to entity id: ' + this.id);
+      }
+
+      var INDEX = this._components.indexOf(COMPONENT);
+
+      this._components.slice(INDEX, 1);
+    }
+
+    /**
+     * Determines if the entity can be used by the calling system
+     * @todo: Get lock segment as string and do a bitwise AND
+     * @param {Array} key - the access key for the system
+     * @return {Array}
+     */
+
+  }, {
+    key: 'unlock',
+    value: function unlock(key) {
+      var LOCK = [];
+      var START = key.shift();
+
+      for (var idx = 0; idx < key.length; idx++) {
+        var INDEX = START + idx;
+
+        if (key[idx] && !this._data[INDEX]) {
+          throw new Error('Invalid key: ' + key + ' for entity id: ' + this.id);
+        }
+        LOCK.push(this._data[INDEX]);
+      }
+      return LOCK;
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Private Methods
+    //////////////////////////////////////////////////////////////////////////////
+
+  }, {
+    key: '_findComponent',
+    value: function _findComponent(type) {
+      var COMPONENT = this._components.find(function (component) {
+        return component instanceof type;
+      });
+
+      return COMPONENT ? COMPONENT : null;
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    // Static Methods
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * Static factory method
+     * @static
+     * @return {EntityModel}
+     */
+
+  }], [{
+    key: 'create',
+    value: function create() {
+      // eslint-disable-line id-length
+      return new EntityModel();
+    }
+  }]);
+  return EntityModel;
+}();
+
+////////////////////////////////////////////////////////////////////////////////
+// Exports
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Starfinder - EntityModel
+ * ===
+ *
+ * @module entityModel
+ */
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports
+////////////////////////////////////////////////////////////////////////////////
+
+
+exports.default = EntityModel;
+
+/***/ }),
+/* 401 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _iterator = __webpack_require__(402);
+
+var _iterator2 = _interopRequireDefault(_iterator);
+
+var _symbol = __webpack_require__(408);
+
+var _symbol2 = _interopRequireDefault(_symbol);
+
+var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.default) === "symbol" ? function (obj) {
+  return typeof obj === "undefined" ? "undefined" : _typeof(obj);
+} : function (obj) {
+  return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
+};
+
+/***/ }),
+/* 402 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(403), __esModule: true };
+
+/***/ }),
+/* 403 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(362);
+__webpack_require__(404);
+module.exports = __webpack_require__(395).f('iterator');
+
+
+/***/ }),
+/* 404 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(405);
+var global = __webpack_require__(50);
+var hide = __webpack_require__(68);
+var Iterators = __webpack_require__(102);
+var TO_STRING_TAG = __webpack_require__(42)('toStringTag');
+
+var DOMIterables = ('CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,' +
+  'DOMTokenList,DataTransferItemList,FileList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,' +
+  'MediaList,MimeTypeArray,NamedNodeMap,NodeList,PaintRequestList,Plugin,PluginArray,SVGLengthList,SVGNumberList,' +
+  'SVGPathSegList,SVGPointList,SVGStringList,SVGTransformList,SourceBufferList,StyleSheetList,TextTrackCueList,' +
+  'TextTrackList,TouchList').split(',');
+
+for (var i = 0; i < DOMIterables.length; i++) {
+  var NAME = DOMIterables[i];
+  var Collection = global[NAME];
+  var proto = Collection && Collection.prototype;
+  if (proto && !proto[TO_STRING_TAG]) hide(proto, TO_STRING_TAG, NAME);
+  Iterators[NAME] = Iterators.Array;
+}
+
+
+/***/ }),
+/* 405 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var addToUnscopables = __webpack_require__(406);
+var step = __webpack_require__(407);
+var Iterators = __webpack_require__(102);
+var toIObject = __webpack_require__(144);
+
+// 22.1.3.4 Array.prototype.entries()
+// 22.1.3.13 Array.prototype.keys()
+// 22.1.3.29 Array.prototype.values()
+// 22.1.3.30 Array.prototype[@@iterator]()
+module.exports = __webpack_require__(364)(Array, 'Array', function (iterated, kind) {
+  this._t = toIObject(iterated); // target
+  this._i = 0;                   // next index
+  this._k = kind;                // kind
+// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+}, function () {
+  var O = this._t;
+  var kind = this._k;
+  var index = this._i++;
+  if (!O || index >= O.length) {
+    this._t = undefined;
+    return step(1);
+  }
+  if (kind == 'keys') return step(0, index);
+  if (kind == 'values') return step(0, O[index]);
+  return step(0, [index, O[index]]);
+}, 'values');
+
+// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+Iterators.Arguments = Iterators.Array;
+
+addToUnscopables('keys');
+addToUnscopables('values');
+addToUnscopables('entries');
+
+
+/***/ }),
+/* 406 */
+/***/ (function(module, exports) {
+
+module.exports = function () { /* empty */ };
+
+
+/***/ }),
+/* 407 */
+/***/ (function(module, exports) {
+
+module.exports = function (done, value) {
+  return { value: value, done: !!done };
+};
+
+
+/***/ }),
+/* 408 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(409), __esModule: true };
+
+/***/ }),
+/* 409 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(410);
+__webpack_require__(416);
+__webpack_require__(417);
+__webpack_require__(418);
+module.exports = __webpack_require__(67).Symbol;
+
+
+/***/ }),
+/* 410 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// ECMAScript 6 symbols shim
+var global = __webpack_require__(50);
+var has = __webpack_require__(70);
+var DESCRIPTORS = __webpack_require__(52);
+var $export = __webpack_require__(99);
+var redefine = __webpack_require__(369);
+var META = __webpack_require__(411).KEY;
+var $fails = __webpack_require__(142);
+var shared = __webpack_require__(147);
+var setToStringTag = __webpack_require__(150);
+var uid = __webpack_require__(148);
+var wks = __webpack_require__(42);
+var wksExt = __webpack_require__(395);
+var wksDefine = __webpack_require__(396);
+var enumKeys = __webpack_require__(412);
+var isArray = __webpack_require__(413);
+var anObject = __webpack_require__(69);
+var toIObject = __webpack_require__(144);
+var toPrimitive = __webpack_require__(368);
+var createDesc = __webpack_require__(101);
+var _create = __webpack_require__(371);
+var gOPNExt = __webpack_require__(414);
+var $GOPD = __webpack_require__(415);
+var $DP = __webpack_require__(51);
+var $keys = __webpack_require__(373);
+var gOPD = $GOPD.f;
+var dP = $DP.f;
+var gOPN = gOPNExt.f;
+var $Symbol = global.Symbol;
+var $JSON = global.JSON;
+var _stringify = $JSON && $JSON.stringify;
+var PROTOTYPE = 'prototype';
+var HIDDEN = wks('_hidden');
+var TO_PRIMITIVE = wks('toPrimitive');
+var isEnum = {}.propertyIsEnumerable;
+var SymbolRegistry = shared('symbol-registry');
+var AllSymbols = shared('symbols');
+var OPSymbols = shared('op-symbols');
+var ObjectProto = Object[PROTOTYPE];
+var USE_NATIVE = typeof $Symbol == 'function';
+var QObject = global.QObject;
+// Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
+var setter = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
+
+// fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
+var setSymbolDesc = DESCRIPTORS && $fails(function () {
+  return _create(dP({}, 'a', {
+    get: function () { return dP(this, 'a', { value: 7 }).a; }
+  })).a != 7;
+}) ? function (it, key, D) {
+  var protoDesc = gOPD(ObjectProto, key);
+  if (protoDesc) delete ObjectProto[key];
+  dP(it, key, D);
+  if (protoDesc && it !== ObjectProto) dP(ObjectProto, key, protoDesc);
+} : dP;
+
+var wrap = function (tag) {
+  var sym = AllSymbols[tag] = _create($Symbol[PROTOTYPE]);
+  sym._k = tag;
+  return sym;
+};
+
+var isSymbol = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function (it) {
+  return typeof it == 'symbol';
+} : function (it) {
+  return it instanceof $Symbol;
+};
+
+var $defineProperty = function defineProperty(it, key, D) {
+  if (it === ObjectProto) $defineProperty(OPSymbols, key, D);
+  anObject(it);
+  key = toPrimitive(key, true);
+  anObject(D);
+  if (has(AllSymbols, key)) {
+    if (!D.enumerable) {
+      if (!has(it, HIDDEN)) dP(it, HIDDEN, createDesc(1, {}));
+      it[HIDDEN][key] = true;
+    } else {
+      if (has(it, HIDDEN) && it[HIDDEN][key]) it[HIDDEN][key] = false;
+      D = _create(D, { enumerable: createDesc(0, false) });
+    } return setSymbolDesc(it, key, D);
+  } return dP(it, key, D);
+};
+var $defineProperties = function defineProperties(it, P) {
+  anObject(it);
+  var keys = enumKeys(P = toIObject(P));
+  var i = 0;
+  var l = keys.length;
+  var key;
+  while (l > i) $defineProperty(it, key = keys[i++], P[key]);
+  return it;
+};
+var $create = function create(it, P) {
+  return P === undefined ? _create(it) : $defineProperties(_create(it), P);
+};
+var $propertyIsEnumerable = function propertyIsEnumerable(key) {
+  var E = isEnum.call(this, key = toPrimitive(key, true));
+  if (this === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key)) return false;
+  return E || !has(this, key) || !has(AllSymbols, key) || has(this, HIDDEN) && this[HIDDEN][key] ? E : true;
+};
+var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key) {
+  it = toIObject(it);
+  key = toPrimitive(key, true);
+  if (it === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key)) return;
+  var D = gOPD(it, key);
+  if (D && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key])) D.enumerable = true;
+  return D;
+};
+var $getOwnPropertyNames = function getOwnPropertyNames(it) {
+  var names = gOPN(toIObject(it));
+  var result = [];
+  var i = 0;
+  var key;
+  while (names.length > i) {
+    if (!has(AllSymbols, key = names[i++]) && key != HIDDEN && key != META) result.push(key);
+  } return result;
+};
+var $getOwnPropertySymbols = function getOwnPropertySymbols(it) {
+  var IS_OP = it === ObjectProto;
+  var names = gOPN(IS_OP ? OPSymbols : toIObject(it));
+  var result = [];
+  var i = 0;
+  var key;
+  while (names.length > i) {
+    if (has(AllSymbols, key = names[i++]) && (IS_OP ? has(ObjectProto, key) : true)) result.push(AllSymbols[key]);
+  } return result;
+};
+
+// 19.4.1.1 Symbol([description])
+if (!USE_NATIVE) {
+  $Symbol = function Symbol() {
+    if (this instanceof $Symbol) throw TypeError('Symbol is not a constructor!');
+    var tag = uid(arguments.length > 0 ? arguments[0] : undefined);
+    var $set = function (value) {
+      if (this === ObjectProto) $set.call(OPSymbols, value);
+      if (has(this, HIDDEN) && has(this[HIDDEN], tag)) this[HIDDEN][tag] = false;
+      setSymbolDesc(this, tag, createDesc(1, value));
+    };
+    if (DESCRIPTORS && setter) setSymbolDesc(ObjectProto, tag, { configurable: true, set: $set });
+    return wrap(tag);
+  };
+  redefine($Symbol[PROTOTYPE], 'toString', function toString() {
+    return this._k;
+  });
+
+  $GOPD.f = $getOwnPropertyDescriptor;
+  $DP.f = $defineProperty;
+  __webpack_require__(399).f = gOPNExt.f = $getOwnPropertyNames;
+  __webpack_require__(397).f = $propertyIsEnumerable;
+  __webpack_require__(398).f = $getOwnPropertySymbols;
+
+  if (DESCRIPTORS && !__webpack_require__(365)) {
+    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
+  }
+
+  wksExt.f = function (name) {
+    return wrap(wks(name));
+  };
+}
+
+$export($export.G + $export.W + $export.F * !USE_NATIVE, { Symbol: $Symbol });
+
+for (var es6Symbols = (
+  // 19.4.2.2, 19.4.2.3, 19.4.2.4, 19.4.2.6, 19.4.2.8, 19.4.2.9, 19.4.2.10, 19.4.2.11, 19.4.2.12, 19.4.2.13, 19.4.2.14
+  'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'
+).split(','), j = 0; es6Symbols.length > j;)wks(es6Symbols[j++]);
+
+for (var wellKnownSymbols = $keys(wks.store), k = 0; wellKnownSymbols.length > k;) wksDefine(wellKnownSymbols[k++]);
+
+$export($export.S + $export.F * !USE_NATIVE, 'Symbol', {
+  // 19.4.2.1 Symbol.for(key)
+  'for': function (key) {
+    return has(SymbolRegistry, key += '')
+      ? SymbolRegistry[key]
+      : SymbolRegistry[key] = $Symbol(key);
+  },
+  // 19.4.2.5 Symbol.keyFor(sym)
+  keyFor: function keyFor(sym) {
+    if (!isSymbol(sym)) throw TypeError(sym + ' is not a symbol!');
+    for (var key in SymbolRegistry) if (SymbolRegistry[key] === sym) return key;
+  },
+  useSetter: function () { setter = true; },
+  useSimple: function () { setter = false; }
+});
+
+$export($export.S + $export.F * !USE_NATIVE, 'Object', {
+  // 19.1.2.2 Object.create(O [, Properties])
+  create: $create,
+  // 19.1.2.4 Object.defineProperty(O, P, Attributes)
+  defineProperty: $defineProperty,
+  // 19.1.2.3 Object.defineProperties(O, Properties)
+  defineProperties: $defineProperties,
+  // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
+  getOwnPropertyDescriptor: $getOwnPropertyDescriptor,
+  // 19.1.2.7 Object.getOwnPropertyNames(O)
+  getOwnPropertyNames: $getOwnPropertyNames,
+  // 19.1.2.8 Object.getOwnPropertySymbols(O)
+  getOwnPropertySymbols: $getOwnPropertySymbols
+});
+
+// 24.3.2 JSON.stringify(value [, replacer [, space]])
+$JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function () {
+  var S = $Symbol();
+  // MS Edge converts symbol values to JSON as {}
+  // WebKit converts symbol values to JSON as null
+  // V8 throws on boxed symbols
+  return _stringify([S]) != '[null]' || _stringify({ a: S }) != '{}' || _stringify(Object(S)) != '{}';
+})), 'JSON', {
+  stringify: function stringify(it) {
+    if (it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
+    var args = [it];
+    var i = 1;
+    var replacer, $replacer;
+    while (arguments.length > i) args.push(arguments[i++]);
+    replacer = args[1];
+    if (typeof replacer == 'function') $replacer = replacer;
+    if ($replacer || !isArray(replacer)) replacer = function (key, value) {
+      if ($replacer) value = $replacer.call(this, key, value);
+      if (!isSymbol(value)) return value;
+    };
+    args[1] = replacer;
+    return _stringify.apply($JSON, args);
+  }
+});
+
+// 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
+$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(68)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+// 19.4.3.5 Symbol.prototype[@@toStringTag]
+setToStringTag($Symbol, 'Symbol');
+// 20.2.1.9 Math[@@toStringTag]
+setToStringTag(Math, 'Math', true);
+// 24.3.3 JSON[@@toStringTag]
+setToStringTag(global.JSON, 'JSON', true);
+
+
+/***/ }),
+/* 411 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var META = __webpack_require__(148)('meta');
+var isObject = __webpack_require__(100);
+var has = __webpack_require__(70);
+var setDesc = __webpack_require__(51).f;
+var id = 0;
+var isExtensible = Object.isExtensible || function () {
+  return true;
+};
+var FREEZE = !__webpack_require__(142)(function () {
+  return isExtensible(Object.preventExtensions({}));
+});
+var setMeta = function (it) {
+  setDesc(it, META, { value: {
+    i: 'O' + ++id, // object ID
+    w: {}          // weak collections IDs
+  } });
+};
+var fastKey = function (it, create) {
+  // return primitive with prefix
+  if (!isObject(it)) return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
+  if (!has(it, META)) {
+    // can't set metadata to uncaught frozen object
+    if (!isExtensible(it)) return 'F';
+    // not necessary to add metadata
+    if (!create) return 'E';
+    // add missing metadata
+    setMeta(it);
+  // return object ID
+  } return it[META].i;
+};
+var getWeak = function (it, create) {
+  if (!has(it, META)) {
+    // can't set metadata to uncaught frozen object
+    if (!isExtensible(it)) return true;
+    // not necessary to add metadata
+    if (!create) return false;
+    // add missing metadata
+    setMeta(it);
+  // return hash weak collections IDs
+  } return it[META].w;
+};
+// add metadata on freeze-family methods calling
+var onFreeze = function (it) {
+  if (FREEZE && meta.NEED && isExtensible(it) && !has(it, META)) setMeta(it);
+  return it;
+};
+var meta = module.exports = {
+  KEY: META,
+  NEED: false,
+  fastKey: fastKey,
+  getWeak: getWeak,
+  onFreeze: onFreeze
+};
+
+
+/***/ }),
+/* 412 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// all enumerable object keys, includes symbols
+var getKeys = __webpack_require__(373);
+var gOPS = __webpack_require__(398);
+var pIE = __webpack_require__(397);
+module.exports = function (it) {
+  var result = getKeys(it);
+  var getSymbols = gOPS.f;
+  if (getSymbols) {
+    var symbols = getSymbols(it);
+    var isEnum = pIE.f;
+    var i = 0;
+    var key;
+    while (symbols.length > i) if (isEnum.call(it, key = symbols[i++])) result.push(key);
+  } return result;
+};
+
+
+/***/ }),
+/* 413 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.2.2 IsArray(argument)
+var cof = __webpack_require__(145);
+module.exports = Array.isArray || function isArray(arg) {
+  return cof(arg) == 'Array';
+};
+
+
+/***/ }),
+/* 414 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
+var toIObject = __webpack_require__(144);
+var gOPN = __webpack_require__(399).f;
+var toString = {}.toString;
+
+var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
+  ? Object.getOwnPropertyNames(window) : [];
+
+var getWindowNames = function (it) {
+  try {
+    return gOPN(it);
+  } catch (e) {
+    return windowNames.slice();
+  }
+};
+
+module.exports.f = function getOwnPropertyNames(it) {
+  return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
+};
+
+
+/***/ }),
+/* 415 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var pIE = __webpack_require__(397);
+var createDesc = __webpack_require__(101);
+var toIObject = __webpack_require__(144);
+var toPrimitive = __webpack_require__(368);
+var has = __webpack_require__(70);
+var IE8_DOM_DEFINE = __webpack_require__(367);
+var gOPD = Object.getOwnPropertyDescriptor;
+
+exports.f = __webpack_require__(52) ? gOPD : function getOwnPropertyDescriptor(O, P) {
+  O = toIObject(O);
+  P = toPrimitive(P, true);
+  if (IE8_DOM_DEFINE) try {
+    return gOPD(O, P);
+  } catch (e) { /* empty */ }
+  if (has(O, P)) return createDesc(!pIE.f.call(O, P), O[P]);
+};
+
+
+/***/ }),
+/* 416 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 417 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(396)('asyncIterator');
+
+
+/***/ }),
+/* 418 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(396)('observable');
+
+
+/***/ }),
+/* 419 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = __webpack_require__(420);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(104);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(424);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _createClass2 = __webpack_require__(105);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _inherits2 = __webpack_require__(425);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _componentModel = __webpack_require__(433);
+
+var _componentModel2 = _interopRequireDefault(_componentModel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Proeprty names for the component
+ * @enum {string}
+ */
+var KEYS = {
+  STRENGTH: 'strength',
+  DEXTERITY: 'dexterity',
+  CONSTITUTION: 'constitution',
+  INTELLIGENCE: 'intelligence',
+  WISDOM: 'wisdom',
+  CHARISMA: 'charisma'
+}; /**
+    * Starfinder - Abilities Component
+    * ===
+    *
+    * @module abilitiesModel
+    */
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports
+////////////////////////////////////////////////////////////////////////////////
+
+
+var DEFAULTS = {
+  strength: 0,
+  dexterity: 0,
+  constitution: 0,
+  intelligence: 0,
+  wisdom: 0,
+  charisma: 0
+};
+////////////////////////////////////////////////////////////////////////////////
+// Class
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * AbilitiesComponent
+ * @class
+ * @extends ComponentModel
+ */
+
+var AbilitiesComponent = function (_ComponentModel) {
+  (0, _inherits3.default)(AbilitiesComponent, _ComponentModel);
+  (0, _createClass3.default)(AbilitiesComponent, [{
+    key: 'strength',
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Private Properties
+    //////////////////////////////////////////////////////////////////////////////
+    get: function get() {
+      return this._getProperty(KEYS.STRENGTH);
+    }
+  }, {
+    key: 'strengthModifier',
+    get: function get() {
+      return this._calculateModifier(KEYS.STRENGTH);
+    }
+  }, {
+    key: 'dexterity',
+    get: function get() {
+      return this._getProperty(KEYS.STRENGTH);
+    }
+  }, {
+    key: 'dexterityModifier',
+    get: function get() {
+      return this._calculateModifier(KEYS.STRENGTH);
+    }
+  }, {
+    key: 'constitution',
+    get: function get() {
+      return this._getProperty(KEYS.CONSTITUTION);
+    }
+  }, {
+    key: 'constitutionModifier',
+    get: function get() {
+      return this._calculateModifier(KEYS.CONSTITUTION);
+    }
+  }, {
+    key: 'intelligence',
+    get: function get() {
+      return this._getProperty(KEYS.INTELLIGENCE);
+    }
+  }, {
+    key: 'intelligenceModifier',
+    get: function get() {
+      return this._calculateModifier(KEYS.INTELLIGENCE);
+    }
+  }, {
+    key: 'wisdom',
+    get: function get() {
+      return this._getProperty(KEYS.WISDOM);
+    }
+  }, {
+    key: 'wisdomModifier',
+    get: function get() {
+      return this._calculateModifier(KEYS.WISDOM);
+    }
+  }, {
+    key: 'charisma',
+    get: function get() {
+      return this._getProperty(KEYS.CHARISMA);
+    }
+  }, {
+    key: 'charismaModifier',
+    get: function get() {
+      return this._calculateModifier(KEYS.CHARISMA);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Public Properties
+    //////////////////////////////////////////////////////////////////////////////
+
+
+    /**
+     * AttributesComponent
+     * @constructor
+     * @param {string} id - the id of the parent entity
+     * @param {object} state - the initial state of the component
+     */
+
+  }]);
+
+  function AbilitiesComponent(id) {
+    var state = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    (0, _classCallCheck3.default)(this, AbilitiesComponent);
+    // eslint-disable-line id-length
+    return (0, _possibleConstructorReturn3.default)(this, (AbilitiesComponent.__proto__ || (0, _getPrototypeOf2.default)(AbilitiesComponent)).call(this, id, DEFAULTS, state));
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Methods
+  //////////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Private Methods
+  //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Calculates the modifier value for the ability
+   * @param property
+   * @returns {number}
+   * @private
+   */
+
+
+  (0, _createClass3.default)(AbilitiesComponent, [{
+    key: '_calculateModifier',
+    value: function _calculateModifier(property) {
+      var VALUE = this._getProperty(property);
+
+      return Math.floor(VALUE / 2 - 5);
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    // Static Methods
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * Static factory method
+     * @static
+     * @param {object} data - configuration for the component to be created
+     * @return {AbilitiesComponent}
+     */
+
+  }], [{
+    key: 'create',
+    value: function create(data) {
+      if (data === null) {
+        throw new Error('Abilities component configuration missing');
+      }
+      return new AbilitiesComponent(data.id, data.state);
+    }
+  }]);
+  return AbilitiesComponent;
+}(_componentModel2.default);
+
+////////////////////////////////////////////////////////////////////////////////
+// Exports
+////////////////////////////////////////////////////////////////////////////////
+
+
+exports.default = AbilitiesComponent;
+
+/***/ }),
+/* 420 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(421), __esModule: true };
+
+/***/ }),
+/* 421 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(422);
+module.exports = __webpack_require__(67).Object.getPrototypeOf;
+
+
+/***/ }),
+/* 422 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.9 Object.getPrototypeOf(O)
+var toObject = __webpack_require__(151);
+var $getPrototypeOf = __webpack_require__(379);
+
+__webpack_require__(423)('getPrototypeOf', function () {
+  return function getPrototypeOf(it) {
+    return $getPrototypeOf(toObject(it));
+  };
+});
+
+
+/***/ }),
+/* 423 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// most Object methods by ES6 should accept primitives
+var $export = __webpack_require__(99);
+var core = __webpack_require__(67);
+var fails = __webpack_require__(142);
+module.exports = function (KEY, exec) {
+  var fn = (core.Object || {})[KEY] || Object[KEY];
+  var exp = {};
+  exp[KEY] = exec(fn);
+  $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
+};
+
+
+/***/ }),
+/* 424 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _typeof2 = __webpack_require__(401);
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return call && ((typeof call === "undefined" ? "undefined" : (0, _typeof3.default)(call)) === "object" || typeof call === "function") ? call : self;
+};
+
+/***/ }),
+/* 425 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _setPrototypeOf = __webpack_require__(426);
+
+var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
+
+var _create = __webpack_require__(430);
+
+var _create2 = _interopRequireDefault(_create);
+
+var _typeof2 = __webpack_require__(401);
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : (0, _typeof3.default)(superClass)));
+  }
+
+  subClass.prototype = (0, _create2.default)(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf2.default ? (0, _setPrototypeOf2.default)(subClass, superClass) : subClass.__proto__ = superClass;
+};
+
+/***/ }),
+/* 426 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(427), __esModule: true };
+
+/***/ }),
+/* 427 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(428);
+module.exports = __webpack_require__(67).Object.setPrototypeOf;
+
+
+/***/ }),
+/* 428 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.19 Object.setPrototypeOf(O, proto)
+var $export = __webpack_require__(99);
+$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(429).set });
+
+
+/***/ }),
+/* 429 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Works with __proto__ only. Old v8 can't work with null proto objects.
+/* eslint-disable no-proto */
+var isObject = __webpack_require__(100);
+var anObject = __webpack_require__(69);
+var check = function (O, proto) {
+  anObject(O);
+  if (!isObject(proto) && proto !== null) throw TypeError(proto + ": can't set as prototype!");
+};
+module.exports = {
+  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
+    function (test, buggy, set) {
+      try {
+        set = __webpack_require__(141)(Function.call, __webpack_require__(415).f(Object.prototype, '__proto__').set, 2);
+        set(test, []);
+        buggy = !(test instanceof Array);
+      } catch (e) { buggy = true; }
+      return function setPrototypeOf(O, proto) {
+        check(O, proto);
+        if (buggy) O.__proto__ = proto;
+        else set(O, proto);
+        return O;
+      };
+    }({}, false) : undefined),
+  check: check
+};
+
+
+/***/ }),
+/* 430 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(431), __esModule: true };
+
+/***/ }),
+/* 431 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(432);
+var $Object = __webpack_require__(67).Object;
+module.exports = function create(P, D) {
+  return $Object.create(P, D);
+};
+
+
+/***/ }),
+/* 432 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__(99);
+// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+$export($export.S, 'Object', { create: __webpack_require__(371) });
+
+
+/***/ }),
+/* 433 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _assign = __webpack_require__(434);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _classCallCheck2 = __webpack_require__(104);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(105);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _modifierModel = __webpack_require__(438);
+
+var _modifierModel2 = _interopRequireDefault(_modifierModel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// Class
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * ComponentModel
+ * @class
+ */
+var ComponentModel = function () {
+  (0, _createClass3.default)(ComponentModel, [{
+    key: 'id',
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Public Properties
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * Get _id
+     * @readonly
+     * @return {string}
+     */
+
+
+    /**
+     * The state properties of the component
+     * @private
+     * @type {object}
+     */
+    get: function get() {
+      // eslint-disable-line id-length
+      return this._id;
+    }
+
+    /**
+     * ComponentModel
+     * @constructor
+     * @param {string} id - the id of the parent entity
+     * @param {object} config - the default settings for the component state
+     * @param {object} state - the initial state of the component
+     */
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Static Properties
+    //////////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Private Properties
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * The UUID of the parent entity
+     * @private
+     * @type {string}
+     */
+
+  }]);
+
+  function ComponentModel(id, config, state) {
+    (0, _classCallCheck3.default)(this, ComponentModel);
+    // eslint-disable-line id-length
+    if (id === null) {
+      throw new Error('Component id cannot be null');
+    }
+    if (config === null) {
+      throw new Error('Component configuration cannot be null');
+    }
+    if (state === null) {
+      throw new Error('Component state cannot be null');
+    }
+    this._id = id;
+    this._state = (0, _assign2.default)({}, config);
+    this.update(state);
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Methods
+  //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Updates the state of the component with new values
+   * @param { object } state - the new state of the component
+   */
+
+
+  (0, _createClass3.default)(ComponentModel, [{
+    key: 'update',
+    value: function update(state) {
+      if (state instanceof _modifierModel2.default) {
+        this._applyModifier(state);
+        return;
+      }
+      for (var KEY in state) {
+        if (!this._state.hasOwnProperty(KEY)) {
+          throw new Error('Invalid property ' + KEY + ' for component type ' + this.constructor.name);
+        }
+      }
+      this._state = (0, _assign2.default)({}, this._state, state);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Private Methods
+    //////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Gets the property value for the specified key
+     * @private
+     * @param {string} key - the name of the property
+     * @returns {*}
+    */
+
+  }, {
+    key: '_getProperty',
+    value: function _getProperty(key) {
+      if (!this._state.hasOwnProperty(key)) {
+        throw new Error('Property: ' + key + ' not found for component type: ' + this.constructor.name + ' ');
+      }
+      return this._state[key];
+    }
+  }, {
+    key: '_applyModifier',
+    value: function _applyModifier(modifier) {
+      this._modifiers.push(modifier);
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    // Static Methods
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * Static factory method
+     * @static
+     * @param {object} data - configuration for the component to be created
+     * @return {ComponentModel}
+     */
+
+  }], [{
+    key: 'create',
+    value: function create(data) {
+      if (data === null) {
+        throw new Error('Component configuration missing');
+      }
+      return new ComponentModel(data.id, data.defaults, data.state);
+    }
+  }]);
+  return ComponentModel;
+}();
+
+////////////////////////////////////////////////////////////////////////////////
+// Exports
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Starfinder - Component Model
+ * ===
+ *
+ * @module componentModel
+ */
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports
+////////////////////////////////////////////////////////////////////////////////
+
+
+exports.default = ComponentModel;
+
+/***/ }),
+/* 434 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(435), __esModule: true };
+
+/***/ }),
+/* 435 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(436);
+module.exports = __webpack_require__(67).Object.assign;
+
+
+/***/ }),
+/* 436 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__(99);
+
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(437) });
+
+
+/***/ }),
+/* 437 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// 19.1.2.1 Object.assign(target, source, ...)
+var getKeys = __webpack_require__(373);
+var gOPS = __webpack_require__(398);
+var pIE = __webpack_require__(397);
+var toObject = __webpack_require__(151);
+var IObject = __webpack_require__(375);
+var $assign = Object.assign;
+
+// should work with symbols and should have deterministic property order (V8 bug)
+module.exports = !$assign || __webpack_require__(142)(function () {
+  var A = {};
+  var B = {};
+  // eslint-disable-next-line no-undef
+  var S = Symbol();
+  var K = 'abcdefghijklmnopqrst';
+  A[S] = 7;
+  K.split('').forEach(function (k) { B[k] = k; });
+  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
+}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
+  var T = toObject(target);
+  var aLen = arguments.length;
+  var index = 1;
+  var getSymbols = gOPS.f;
+  var isEnum = pIE.f;
+  while (aLen > index) {
+    var S = IObject(arguments[index++]);
+    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
+    var length = keys.length;
+    var j = 0;
+    var key;
+    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
+  } return T;
+} : $assign;
+
+
+/***/ }),
+/* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10734,10 +11927,10 @@ var _createClass3 = _interopRequireDefault(_createClass2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
- * Starfinder - Component
+ * Starfinder - Modifier Model
  * ===
  *
- * @module component
+ * @module modifierModel
  */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -10747,126 +11940,70 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
-var MAP = {
-  TYPE: 0x000000,
-  STATE: 0x00001,
-  MODIFIERS: 0x00002
-};
 
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Component
+ * ModifierModel
  * @class
  */
+var ModifierModel = function () {
 
-var Component = function () {
-  (0, _createClass3.default)(Component, [{
-    key: 'type',
-
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Public Properties
-    //////////////////////////////////////////////////////////////////////////////
-    /**
-     * Returns the type of the component
-     * @readonly
-     * @return {int}
-     */
-    get: function get() {
-      return this._data[MAP.TYPE];
-    }
-
-    /**
-     * Returns the state of the component
-     * @readonly
-     * @return {object}
-     */
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Properties
+  //////////////////////////////////////////////////////////////////////////////
 
 
-    //////////////////////////////////////////////////////////////////////////////
-    // Static Properties
-    //////////////////////////////////////////////////////////////////////////////
+  /**
+   * ModifierModel
+   * @constructor
+   * @param {int} type - the type of the component to be created
+   * @param {object} state - the initial state of the component
+   */
+  function ModifierModel(type, componentType, value) {
+    (0, _classCallCheck3.default)(this, ModifierModel);
 
-    //////////////////////////////////////////////////////////////////////////////
-    // Private Properties
-    //////////////////////////////////////////////////////////////////////////////
-    /**
-     * The type, state, and modifiers for the component
-     * @private
-     * @type {Array}
-     */
-
-  }, {
-    key: 'state',
-    get: function get() {
-      return this._data[MAP.STATE];
-    }
-
-    /**
-     * Component
-     * @constructor
-     * @param {int} type - the type of the component to be created
-     * @param {object} state - the initial state of the component
-     */
-
-  }]);
-
-  function Component(type, state) {
-    (0, _classCallCheck3.default)(this, Component);
-    // eslint-disable-line id-length
     this._data = [];
     this._data[MAP.TYPE] = type;
-    this._data[MAP.STATE] = state;
-    this._data[MAP.MODIFIERS] = [];
+    this._data[MAP.COMPONENT_TYPE] = componentType;
+    this._data[MAP.VALUE] = value;
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Private Methods
+  //////////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Static Methods
+  //////////////////////////////////////////////////////////////////////////////
   /**
-   * Updates the state of the component with the new value
-   * @param {object} state - the new state of the component
+   * Static factory method
+   * @static
+   * @param {object} data - configuration for the component to be created
+   * @return {ModifierModel}
    */
 
 
-  (0, _createClass3.default)(Component, [{
-    key: 'update',
-    value: function update(state) {
-      this._data[MAP.STATE] = state;
-    }
+  //////////////////////////////////////////////////////////////////////////////
+  // Private Properties
+  //////////////////////////////////////////////////////////////////////////////
 
-    //////////////////////////////////////////////////////////////////////////////
-    // Private Methods
-    //////////////////////////////////////////////////////////////////////////////
 
-  }, {
-    key: '_attachModifier',
-    value: function _attachModifier(modifier) {}
-  }, {
-    key: '_detachModifier',
-    value: function _detachModifier() {}
-    //////////////////////////////////////////////////////////////////////////////
-    // Static Methods
-    //////////////////////////////////////////////////////////////////////////////
-    /**
-     * Static factory method
-     * @static
-     * @param {object} data - configuration for the component to be created
-     * @return {Component}
-     */
-
-  }], [{
+  (0, _createClass3.default)(ModifierModel, null, [{
     key: 'create',
     value: function create(data) {
       if (data === null) {
-        throw new Error('Component configuration missing');
+        throw new Error('Modifier configuration missing');
       }
-      return new Component(data.type, data.state);
+      return new ModifierModel(data.type, data.componentType, data.state);
     }
   }]);
-  return Component;
+  return ModifierModel;
 }();
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -10874,7 +12011,7 @@ var Component = function () {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-exports.default = Component;
+exports.default = ModifierModel;
 
 /***/ })
 /******/ ]);
