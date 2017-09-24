@@ -128,9 +128,9 @@ class AjaxService {
           XHR.setRequestHeader(HEADER, VALUE);
         }
       }
-      XHR.onload = () => {
+      XHR.onload = function() {
         if (this.status >= 200 && this.status < 300) {
-          resolve(XHR)
+          resolve(XHR);
         } else {
           reject({
             status: this.status,
@@ -138,7 +138,7 @@ class AjaxService {
           });
         }
       };
-      XHR.onerror = () => {
+      XHR.onerror = function() {
         reject({
           status: this.status,
           statusText: XHR.statusText

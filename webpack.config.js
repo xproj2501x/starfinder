@@ -25,7 +25,9 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           plugins: [
-            'transform-runtime'
+            'transform-runtime',
+            'transform-decorators-legacy',
+            'transform-class-properties'
           ],
           presets: [
             'es2015',
