@@ -8,8 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
-import binding from './binding';
-import template from './template';
+import Bind from '../framework/view/bind';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -23,7 +22,7 @@ const COMBAT = require('../../../test/data/combat.json');
  * CombatTracker
  * @class
  */
-@template('/html/encounter.html')
+
 export default class CombatTracker {
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
@@ -31,7 +30,7 @@ export default class CombatTracker {
   _round;
   _startButton;
 
-  template;
+  @Bind template;
 
   viewModel = {
     isRunning: false,

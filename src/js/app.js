@@ -8,11 +8,11 @@
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
 import '../css/_site.scss';
-import  * as CONSTANTS from './constants';
+import * as CONSTANTS from './constants';
 import CombatTracker from './views/combat-tracker';
-import EntityModel from './models/entity-model';
-import AbilitiesComponent from './components/abilities-component';
+import Framework from './framework/framework';
+import Bind from './framework/view/bind';
 
-const COMBAT_TRACKER = new CombatTracker();
-const ENTITY_MODEL = EntityModel.create();
 
+const FRAMEWORK = Framework.create();
+FRAMEWORK.configure(CONSTANTS.ROUTES);

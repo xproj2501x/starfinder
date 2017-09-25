@@ -1,0 +1,33 @@
+
+  <div class="o-cell o-cell--column-4 c-card t-combat" data-bind="template">
+    <div class="c-card__body o-grid o-initiative-table" id="character-grid">
+      <div class="o-cell o-cell--column-6">
+        <button class="c-button c-button--primary" id="start-button">Start</button>
+        <button class="c-button c-button--primary" id="previous-button" disabled> < </button>
+        <button class="c-button c-button--primary" id="next-button" disabled> > </button>
+      </div>
+      <div class="o-cell o-cell--column-6">
+        <select id="encounter-dropdown">
+          <option></option>
+        </select>
+        <button class="c-button c-button--primary" id="add-button"> + </button>
+      </div>
+      <div class="o-cell o-cell--column-6">
+        <button class="c-button c-button--primary" id="roll-button"> Roll </button>
+        <button class="c-button c-button--primary" id="sort-button"> Sort </button>
+      </div>
+      <div class="o-cell o-cell--column-6">
+        <button class="c-button c-button--primary"> oth1 </button>
+        <button class="c-button c-button--primary"> oth2 </button>
+      </div>
+      <div class="o-cell o-cell--column-12 o-grid o-grid--no-spacing o-initiative-table__heading">
+        <div class="o-cell o-cell--column-4">Name</div>
+        <div class="o-cell o-cell--column-1 init">Init</div>
+        <div class="o-cell o-cell--column-2 hit-points">HP</div>
+        <div class="o-cell o-cell--column-2 stamina">Stamina</div>
+        <div class="o-cell o-cell--column-1 kac">KAC</div>
+        <div class="o-cell o-cell--column-1 eac">EAC</div>
+        <div class="o-cell o-cell--column-1 quick-buttons"></div>
+      </div>
+    </div>
+  </div>

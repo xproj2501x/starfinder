@@ -2145,13 +2145,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 82 */
-/***/ (function(module, exports) {
-
-exports.f = {}.propertyIsEnumerable;
-
-
-/***/ }),
+/* 82 */,
 /* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3229,62 +3223,10 @@ module.exports = function (it, tag, stat) {
 
 
 /***/ }),
-/* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _iterator = __webpack_require__(400);
-
-var _iterator2 = _interopRequireDefault(_iterator);
-
-var _symbol = __webpack_require__(406);
-
-var _symbol2 = _interopRequireDefault(_symbol);
-
-var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.default) === "symbol" ? function (obj) {
-  return typeof obj === "undefined" ? "undefined" : _typeof(obj);
-} : function (obj) {
-  return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
-};
-
-/***/ }),
-/* 121 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports.f = __webpack_require__(28);
-
-
-/***/ }),
-/* 122 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__(34);
-var core = __webpack_require__(21);
-var LIBRARY = __webpack_require__(111);
-var wksExt = __webpack_require__(121);
-var defineProperty = __webpack_require__(35).f;
-module.exports = function (name) {
-  var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
-  if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: wksExt.f(name) });
-};
-
-
-/***/ }),
-/* 123 */
-/***/ (function(module, exports) {
-
-exports.f = Object.getOwnPropertySymbols;
-
-
-/***/ }),
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
 /* 124 */
 /***/ (function(module, exports) {
 
@@ -4443,41 +4385,8 @@ module.exports = Object.getPrototypeOf || function (O) {
 
 
 /***/ }),
-/* 168 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-var $keys = __webpack_require__(164);
-var hiddenKeys = __webpack_require__(118).concat('length', 'prototype');
-
-exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
-  return $keys(O, hiddenKeys);
-};
-
-
-/***/ }),
-/* 169 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var pIE = __webpack_require__(82);
-var createDesc = __webpack_require__(61);
-var toIObject = __webpack_require__(56);
-var toPrimitive = __webpack_require__(113);
-var has = __webpack_require__(48);
-var IE8_DOM_DEFINE = __webpack_require__(161);
-var gOPD = Object.getOwnPropertyDescriptor;
-
-exports.f = __webpack_require__(47) ? gOPD : function getOwnPropertyDescriptor(O, P) {
-  O = toIObject(O);
-  P = toPrimitive(P, true);
-  if (IE8_DOM_DEFINE) try {
-    return gOPD(O, P);
-  } catch (e) { /* empty */ }
-  if (has(O, P)) return createDesc(!pIE.f.call(O, P), O[P]);
-};
-
-
-/***/ }),
+/* 168 */,
+/* 169 */,
 /* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9811,29 +9720,29 @@ var _combatTracker = __webpack_require__(376);
 
 var _combatTracker2 = _interopRequireDefault(_combatTracker);
 
-var _entityModel = __webpack_require__(399);
+var _framework = __webpack_require__(457);
 
-var _entityModel2 = _interopRequireDefault(_entityModel);
+var _framework2 = _interopRequireDefault(_framework);
 
-var _abilitiesComponent = __webpack_require__(417);
+var _bind = __webpack_require__(462);
 
-var _abilitiesComponent2 = _interopRequireDefault(_abilitiesComponent);
+var _bind2 = _interopRequireDefault(_bind);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var COMBAT_TRACKER = new _combatTracker2.default(); /**
-                                                     * Starfinder - App
-                                                     * ===
-                                                     *
-                                                     */
+var FRAMEWORK = _framework2.default.create(); /**
+                                               * Starfinder - App
+                                               * ===
+                                               *
+                                               */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
 
-var ENTITY_MODEL = _entityModel2.default.create();
+FRAMEWORK.configure(CONSTANTS.ROUTES);
 
 /***/ }),
 /* 374 */
@@ -9851,19 +9760,34 @@ var ENTITY_MODEL = _entityModel2.default.create();
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-/**
- * Starfinder - Constants
- * ===
- *
- */
+exports.ROUTES = exports.MESSAGES = exports.DEBUG = undefined;
+
+var _combatTracker = __webpack_require__(376);
+
+var _combatTracker2 = _interopRequireDefault(_combatTracker);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
-var DEBUG = exports.DEBUG = location.search === '?DEBUG';
+var DEBUG = exports.DEBUG = location.search === '?DEBUG'; /**
+                                                           * Starfinder - Constants
+                                                           * ===
+                                                           *
+                                                           */
 
 var MESSAGES = exports.MESSAGES = {
   PROPERTY_CHANGE: 'PROPERTY_CHANGE'
+};
+
+var ROUTES = exports.ROUTES = {
+  ENCOUNTERS: {
+    name: 'encounters',
+    route: '/encounters',
+    view: _combatTracker2.default,
+    template: 'html/encounters.html'
+  }
 };
 
 /***/ }),
@@ -9878,6 +9802,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
+var _defineProperty = __webpack_require__(394);
+
+var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
 var _toConsumableArray2 = __webpack_require__(377);
 
 var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
@@ -9890,27 +9818,66 @@ var _createClass2 = __webpack_require__(64);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _dec, _class; /**
-                   * Starfinder - Combat Tracker
-                   * ===
-                   *
-                   * @module combatTracker
-                   */
+var _desc, _value, _class, _descriptor; /**
+                                         * Starfinder - Combat Tracker
+                                         * ===
+                                         *
+                                         * @module combatTracker
+                                         */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
 
 
-var _binding = __webpack_require__(397);
+var _bind = __webpack_require__(462);
 
-var _binding2 = _interopRequireDefault(_binding);
-
-var _template = __webpack_require__(438);
-
-var _template2 = _interopRequireDefault(_template);
+var _bind2 = _interopRequireDefault(_bind);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _initDefineProp(target, property, descriptor, context) {
+  if (!descriptor) return;
+  (0, _defineProperty2.default)(target, property, {
+    enumerable: descriptor.enumerable,
+    configurable: descriptor.configurable,
+    writable: descriptor.writable,
+    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+  });
+}
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+  var desc = {};
+  Object['ke' + 'ys'](descriptor).forEach(function (key) {
+    desc[key] = descriptor[key];
+  });
+  desc.enumerable = !!desc.enumerable;
+  desc.configurable = !!desc.configurable;
+
+  if ('value' in desc || desc.initializer) {
+    desc.writable = true;
+  }
+
+  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+    return decorator(target, property, desc) || desc;
+  }, desc);
+
+  if (context && desc.initializer !== void 0) {
+    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+    desc.initializer = undefined;
+  }
+
+  if (desc.initializer === void 0) {
+    Object['define' + 'Property'](target, property, desc);
+    desc = null;
+  }
+
+  return desc;
+}
+
+function _initializerWarningHelper(descriptor, context) {
+  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -9924,7 +9891,8 @@ var COMBAT = __webpack_require__(398);
  * CombatTracker
  * @class
  */
-var CombatTracker = (_dec = (0, _template2.default)('/html/encounter.html'), _dec(_class = function () {
+
+var CombatTracker = (_class = function () {
   /**
    * CombatTracker
    * @constructor
@@ -9935,6 +9903,9 @@ var CombatTracker = (_dec = (0, _template2.default)('/html/encounter.html'), _de
   //////////////////////////////////////////////////////////////////////////////
   function CombatTracker() {
     (0, _classCallCheck3.default)(this, CombatTracker);
+
+    _initDefineProp(this, 'template', _descriptor, this);
+
     this.viewModel = {
       isRunning: false,
       currentRound: null,
@@ -10142,7 +10113,10 @@ var CombatTracker = (_dec = (0, _template2.default)('/html/encounter.html'), _de
     }
   }]);
   return CombatTracker;
-}()) || _class);
+}(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'template', [_bind2.default], {
+  enumerable: true,
+  initializer: null
+})), _class);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
@@ -10504,257 +10478,16 @@ $export($export.S + $export.F * !__webpack_require__(47), 'Object', { defineProp
 
 
 /***/ }),
-/* 397 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/**
- * Starfinder - Binding
- * ===
- *
- * @module binding
- */
-
-////////////////////////////////////////////////////////////////////////////////
-// Imports
-////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////
-// Definitions
-////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////
-// Function
-////////////////////////////////////////////////////////////////////////////////
-function Binding(target, key, descriptor) {}
-
-////////////////////////////////////////////////////////////////////////////////
-// Exports
-////////////////////////////////////////////////////////////////////////////////
-exports.default = Binding;
-
-/***/ }),
+/* 397 */,
 /* 398 */
 /***/ (function(module, exports) {
 
 module.exports = {"players":[{"init":0,"initBonus":0,"name":"Player 1","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Player 2","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Player 3","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Player 4","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17}],"encounters":[{"name":"Encounter 1","monsters":[{"init":0,"initBonus":0,"name":"Monster 1","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Monster 2","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Monster 3","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Monster 4","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17}]},{"name":"Encounter 2","monsters":[{"init":0,"initBonus":0,"name":"Monster 1","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Monster 2","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Monster 3","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Monster 4","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17}]},{"name":"Encounter 3","monsters":[{"init":2,"initBonus":0,"name":"Monster 1","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":4,"initBonus":0,"name":"Monster 2","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":1,"initBonus":0,"name":"Monster 3","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17},{"init":0,"initBonus":0,"name":"Monster 4","stamina":{"max":25,"current":25},"hitPoints":{"max":25,"current":25},"kac":17,"eac":17}]}]}
 
 /***/ }),
-/* 399 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _typeof2 = __webpack_require__(120);
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
-var _classCallCheck2 = __webpack_require__(63);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(64);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _uuid = __webpack_require__(416);
-
-var _uuid2 = _interopRequireDefault(_uuid);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-////////////////////////////////////////////////////////////////////////////////
-// Definitions
-////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////
-// Class
-////////////////////////////////////////////////////////////////////////////////
-/**
- * EntityModel
- * @class
- */
-var EntityModel = function () {
-  (0, _createClass3.default)(EntityModel, [{
-    key: 'id',
-
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Public Properties
-    //////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Returns the UUID of the entity
-     * @readonly
-     * @return {string}
-     */
-    get: function get() {
-      // eslint-disable-line id-length
-      return this._id;
-    }
-
-    /**
-     * EntityModel
-     * @constructor
-     */
-
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Private Properties
-    //////////////////////////////////////////////////////////////////////////////
-    /**
-     * The UUID of the entity
-     * @private
-     * @type {string}
-     */
-
-  }]);
-
-  function EntityModel() {
-    (0, _classCallCheck3.default)(this, EntityModel);
-    // eslint-disable-line id-length
-    this._id = (0, _uuid2.default)();
-    this._components = [];
-  }
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Public Methods
-  //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Attaches a component to the entity
-   * @param {Component} component - the component to be attached
-   */
-
-
-  (0, _createClass3.default)(EntityModel, [{
-    key: 'attachComponent',
-    value: function attachComponent(component) {
-      var TYPE = typeof component === 'undefined' ? 'undefined' : (0, _typeof3.default)(component);
-
-      if (this._findComponent(TYPE)) {
-        throw new Error('Component type: ' + TYPE + ' already attached to entity id: ' + this.id);
-      }
-      this._components.push(component);
-    }
-
-    /**
-     * Detaches a component currently attached to the entity
-     * @param {string} type - the component type to be detached
-     */
-
-  }, {
-    key: 'detachComponent',
-    value: function detachComponent(type) {
-      var COMPONENT = this._findComponent(type);
-
-      if (!COMPONENT) {
-        throw new Error('Component type: ' + type + ' is not attached to entity id: ' + this.id);
-      }
-
-      var INDEX = this._components.indexOf(COMPONENT);
-
-      this._components.slice(INDEX, 1);
-    }
-
-    /**
-     * Determines if the entity can be used by the calling system
-     * @todo: Get lock segment as string and do a bitwise AND
-     * @param {Array} key - the access key for the system
-     * @return {Array}
-     */
-
-  }, {
-    key: 'unlock',
-    value: function unlock(key) {
-      var LOCK = [];
-      var START = key.shift();
-
-      for (var idx = 0; idx < key.length; idx++) {
-        var INDEX = START + idx;
-
-        if (key[idx] && !this._data[INDEX]) {
-          throw new Error('Invalid key: ' + key + ' for entity id: ' + this.id);
-        }
-        LOCK.push(this._data[INDEX]);
-      }
-      return LOCK;
-    }
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Private Methods
-    //////////////////////////////////////////////////////////////////////////////
-
-  }, {
-    key: '_findComponent',
-    value: function _findComponent(type) {
-      var COMPONENT = this._components.find(function (component) {
-        return component instanceof type;
-      });
-
-      return COMPONENT ? COMPONENT : null;
-    }
-    //////////////////////////////////////////////////////////////////////////////
-    // Static Methods
-    //////////////////////////////////////////////////////////////////////////////
-    /**
-     * Static factory method
-     * @static
-     * @return {EntityModel}
-     */
-
-  }], [{
-    key: 'create',
-    value: function create() {
-      // eslint-disable-line id-length
-      return new EntityModel();
-    }
-  }]);
-  return EntityModel;
-}();
-
-////////////////////////////////////////////////////////////////////////////////
-// Exports
-////////////////////////////////////////////////////////////////////////////////
-/**
- * Starfinder - EntityModel
- * ===
- *
- * @module entityModel
- */
-
-////////////////////////////////////////////////////////////////////////////////
-// Imports
-////////////////////////////////////////////////////////////////////////////////
-
-
-exports.default = EntityModel;
-
-/***/ }),
-/* 400 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(401), __esModule: true };
-
-/***/ }),
-/* 401 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(159);
-__webpack_require__(402);
-module.exports = __webpack_require__(121).f('iterator');
-
-
-/***/ }),
+/* 399 */,
+/* 400 */,
+/* 401 */,
 /* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10837,1271 +10570,44 @@ module.exports = function (done, value) {
 
 
 /***/ }),
-/* 406 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(407), __esModule: true };
-
-/***/ }),
-/* 407 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(408);
-__webpack_require__(413);
-__webpack_require__(414);
-__webpack_require__(415);
-module.exports = __webpack_require__(21).Symbol;
-
-
-/***/ }),
-/* 408 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// ECMAScript 6 symbols shim
-var global = __webpack_require__(34);
-var has = __webpack_require__(48);
-var DESCRIPTORS = __webpack_require__(47);
-var $export = __webpack_require__(33);
-var redefine = __webpack_require__(163);
-var META = __webpack_require__(409).KEY;
-var $fails = __webpack_require__(55);
-var shared = __webpack_require__(117);
-var setToStringTag = __webpack_require__(119);
-var uid = __webpack_require__(80);
-var wks = __webpack_require__(28);
-var wksExt = __webpack_require__(121);
-var wksDefine = __webpack_require__(122);
-var enumKeys = __webpack_require__(410);
-var isArray = __webpack_require__(411);
-var anObject = __webpack_require__(54);
-var toIObject = __webpack_require__(56);
-var toPrimitive = __webpack_require__(113);
-var createDesc = __webpack_require__(61);
-var _create = __webpack_require__(114);
-var gOPNExt = __webpack_require__(412);
-var $GOPD = __webpack_require__(169);
-var $DP = __webpack_require__(35);
-var $keys = __webpack_require__(79);
-var gOPD = $GOPD.f;
-var dP = $DP.f;
-var gOPN = gOPNExt.f;
-var $Symbol = global.Symbol;
-var $JSON = global.JSON;
-var _stringify = $JSON && $JSON.stringify;
-var PROTOTYPE = 'prototype';
-var HIDDEN = wks('_hidden');
-var TO_PRIMITIVE = wks('toPrimitive');
-var isEnum = {}.propertyIsEnumerable;
-var SymbolRegistry = shared('symbol-registry');
-var AllSymbols = shared('symbols');
-var OPSymbols = shared('op-symbols');
-var ObjectProto = Object[PROTOTYPE];
-var USE_NATIVE = typeof $Symbol == 'function';
-var QObject = global.QObject;
-// Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
-var setter = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
-
-// fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
-var setSymbolDesc = DESCRIPTORS && $fails(function () {
-  return _create(dP({}, 'a', {
-    get: function () { return dP(this, 'a', { value: 7 }).a; }
-  })).a != 7;
-}) ? function (it, key, D) {
-  var protoDesc = gOPD(ObjectProto, key);
-  if (protoDesc) delete ObjectProto[key];
-  dP(it, key, D);
-  if (protoDesc && it !== ObjectProto) dP(ObjectProto, key, protoDesc);
-} : dP;
-
-var wrap = function (tag) {
-  var sym = AllSymbols[tag] = _create($Symbol[PROTOTYPE]);
-  sym._k = tag;
-  return sym;
-};
-
-var isSymbol = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function (it) {
-  return typeof it == 'symbol';
-} : function (it) {
-  return it instanceof $Symbol;
-};
-
-var $defineProperty = function defineProperty(it, key, D) {
-  if (it === ObjectProto) $defineProperty(OPSymbols, key, D);
-  anObject(it);
-  key = toPrimitive(key, true);
-  anObject(D);
-  if (has(AllSymbols, key)) {
-    if (!D.enumerable) {
-      if (!has(it, HIDDEN)) dP(it, HIDDEN, createDesc(1, {}));
-      it[HIDDEN][key] = true;
-    } else {
-      if (has(it, HIDDEN) && it[HIDDEN][key]) it[HIDDEN][key] = false;
-      D = _create(D, { enumerable: createDesc(0, false) });
-    } return setSymbolDesc(it, key, D);
-  } return dP(it, key, D);
-};
-var $defineProperties = function defineProperties(it, P) {
-  anObject(it);
-  var keys = enumKeys(P = toIObject(P));
-  var i = 0;
-  var l = keys.length;
-  var key;
-  while (l > i) $defineProperty(it, key = keys[i++], P[key]);
-  return it;
-};
-var $create = function create(it, P) {
-  return P === undefined ? _create(it) : $defineProperties(_create(it), P);
-};
-var $propertyIsEnumerable = function propertyIsEnumerable(key) {
-  var E = isEnum.call(this, key = toPrimitive(key, true));
-  if (this === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key)) return false;
-  return E || !has(this, key) || !has(AllSymbols, key) || has(this, HIDDEN) && this[HIDDEN][key] ? E : true;
-};
-var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key) {
-  it = toIObject(it);
-  key = toPrimitive(key, true);
-  if (it === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key)) return;
-  var D = gOPD(it, key);
-  if (D && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key])) D.enumerable = true;
-  return D;
-};
-var $getOwnPropertyNames = function getOwnPropertyNames(it) {
-  var names = gOPN(toIObject(it));
-  var result = [];
-  var i = 0;
-  var key;
-  while (names.length > i) {
-    if (!has(AllSymbols, key = names[i++]) && key != HIDDEN && key != META) result.push(key);
-  } return result;
-};
-var $getOwnPropertySymbols = function getOwnPropertySymbols(it) {
-  var IS_OP = it === ObjectProto;
-  var names = gOPN(IS_OP ? OPSymbols : toIObject(it));
-  var result = [];
-  var i = 0;
-  var key;
-  while (names.length > i) {
-    if (has(AllSymbols, key = names[i++]) && (IS_OP ? has(ObjectProto, key) : true)) result.push(AllSymbols[key]);
-  } return result;
-};
-
-// 19.4.1.1 Symbol([description])
-if (!USE_NATIVE) {
-  $Symbol = function Symbol() {
-    if (this instanceof $Symbol) throw TypeError('Symbol is not a constructor!');
-    var tag = uid(arguments.length > 0 ? arguments[0] : undefined);
-    var $set = function (value) {
-      if (this === ObjectProto) $set.call(OPSymbols, value);
-      if (has(this, HIDDEN) && has(this[HIDDEN], tag)) this[HIDDEN][tag] = false;
-      setSymbolDesc(this, tag, createDesc(1, value));
-    };
-    if (DESCRIPTORS && setter) setSymbolDesc(ObjectProto, tag, { configurable: true, set: $set });
-    return wrap(tag);
-  };
-  redefine($Symbol[PROTOTYPE], 'toString', function toString() {
-    return this._k;
-  });
-
-  $GOPD.f = $getOwnPropertyDescriptor;
-  $DP.f = $defineProperty;
-  __webpack_require__(168).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(82).f = $propertyIsEnumerable;
-  __webpack_require__(123).f = $getOwnPropertySymbols;
-
-  if (DESCRIPTORS && !__webpack_require__(111)) {
-    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
-  }
-
-  wksExt.f = function (name) {
-    return wrap(wks(name));
-  };
-}
-
-$export($export.G + $export.W + $export.F * !USE_NATIVE, { Symbol: $Symbol });
-
-for (var es6Symbols = (
-  // 19.4.2.2, 19.4.2.3, 19.4.2.4, 19.4.2.6, 19.4.2.8, 19.4.2.9, 19.4.2.10, 19.4.2.11, 19.4.2.12, 19.4.2.13, 19.4.2.14
-  'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'
-).split(','), j = 0; es6Symbols.length > j;)wks(es6Symbols[j++]);
-
-for (var wellKnownSymbols = $keys(wks.store), k = 0; wellKnownSymbols.length > k;) wksDefine(wellKnownSymbols[k++]);
-
-$export($export.S + $export.F * !USE_NATIVE, 'Symbol', {
-  // 19.4.2.1 Symbol.for(key)
-  'for': function (key) {
-    return has(SymbolRegistry, key += '')
-      ? SymbolRegistry[key]
-      : SymbolRegistry[key] = $Symbol(key);
-  },
-  // 19.4.2.5 Symbol.keyFor(sym)
-  keyFor: function keyFor(sym) {
-    if (!isSymbol(sym)) throw TypeError(sym + ' is not a symbol!');
-    for (var key in SymbolRegistry) if (SymbolRegistry[key] === sym) return key;
-  },
-  useSetter: function () { setter = true; },
-  useSimple: function () { setter = false; }
-});
-
-$export($export.S + $export.F * !USE_NATIVE, 'Object', {
-  // 19.1.2.2 Object.create(O [, Properties])
-  create: $create,
-  // 19.1.2.4 Object.defineProperty(O, P, Attributes)
-  defineProperty: $defineProperty,
-  // 19.1.2.3 Object.defineProperties(O, Properties)
-  defineProperties: $defineProperties,
-  // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
-  getOwnPropertyDescriptor: $getOwnPropertyDescriptor,
-  // 19.1.2.7 Object.getOwnPropertyNames(O)
-  getOwnPropertyNames: $getOwnPropertyNames,
-  // 19.1.2.8 Object.getOwnPropertySymbols(O)
-  getOwnPropertySymbols: $getOwnPropertySymbols
-});
-
-// 24.3.2 JSON.stringify(value [, replacer [, space]])
-$JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function () {
-  var S = $Symbol();
-  // MS Edge converts symbol values to JSON as {}
-  // WebKit converts symbol values to JSON as null
-  // V8 throws on boxed symbols
-  return _stringify([S]) != '[null]' || _stringify({ a: S }) != '{}' || _stringify(Object(S)) != '{}';
-})), 'JSON', {
-  stringify: function stringify(it) {
-    if (it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
-    var args = [it];
-    var i = 1;
-    var replacer, $replacer;
-    while (arguments.length > i) args.push(arguments[i++]);
-    replacer = args[1];
-    if (typeof replacer == 'function') $replacer = replacer;
-    if ($replacer || !isArray(replacer)) replacer = function (key, value) {
-      if ($replacer) value = $replacer.call(this, key, value);
-      if (!isSymbol(value)) return value;
-    };
-    args[1] = replacer;
-    return _stringify.apply($JSON, args);
-  }
-});
-
-// 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
-$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(53)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
-// 19.4.3.5 Symbol.prototype[@@toStringTag]
-setToStringTag($Symbol, 'Symbol');
-// 20.2.1.9 Math[@@toStringTag]
-setToStringTag(Math, 'Math', true);
-// 24.3.3 JSON[@@toStringTag]
-setToStringTag(global.JSON, 'JSON', true);
-
-
-/***/ }),
-/* 409 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var META = __webpack_require__(80)('meta');
-var isObject = __webpack_require__(60);
-var has = __webpack_require__(48);
-var setDesc = __webpack_require__(35).f;
-var id = 0;
-var isExtensible = Object.isExtensible || function () {
-  return true;
-};
-var FREEZE = !__webpack_require__(55)(function () {
-  return isExtensible(Object.preventExtensions({}));
-});
-var setMeta = function (it) {
-  setDesc(it, META, { value: {
-    i: 'O' + ++id, // object ID
-    w: {}          // weak collections IDs
-  } });
-};
-var fastKey = function (it, create) {
-  // return primitive with prefix
-  if (!isObject(it)) return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
-  if (!has(it, META)) {
-    // can't set metadata to uncaught frozen object
-    if (!isExtensible(it)) return 'F';
-    // not necessary to add metadata
-    if (!create) return 'E';
-    // add missing metadata
-    setMeta(it);
-  // return object ID
-  } return it[META].i;
-};
-var getWeak = function (it, create) {
-  if (!has(it, META)) {
-    // can't set metadata to uncaught frozen object
-    if (!isExtensible(it)) return true;
-    // not necessary to add metadata
-    if (!create) return false;
-    // add missing metadata
-    setMeta(it);
-  // return hash weak collections IDs
-  } return it[META].w;
-};
-// add metadata on freeze-family methods calling
-var onFreeze = function (it) {
-  if (FREEZE && meta.NEED && isExtensible(it) && !has(it, META)) setMeta(it);
-  return it;
-};
-var meta = module.exports = {
-  KEY: META,
-  NEED: false,
-  fastKey: fastKey,
-  getWeak: getWeak,
-  onFreeze: onFreeze
-};
-
-
-/***/ }),
-/* 410 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// all enumerable object keys, includes symbols
-var getKeys = __webpack_require__(79);
-var gOPS = __webpack_require__(123);
-var pIE = __webpack_require__(82);
-module.exports = function (it) {
-  var result = getKeys(it);
-  var getSymbols = gOPS.f;
-  if (getSymbols) {
-    var symbols = getSymbols(it);
-    var isEnum = pIE.f;
-    var i = 0;
-    var key;
-    while (symbols.length > i) if (isEnum.call(it, key = symbols[i++])) result.push(key);
-  } return result;
-};
-
-
-/***/ }),
-/* 411 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 7.2.2 IsArray(argument)
-var cof = __webpack_require__(115);
-module.exports = Array.isArray || function isArray(arg) {
-  return cof(arg) == 'Array';
-};
-
-
-/***/ }),
-/* 412 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-var toIObject = __webpack_require__(56);
-var gOPN = __webpack_require__(168).f;
-var toString = {}.toString;
-
-var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
-  ? Object.getOwnPropertyNames(window) : [];
-
-var getWindowNames = function (it) {
-  try {
-    return gOPN(it);
-  } catch (e) {
-    return windowNames.slice();
-  }
-};
-
-module.exports.f = function getOwnPropertyNames(it) {
-  return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
-};
-
-
-/***/ }),
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
 /* 413 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 414 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(122)('asyncIterator');
-
-
-/***/ }),
-/* 415 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(122)('observable');
-
-
-/***/ }),
-/* 416 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/**
- * Starfinder - UUID
- * ===
- *
- */
-
-////////////////////////////////////////////////////////////////////////////////
-// Imports
-////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////
-// Definitions
-////////////////////////////////////////////////////////////////////////////////
-/**
- * Creates a UUID
- * @return {string}
- */
-function createUUID() {
-  var STRING = [];
-  var HEX_DIGITS = '01234567890abcdef';
-
-  for (var idx = 0; idx < 36; idx++) {
-    STRING[idx] = HEX_DIGITS.substr(Math.floor(Math.random() * 0x10), 1);
-  }
-  STRING[14] = '4';
-  STRING[19] = HEX_DIGITS.substr(STRING[19] & 0x3 | 0x1, 1);
-  STRING[8] = STRING[13] = STRING[18] = STRING[23] = '-';
-  return STRING.join('');
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// Exports
-////////////////////////////////////////////////////////////////////////////////
-exports.default = createUUID;
-
-/***/ }),
-/* 417 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _getPrototypeOf = __webpack_require__(418);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(63);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(422);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _createClass2 = __webpack_require__(64);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _inherits2 = __webpack_require__(423);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _componentModel = __webpack_require__(431);
-
-var _componentModel2 = _interopRequireDefault(_componentModel);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-////////////////////////////////////////////////////////////////////////////////
-// Definitions
-////////////////////////////////////////////////////////////////////////////////
-/**
- * Proeprty names for the component
- * @enum {string}
- */
-var KEYS = {
-  STRENGTH: 'strength',
-  DEXTERITY: 'dexterity',
-  CONSTITUTION: 'constitution',
-  INTELLIGENCE: 'intelligence',
-  WISDOM: 'wisdom',
-  CHARISMA: 'charisma'
-}; /**
-    * Starfinder - Abilities Component
-    * ===
-    *
-    * @module abilitiesModel
-    */
-
-////////////////////////////////////////////////////////////////////////////////
-// Imports
-////////////////////////////////////////////////////////////////////////////////
-
-
-var DEFAULTS = {
-  strength: 0,
-  dexterity: 0,
-  constitution: 0,
-  intelligence: 0,
-  wisdom: 0,
-  charisma: 0
-};
-////////////////////////////////////////////////////////////////////////////////
-// Class
-////////////////////////////////////////////////////////////////////////////////
-/**
- * AbilitiesComponent
- * @class
- * @extends ComponentModel
- */
-
-var AbilitiesComponent = function (_ComponentModel) {
-  (0, _inherits3.default)(AbilitiesComponent, _ComponentModel);
-  (0, _createClass3.default)(AbilitiesComponent, [{
-    key: 'strength',
-
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Private Properties
-    //////////////////////////////////////////////////////////////////////////////
-    get: function get() {
-      return this._getProperty(KEYS.STRENGTH);
-    }
-  }, {
-    key: 'strengthModifier',
-    get: function get() {
-      return this._calculateModifier(KEYS.STRENGTH);
-    }
-  }, {
-    key: 'dexterity',
-    get: function get() {
-      return this._getProperty(KEYS.STRENGTH);
-    }
-  }, {
-    key: 'dexterityModifier',
-    get: function get() {
-      return this._calculateModifier(KEYS.STRENGTH);
-    }
-  }, {
-    key: 'constitution',
-    get: function get() {
-      return this._getProperty(KEYS.CONSTITUTION);
-    }
-  }, {
-    key: 'constitutionModifier',
-    get: function get() {
-      return this._calculateModifier(KEYS.CONSTITUTION);
-    }
-  }, {
-    key: 'intelligence',
-    get: function get() {
-      return this._getProperty(KEYS.INTELLIGENCE);
-    }
-  }, {
-    key: 'intelligenceModifier',
-    get: function get() {
-      return this._calculateModifier(KEYS.INTELLIGENCE);
-    }
-  }, {
-    key: 'wisdom',
-    get: function get() {
-      return this._getProperty(KEYS.WISDOM);
-    }
-  }, {
-    key: 'wisdomModifier',
-    get: function get() {
-      return this._calculateModifier(KEYS.WISDOM);
-    }
-  }, {
-    key: 'charisma',
-    get: function get() {
-      return this._getProperty(KEYS.CHARISMA);
-    }
-  }, {
-    key: 'charismaModifier',
-    get: function get() {
-      return this._calculateModifier(KEYS.CHARISMA);
-    }
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Public Properties
-    //////////////////////////////////////////////////////////////////////////////
-
-
-    /**
-     * AttributesComponent
-     * @constructor
-     * @param {string} id - the id of the parent entity
-     * @param {object} state - the initial state of the component
-     */
-
-  }]);
-
-  function AbilitiesComponent(id) {
-    var state = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    (0, _classCallCheck3.default)(this, AbilitiesComponent);
-    // eslint-disable-line id-length
-    return (0, _possibleConstructorReturn3.default)(this, (AbilitiesComponent.__proto__ || (0, _getPrototypeOf2.default)(AbilitiesComponent)).call(this, id, DEFAULTS, state));
-  }
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Public Methods
-  //////////////////////////////////////////////////////////////////////////////
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Private Methods
-  //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Calculates the modifier value for the ability
-   * @param property
-   * @returns {number}
-   * @private
-   */
-
-
-  (0, _createClass3.default)(AbilitiesComponent, [{
-    key: '_calculateModifier',
-    value: function _calculateModifier(property) {
-      var VALUE = this._getProperty(property);
-
-      return Math.floor(VALUE / 2 - 5);
-    }
-    //////////////////////////////////////////////////////////////////////////////
-    // Static Methods
-    //////////////////////////////////////////////////////////////////////////////
-    /**
-     * Static factory method
-     * @static
-     * @param {object} data - configuration for the component to be created
-     * @return {AbilitiesComponent}
-     */
-
-  }], [{
-    key: 'create',
-    value: function create(data) {
-      if (data === null) {
-        throw new Error('Abilities component configuration missing');
-      }
-      return new AbilitiesComponent(data.id, data.state);
-    }
-  }]);
-  return AbilitiesComponent;
-}(_componentModel2.default);
-
-////////////////////////////////////////////////////////////////////////////////
-// Exports
-////////////////////////////////////////////////////////////////////////////////
-
-
-exports.default = AbilitiesComponent;
-
-/***/ }),
-/* 418 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(419), __esModule: true };
-
-/***/ }),
-/* 419 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(420);
-module.exports = __webpack_require__(21).Object.getPrototypeOf;
-
-
-/***/ }),
-/* 420 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.9 Object.getPrototypeOf(O)
-var toObject = __webpack_require__(81);
-var $getPrototypeOf = __webpack_require__(167);
-
-__webpack_require__(421)('getPrototypeOf', function () {
-  return function getPrototypeOf(it) {
-    return $getPrototypeOf(toObject(it));
-  };
-});
-
-
-/***/ }),
-/* 421 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// most Object methods by ES6 should accept primitives
-var $export = __webpack_require__(33);
-var core = __webpack_require__(21);
-var fails = __webpack_require__(55);
-module.exports = function (KEY, exec) {
-  var fn = (core.Object || {})[KEY] || Object[KEY];
-  var exp = {};
-  exp[KEY] = exec(fn);
-  $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
-};
-
-
-/***/ }),
-/* 422 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _typeof2 = __webpack_require__(120);
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return call && ((typeof call === "undefined" ? "undefined" : (0, _typeof3.default)(call)) === "object" || typeof call === "function") ? call : self;
-};
-
-/***/ }),
-/* 423 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _setPrototypeOf = __webpack_require__(424);
-
-var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
-
-var _create = __webpack_require__(428);
-
-var _create2 = _interopRequireDefault(_create);
-
-var _typeof2 = __webpack_require__(120);
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : (0, _typeof3.default)(superClass)));
-  }
-
-  subClass.prototype = (0, _create2.default)(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) _setPrototypeOf2.default ? (0, _setPrototypeOf2.default)(subClass, superClass) : subClass.__proto__ = superClass;
-};
-
-/***/ }),
-/* 424 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(425), __esModule: true };
-
-/***/ }),
-/* 425 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(426);
-module.exports = __webpack_require__(21).Object.setPrototypeOf;
-
-
-/***/ }),
-/* 426 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.3.19 Object.setPrototypeOf(O, proto)
-var $export = __webpack_require__(33);
-$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(427).set });
-
-
-/***/ }),
-/* 427 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Works with __proto__ only. Old v8 can't work with null proto objects.
-/* eslint-disable no-proto */
-var isObject = __webpack_require__(60);
-var anObject = __webpack_require__(54);
-var check = function (O, proto) {
-  anObject(O);
-  if (!isObject(proto) && proto !== null) throw TypeError(proto + ": can't set as prototype!");
-};
-module.exports = {
-  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
-    function (test, buggy, set) {
-      try {
-        set = __webpack_require__(112)(Function.call, __webpack_require__(169).f(Object.prototype, '__proto__').set, 2);
-        set(test, []);
-        buggy = !(test instanceof Array);
-      } catch (e) { buggy = true; }
-      return function setPrototypeOf(O, proto) {
-        check(O, proto);
-        if (buggy) O.__proto__ = proto;
-        else set(O, proto);
-        return O;
-      };
-    }({}, false) : undefined),
-  check: check
-};
-
-
-/***/ }),
-/* 428 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(429), __esModule: true };
-
-/***/ }),
-/* 429 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(430);
-var $Object = __webpack_require__(21).Object;
-module.exports = function create(P, D) {
-  return $Object.create(P, D);
-};
-
-
-/***/ }),
-/* 430 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var $export = __webpack_require__(33);
-// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-$export($export.S, 'Object', { create: __webpack_require__(114) });
-
-
-/***/ }),
-/* 431 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _assign = __webpack_require__(432);
-
-var _assign2 = _interopRequireDefault(_assign);
-
-var _classCallCheck2 = __webpack_require__(63);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(64);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _modifierModel = __webpack_require__(436);
-
-var _modifierModel2 = _interopRequireDefault(_modifierModel);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-////////////////////////////////////////////////////////////////////////////////
-// Definitions
-////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////
-// Class
-////////////////////////////////////////////////////////////////////////////////
-/**
- * ComponentModel
- * @class
- */
-var ComponentModel = function () {
-  (0, _createClass3.default)(ComponentModel, [{
-    key: 'id',
-
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Public Properties
-    //////////////////////////////////////////////////////////////////////////////
-    /**
-     * Get _id
-     * @readonly
-     * @return {string}
-     */
-
-
-    /**
-     * The state properties of the component
-     * @private
-     * @type {object}
-     */
-    get: function get() {
-      // eslint-disable-line id-length
-      return this._id;
-    }
-
-    /**
-     * ComponentModel
-     * @constructor
-     * @param {string} id - the id of the parent entity
-     * @param {object} config - the default settings for the component state
-     * @param {object} state - the initial state of the component
-     */
-
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Static Properties
-    //////////////////////////////////////////////////////////////////////////////
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Private Properties
-    //////////////////////////////////////////////////////////////////////////////
-    /**
-     * The UUID of the parent entity
-     * @private
-     * @type {string}
-     */
-
-  }]);
-
-  function ComponentModel(id, config, state) {
-    (0, _classCallCheck3.default)(this, ComponentModel);
-    // eslint-disable-line id-length
-    if (id === null) {
-      throw new Error('Component id cannot be null');
-    }
-    if (config === null) {
-      throw new Error('Component configuration cannot be null');
-    }
-    if (state === null) {
-      throw new Error('Component state cannot be null');
-    }
-    this._id = id;
-    this._state = (0, _assign2.default)({}, config);
-    this.update(state);
-  }
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Public Methods
-  //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Updates the state of the component with new values
-   * @param { object } state - the new state of the component
-   */
-
-
-  (0, _createClass3.default)(ComponentModel, [{
-    key: 'update',
-    value: function update(state) {
-      if (state instanceof _modifierModel2.default) {
-        this._applyModifier(state);
-        return;
-      }
-      for (var KEY in state) {
-        if (!this._state.hasOwnProperty(KEY)) {
-          throw new Error('Invalid property ' + KEY + ' for component type ' + this.constructor.name);
-        }
-      }
-      this._state = (0, _assign2.default)({}, this._state, state);
-    }
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Private Methods
-    //////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Gets the property value for the specified key
-     * @private
-     * @param {string} key - the name of the property
-     * @returns {*}
-    */
-
-  }, {
-    key: '_getProperty',
-    value: function _getProperty(key) {
-      if (!this._state.hasOwnProperty(key)) {
-        throw new Error('Property: ' + key + ' not found for component type: ' + this.constructor.name + ' ');
-      }
-      return this._state[key];
-    }
-  }, {
-    key: '_applyModifier',
-    value: function _applyModifier(modifier) {
-      this._modifiers.push(modifier);
-    }
-    //////////////////////////////////////////////////////////////////////////////
-    // Static Methods
-    //////////////////////////////////////////////////////////////////////////////
-    /**
-     * Static factory method
-     * @static
-     * @param {object} data - configuration for the component to be created
-     * @return {ComponentModel}
-     */
-
-  }], [{
-    key: 'create',
-    value: function create(data) {
-      if (data === null) {
-        throw new Error('Component configuration missing');
-      }
-      return new ComponentModel(data.id, data.defaults, data.state);
-    }
-  }]);
-  return ComponentModel;
-}();
-
-////////////////////////////////////////////////////////////////////////////////
-// Exports
-////////////////////////////////////////////////////////////////////////////////
-/**
- * Starfinder - Component Model
- * ===
- *
- * @module componentModel
- */
-
-////////////////////////////////////////////////////////////////////////////////
-// Imports
-////////////////////////////////////////////////////////////////////////////////
-
-
-exports.default = ComponentModel;
-
-/***/ }),
-/* 432 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(433), __esModule: true };
-
-/***/ }),
-/* 433 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(434);
-module.exports = __webpack_require__(21).Object.assign;
-
-
-/***/ }),
-/* 434 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(33);
-
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(435) });
-
-
-/***/ }),
-/* 435 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// 19.1.2.1 Object.assign(target, source, ...)
-var getKeys = __webpack_require__(79);
-var gOPS = __webpack_require__(123);
-var pIE = __webpack_require__(82);
-var toObject = __webpack_require__(81);
-var IObject = __webpack_require__(165);
-var $assign = Object.assign;
-
-// should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__(55)(function () {
-  var A = {};
-  var B = {};
-  // eslint-disable-next-line no-undef
-  var S = Symbol();
-  var K = 'abcdefghijklmnopqrst';
-  A[S] = 7;
-  K.split('').forEach(function (k) { B[k] = k; });
-  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
-  var T = toObject(target);
-  var aLen = arguments.length;
-  var index = 1;
-  var getSymbols = gOPS.f;
-  var isEnum = pIE.f;
-  while (aLen > index) {
-    var S = IObject(arguments[index++]);
-    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
-    var length = keys.length;
-    var j = 0;
-    var key;
-    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
-  } return T;
-} : $assign;
-
-
-/***/ }),
-/* 436 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _classCallCheck2 = __webpack_require__(63);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(64);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Starfinder - Modifier Model
- * ===
- *
- * @module modifierModel
- */
-
-////////////////////////////////////////////////////////////////////////////////
-// Imports
-////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////
-// Definitions
-////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////
-// Class
-////////////////////////////////////////////////////////////////////////////////
-/**
- * ModifierModel
- * @class
- */
-var ModifierModel = function () {
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Public Properties
-  //////////////////////////////////////////////////////////////////////////////
-
-
-  /**
-   * ModifierModel
-   * @constructor
-   * @param {int} type - the type of the component to be created
-   * @param {object} state - the initial state of the component
-   */
-  function ModifierModel(type, componentType, value) {
-    (0, _classCallCheck3.default)(this, ModifierModel);
-
-    this._data = [];
-    this._data[MAP.TYPE] = type;
-    this._data[MAP.COMPONENT_TYPE] = componentType;
-    this._data[MAP.VALUE] = value;
-  }
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Public Methods
-  //////////////////////////////////////////////////////////////////////////////
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Private Methods
-  //////////////////////////////////////////////////////////////////////////////
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Static Methods
-  //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Static factory method
-   * @static
-   * @param {object} data - configuration for the component to be created
-   * @return {ModifierModel}
-   */
-
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Private Properties
-  //////////////////////////////////////////////////////////////////////////////
-
-
-  (0, _createClass3.default)(ModifierModel, null, [{
-    key: 'create',
-    value: function create(data) {
-      if (data === null) {
-        throw new Error('Modifier configuration missing');
-      }
-      return new ModifierModel(data.type, data.componentType, data.state);
-    }
-  }]);
-  return ModifierModel;
-}();
-
-////////////////////////////////////////////////////////////////////////////////
-// Exports
-////////////////////////////////////////////////////////////////////////////////
-
-
-exports.default = ModifierModel;
-
-/***/ }),
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */,
+/* 427 */,
+/* 428 */,
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */,
+/* 435 */,
+/* 436 */,
 /* 437 */,
-/* 438 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _ajax = __webpack_require__(444);
-
-var _ajax2 = _interopRequireDefault(_ajax);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-////////////////////////////////////////////////////////////////////////////////
-// Definitions
-////////////////////////////////////////////////////////////////////////////////
-var AJAX_SERVICE = _ajax2.default.create();
-////////////////////////////////////////////////////////////////////////////////
-// Function
-////////////////////////////////////////////////////////////////////////////////
-/**
- * Starfinder - Template
- * ===
- *
- * @module template
- */
-
-////////////////////////////////////////////////////////////////////////////////
-// Imports
-////////////////////////////////////////////////////////////////////////////////
-function Template(file) {
-  return function (target) {
-    AJAX_SERVICE.get({
-      url: file,
-      headers: {
-        'Content-Type': 'text/html',
-        'Accept': 'text/html'
-      }
-    }).then(function (response) {
-      console.log(response.responseText);
-    }).catch(function (err) {});
-  };
-}
-////////////////////////////////////////////////////////////////////////////////
-// Exports
-////////////////////////////////////////////////////////////////////////////////
-exports.default = Template;
-
-/***/ }),
+/* 438 */,
 /* 439 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12263,228 +10769,7 @@ module.exports = function (C, x) {
 
 
 /***/ }),
-/* 444 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _promise = __webpack_require__(445);
-
-var _promise2 = _interopRequireDefault(_promise);
-
-var _classCallCheck2 = __webpack_require__(63);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(64);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Starfinder - Ajax Service
- * ===
- *
- * @module ajaxService
- */
-
-////////////////////////////////////////////////////////////////////////////////
-// Imports
-////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////
-// Definitions
-////////////////////////////////////////////////////////////////////////////////
-/**
- * API Methods
- * @enum {string}
- */
-var METHOD = {
-  DELETE: 'DELETE',
-  GET: 'GET',
-  HEAD: 'HEAD',
-  PATCH: 'PATCH',
-  POST: 'POST',
-  PUT: 'PUT'
-};
-
-////////////////////////////////////////////////////////////////////////////////
-// Class
-////////////////////////////////////////////////////////////////////////////////
-/**
- * AjaxService
- * @class
- */
-
-var AjaxService = function () {
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Private Properties
-  //////////////////////////////////////////////////////////////////////////////
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Public Properties
-  //////////////////////////////////////////////////////////////////////////////
-
-  /**
-   * AjaxService
-   * @constructor
-   */
-  function AjaxService() {
-    (0, _classCallCheck3.default)(this, AjaxService);
-  }
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Public Methods
-  //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Sends a delete request to the specified resource
-   * @param {object} options - options for the request
-   * @return {Promise}
-   */
-
-
-  (0, _createClass3.default)(AjaxService, [{
-    key: 'delete',
-    value: function _delete(options) {
-      return this._send(METHOD.DELETE, options);
-    }
-
-    /**
-     * Sends a get request to the specified resource
-     * @param {object} options - options for the request
-     * @return {Promise}
-     */
-
-  }, {
-    key: 'get',
-    value: function get(options) {
-      return this._send(METHOD.GET, options);
-    }
-
-    /**
-     * Sends a head request to the specified resource
-     * @param {object} options - options for the request
-     * @return {Promise}
-     */
-
-  }, {
-    key: 'head',
-    value: function head(options) {
-      return this._send(METHOD.HEAD, options);
-    }
-
-    /**
-     * Sends a patch request to the specified resource
-     * @param {object} options - options for the request
-     * @return {Promise}
-     */
-
-  }, {
-    key: 'patch',
-    value: function patch(options) {
-      return this._send(METHOD.PATCH, options);
-    }
-
-    /**
-     * Sends a post request to the specified resource
-     * @param { object } options - options for the request
-     * @return {Promise}
-     */
-
-  }, {
-    key: 'post',
-    value: function post(options) {
-      return this._send(METHOD.POST, options);
-    }
-
-    /**
-     * Sends a put request to the specified resource
-     * @param { object } options - options for the request
-     * @return {Promise}
-     */
-
-  }, {
-    key: 'put',
-    value: function put(options) {
-      return this._send(METHOD.PUT, options);
-    }
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Private Methods
-    //////////////////////////////////////////////////////////////////////////////
-    /**
-     * Sends a request to the specified resource
-     * @param {string} method - the request method
-     * @param {object} options - options for the request
-     * @return {Promise}
-     */
-
-  }, {
-    key: '_send',
-    value: function _send(method, options) {
-      return new _promise2.default(function (resolve, reject) {
-        var XHR = new XMLHttpRequest();
-
-        XHR.open(method, options.url);
-        for (var HEADER in options.headers) {
-          if (options.headers.hasOwnProperty(HEADER)) {
-            var VALUE = options.headers[HEADER];
-
-            XHR.setRequestHeader(HEADER, VALUE);
-          }
-        }
-        XHR.onload = function () {
-          if (this.status >= 200 && this.status < 300) {
-            resolve(XHR);
-          } else {
-            reject({
-              status: this.status,
-              statusText: XHR.statusText
-            });
-          }
-        };
-        XHR.onerror = function () {
-          reject({
-            status: this.status,
-            statusText: XHR.statusText
-          });
-        };
-        XHR.send(options.body);
-      });
-    }
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Static Methods
-    //////////////////////////////////////////////////////////////////////////////
-    /**
-     * Static factory method
-     * @return {AjaxService}
-     */
-
-  }], [{
-    key: 'create',
-    value: function create() {
-      return new AjaxService();
-    }
-  }]);
-  return AjaxService;
-}();
-
-////////////////////////////////////////////////////////////////////////////////
-// Exports
-////////////////////////////////////////////////////////////////////////////////
-
-
-exports.default = AjaxService;
-
-/***/ }),
+/* 444 */,
 /* 445 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13007,6 +11292,860 @@ $export($export.S, 'Promise', { 'try': function (callbackfn) {
   return promiseCapability.promise;
 } });
 
+
+/***/ }),
+/* 456 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = __webpack_require__(63);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(64);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Framework - Container
+ * ===
+ *
+ * @module constaier
+ */
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+var instance = null;
+
+////////////////////////////////////////////////////////////////////////////////
+// Class
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Container
+ * @class
+ */
+
+var Container = function () {
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Properties
+  //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Container
+   * @constructor
+   */
+  function Container() {
+    (0, _classCallCheck3.default)(this, Container);
+
+    if (!instance) {
+      this._dependencies = [];
+      instance = this;
+    }
+    return instance;
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Methods
+  //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Registers a class with the container
+   * @param {class} target - the class to be registered   *
+   */
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Private Properties
+  //////////////////////////////////////////////////////////////////////////////
+
+
+  (0, _createClass3.default)(Container, [{
+    key: 'register',
+    value: function register(target) {
+      var INDEX = this._dependencies.indexOf(target);
+
+      if (INDEX !== -1) {
+        throw new Error('Class: ' + target + ' is already registered');
+      }
+      this._dependencies.push(target);
+    }
+
+    /**
+     * Instantiates an instance of the specified class and resolves any dependencies
+     * @param {class} target - the class to be resolved
+     * @return {*}
+     */
+
+  }, {
+    key: 'resolve',
+    value: function resolve(target) {
+      var CONSTRUCTOR = this._findClass(target);
+      var FN_ARGS = /^class|function\s*[^\(]*\(\s*([^\)]*)\)/m;
+      var TEXT = target.toString();
+
+      console.log(TEXT);
+      console.log('text:');
+      console.log(TEXT.match(FN_ARGS)[1].split(', '));
+      // if (TEXT.match(FN_ARGS)[1] !== '') {
+      //   let deps = [];
+      //   let args = text.match(FN_ARGS)[1].split(', ');
+      //   for (let idx = 0; idx < args.length; idx++) {
+      //     deps.push(this.resolve(args[idx]));
+      //   }
+      //   return new fn(...deps);
+      // } else {
+      //   return new fn();
+      // }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Private Methods
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * Finds the specified class in the class collection
+     * @private
+     * @param {class} name - the name of the class
+     * @return {*}
+     */
+
+  }, {
+    key: '_findClass',
+    value: function _findClass(name) {
+      var INDEX = this._dependencies.indexOf(name);
+
+      if (INDEX === -1) {
+        throw new Error('Class: ' + name + ' has not been registered with the container');
+      }
+      return this._dependencies[INDEX];
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    // Static Methods
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * Static factory method
+     * @return {Container}
+     */
+
+  }], [{
+    key: 'create',
+    value: function create() {
+      return new Container();
+    }
+  }]);
+  return Container;
+}();
+
+////////////////////////////////////////////////////////////////////////////////
+// Exports
+////////////////////////////////////////////////////////////////////////////////
+
+
+exports.default = Container;
+
+/***/ }),
+/* 457 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = __webpack_require__(63);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(64);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _container = __webpack_require__(456);
+
+var _container2 = _interopRequireDefault(_container);
+
+var _router = __webpack_require__(459);
+
+var _router2 = _interopRequireDefault(_router);
+
+var _viewManager = __webpack_require__(460);
+
+var _viewManager2 = _interopRequireDefault(_viewManager);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+////////////////////////////////////////////////////////////////////////////////
+// Class
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Framework
+ * @class
+ */
+var Framework = function () {
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Properties
+  //////////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Private Properties
+  //////////////////////////////////////////////////////////////////////////////
+  function Framework() {
+    (0, _classCallCheck3.default)(this, Framework);
+
+    this._load();
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Methods
+  //////////////////////////////////////////////////////////////////////////////
+
+
+  (0, _createClass3.default)(Framework, [{
+    key: 'start',
+    value: function start() {
+      var ROUTE = this._router.loadRoute();
+
+      this._viewManager.loadView(ROUTE.name);
+    }
+  }, {
+    key: 'configure',
+    value: function configure(config) {
+      for (var KEY in config) {
+        if (config.hasOwnProperty(KEY)) {
+          var ROUTE = config[KEY];
+
+          this._router.addRoute(ROUTE);
+          this._viewManager.addView(ROUTE);
+        }
+      }
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    // Private Methods
+    //////////////////////////////////////////////////////////////////////////////
+
+  }, {
+    key: '_load',
+    value: function _load() {
+      var _this = this;
+
+      this._container = _container2.default.create();
+      this._router = _router2.default.create();
+      this._viewManager = _viewManager2.default.create();
+      document.addEventListener('DOMContentLoaded', function () {
+        return _this.start();
+      });
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    // Static Methods
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * Static factory method
+     * @return {Framework}
+     */
+
+  }], [{
+    key: 'create',
+    value: function create() {
+      return new Framework();
+    }
+  }]);
+  return Framework;
+}();
+
+////////////////////////////////////////////////////////////////////////////////
+// Exports
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Framework
+ * ===
+ *
+ * @module framework
+ */
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports
+////////////////////////////////////////////////////////////////////////////////
+
+
+exports.default = Framework;
+
+/***/ }),
+/* 458 */,
+/* 459 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = __webpack_require__(63);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(64);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Framework - Router
+ * ===
+ *
+ * @module router
+ */
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Example Routes
+ * {
+ *  name: 'Home'
+ *  route: '/'
+ *  view: HomeView
+ * }
+ * {
+ *  name: 'Characters'
+ *  route: '/characters'
+ *  view: CharactersView
+ * }
+ */
+////////////////////////////////////////////////////////////////////////////////
+// Class
+////////////////////////////////////////////////////////////////////////////////
+var Router = function () {
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Properties
+  //////////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Private Properties
+  //////////////////////////////////////////////////////////////////////////////
+  function Router() {
+    (0, _classCallCheck3.default)(this, Router);
+
+    this._routes = {};
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Methods
+  //////////////////////////////////////////////////////////////////////////////
+
+
+  (0, _createClass3.default)(Router, [{
+    key: 'loadRoute',
+    value: function loadRoute(route) {
+      if (route) return;
+      var URL = this._parseUrl();
+
+      return this._getRoute(URL);
+    }
+  }, {
+    key: 'addRoute',
+    value: function addRoute(route) {
+      this._routes[route.name] = route;
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    // Private Methods
+    //////////////////////////////////////////////////////////////////////////////
+
+  }, {
+    key: '_parseUrl',
+    value: function _parseUrl() {
+      return window.location.hash.split('#/')[1];
+    }
+  }, {
+    key: '_getRoute',
+    value: function _getRoute(name) {
+      return this._routes[name];
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    // Static Methods
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * Static factory method
+     * @return {Router}
+     */
+
+  }], [{
+    key: 'create',
+    value: function create() {
+      return new Router();
+    }
+  }]);
+  return Router;
+}();
+
+////////////////////////////////////////////////////////////////////////////////
+// Exports
+////////////////////////////////////////////////////////////////////////////////
+
+
+exports.default = Router;
+
+/***/ }),
+/* 460 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = __webpack_require__(63);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(64);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _ajaxService = __webpack_require__(461);
+
+var _ajaxService2 = _interopRequireDefault(_ajaxService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+var instance = null;
+
+////////////////////////////////////////////////////////////////////////////////
+// Class
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * ViewManager
+ * @class
+ */
+/**
+ * Starfinder - View Manager
+ * ===
+ *
+ * @module viewManager
+ */
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports
+////////////////////////////////////////////////////////////////////////////////
+
+var ViewManager = function () {
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Properties
+  //////////////////////////////////////////////////////////////////////////////
+
+  /**
+   * ViewManager
+   * @constructor
+   */
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Private Properties
+  //////////////////////////////////////////////////////////////////////////////
+  function ViewManager() {
+    (0, _classCallCheck3.default)(this, ViewManager);
+
+    if (!instance) {
+      this._ajaxService = _ajaxService2.default.create();
+      this._views = {};
+      this._templates = {};
+      this._bindings = {};
+      this._root = document.querySelectorAll('[data-bind-view]')[0];
+      instance = this;
+    }
+    return instance;
+    // 1. Get template, check cache or load via ajax
+    // 2. Convert to document and append
+    // 3. Apply data bindings
+    // 2. Parse for custom tags
+    // *
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Methods
+  //////////////////////////////////////////////////////////////////////////////
+
+
+  (0, _createClass3.default)(ViewManager, [{
+    key: 'loadView',
+    value: function loadView(name) {
+      var _this = this;
+
+      var VIEW = this._views[name];
+
+      this._loadTemplate(VIEW.template).then(function (template) {
+        var PARSER = new DOMParser();
+        var DOCUMENT = PARSER.parseFromString(template, 'text/html');
+        var TEMPLATE = DOCUMENT.body.firstChild;
+
+        _this._root.appendChild(TEMPLATE);
+
+        var CLASS = new VIEW.view();
+        var BINDING = _this._bindings[CLASS.constructor.name];
+
+        _this._registerBinding(BINDING);
+      });
+    }
+  }, {
+    key: 'unloadView',
+    value: function unloadView() {}
+  }, {
+    key: 'addView',
+    value: function addView(view) {
+      this._views[view.name] = view;
+    }
+  }, {
+    key: 'addBinding',
+    value: function addBinding(target, binding) {
+      this._bindings[target] = binding;
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    // Private Methods
+    //////////////////////////////////////////////////////////////////////////////
+
+  }, {
+    key: '_loadTemplate',
+    value: function _loadTemplate(template) {
+      var _this2 = this;
+
+      if (!this._templates[template]) {
+        return this._ajaxService.get({
+          url: template
+        }).then(function (response) {
+          var TEMPLATE = response.responseText;
+          _this2._templates[template] = TEMPLATE;
+          return TEMPLATE;
+        }).catch(function (err) {
+          console.log('error');
+          console.log(err);
+        });
+      }
+      return this._templates[name];
+    }
+  }, {
+    key: '_registerBinding',
+    value: function _registerBinding(binding) {
+      var ELEMENTS = document.querySelectorAll('[data-bind]');
+
+      for (var idx = 0; idx < ELEMENTS.length; idx++) {
+        console.log(ELEMENTS[idx].getAttribute('data-bind'));
+      }
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    // Static Methods
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * Static factory method
+     * @returns {ViewManager}
+     */
+
+  }], [{
+    key: 'create',
+    value: function create() {
+      return new ViewManager();
+    }
+  }]);
+  return ViewManager;
+}();
+
+////////////////////////////////////////////////////////////////////////////////
+// Exports
+////////////////////////////////////////////////////////////////////////////////
+
+
+exports.default = ViewManager;
+
+/***/ }),
+/* 461 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _promise = __webpack_require__(445);
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _classCallCheck2 = __webpack_require__(63);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(64);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Framework - Ajax Service
+ * ===
+ *
+ * @module ajaxService
+ */
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * API Methods
+ * @enum {string}
+ */
+var METHOD = {
+  DELETE: 'DELETE',
+  GET: 'GET',
+  HEAD: 'HEAD',
+  PATCH: 'PATCH',
+  POST: 'POST',
+  PUT: 'PUT'
+};
+
+////////////////////////////////////////////////////////////////////////////////
+// Class
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * AjaxService
+ * @class
+ */
+
+var AjaxService = function () {
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Private Properties
+  //////////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Properties
+  //////////////////////////////////////////////////////////////////////////////
+
+  /**
+   * AjaxService
+   * @constructor
+   */
+  function AjaxService() {
+    (0, _classCallCheck3.default)(this, AjaxService);
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Methods
+  //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Sends a delete request to the specified resource
+   * @param {object} options - options for the request
+   * @return {Promise}
+   */
+
+
+  (0, _createClass3.default)(AjaxService, [{
+    key: 'delete',
+    value: function _delete(options) {
+      return this._send(METHOD.DELETE, options);
+    }
+
+    /**
+     * Sends a get request to the specified resource
+     * @param {object} options - options for the request
+     * @return {Promise}
+     */
+
+  }, {
+    key: 'get',
+    value: function get(options) {
+      return this._send(METHOD.GET, options);
+    }
+
+    /**
+     * Sends a head request to the specified resource
+     * @param {object} options - options for the request
+     * @return {Promise}
+     */
+
+  }, {
+    key: 'head',
+    value: function head(options) {
+      return this._send(METHOD.HEAD, options);
+    }
+
+    /**
+     * Sends a patch request to the specified resource
+     * @param {object} options - options for the request
+     * @return {Promise}
+     */
+
+  }, {
+    key: 'patch',
+    value: function patch(options) {
+      return this._send(METHOD.PATCH, options);
+    }
+
+    /**
+     * Sends a post request to the specified resource
+     * @param { object } options - options for the request
+     * @return {Promise}
+     */
+
+  }, {
+    key: 'post',
+    value: function post(options) {
+      return this._send(METHOD.POST, options);
+    }
+
+    /**
+     * Sends a put request to the specified resource
+     * @param { object } options - options for the request
+     * @return {Promise}
+     */
+
+  }, {
+    key: 'put',
+    value: function put(options) {
+      return this._send(METHOD.PUT, options);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Private Methods
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * Sends a request to the specified resource
+     * @param {string} method - the request method
+     * @param {object} options - options for the request
+     * @return {Promise}
+     */
+
+  }, {
+    key: '_send',
+    value: function _send(method, options) {
+      return new _promise2.default(function (resolve, reject) {
+        var XHR = new XMLHttpRequest();
+
+        XHR.open(method, options.url);
+        for (var HEADER in options.headers) {
+          if (options.headers.hasOwnProperty(HEADER)) {
+            var VALUE = options.headers[HEADER];
+
+            XHR.setRequestHeader(HEADER, VALUE);
+          }
+        }
+        XHR.onload = function () {
+          if (this.status >= 200 && this.status < 300) {
+            resolve(XHR);
+          } else {
+            reject({
+              status: this.status,
+              statusText: XHR.statusText
+            });
+          }
+        };
+        XHR.onerror = function () {
+          reject({
+            status: this.status,
+            statusText: XHR.statusText
+          });
+        };
+        XHR.send(options.body);
+      });
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Static Methods
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * Static factory method
+     * @return {AjaxService}
+     */
+
+  }], [{
+    key: 'create',
+    value: function create() {
+      return new AjaxService();
+    }
+  }]);
+  return AjaxService;
+}();
+
+////////////////////////////////////////////////////////////////////////////////
+// Exports
+////////////////////////////////////////////////////////////////////////////////
+
+
+exports.default = AjaxService;
+
+/***/ }),
+/* 462 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _viewManager = __webpack_require__(460);
+
+var _viewManager2 = _interopRequireDefault(_viewManager);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+var VIEW_MANAGER = _viewManager2.default.create();
+
+////////////////////////////////////////////////////////////////////////////////
+// Function
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Framework - Bind
+ * ===
+ *
+ * @module bind
+ */
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports
+////////////////////////////////////////////////////////////////////////////////
+function Bind(target, key, descriptor) {
+  VIEW_MANAGER.addBinding(target.constructor.name, key);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Exports
+////////////////////////////////////////////////////////////////////////////////
+exports.default = Bind;
 
 /***/ })
 /******/ ]);
