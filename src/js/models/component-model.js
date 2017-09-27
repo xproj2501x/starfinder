@@ -85,7 +85,7 @@ class ComponentModel {
   //////////////////////////////////////////////////////////////////////////////
   /**
    * Updates the state of the component with new values
-   * @param { object } state - the new state of the component
+   * @param {object} state - the new state of the component
    */
   update(state) {
     if (state instanceof ModifierModel) {

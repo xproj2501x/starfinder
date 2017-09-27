@@ -1,0 +1,96 @@
+.o-encounters {
+  list-style: none;
+
+  &>.o-cell {
+    margin-bottom: $gutter;
+  }
+
+  &>.o-initiative-table {
+
+    >.o-cell {
+      margin-bottom: $gutter;
+    }
+
+    .o-initiative-table__heading {
+      border-bottom: solid 2px $primary-color;
+      color: $primary-text-color;
+      font-weight: $semi-bold-font;
+      padding: 4px 8px 4px;
+      margin-bottom: 4px;
+    }
+
+    .o-initiative-table__body {
+      border-bottom: solid 1px $divider-color;
+      padding: 4px 8px 4px;
+      margin-bottom: 4px;
+    }
+
+    .active-character {
+      color: $primary-text-color;
+    }
+
+    .name {
+
+    }
+
+    .init {
+      text-align: center;
+
+      &>input[type="number"] {
+        border: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        width: 15px;
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        &:active {
+          border: none;
+        }
+
+        &:hover {
+          border: none;
+        }
+
+        &:focus {
+          border: none;
+          outline: none;
+        }
+      }
+    }
+
+    .hit-points {
+      text-align: center;
+    }
+
+    .stamina {
+      text-align: center;
+    }
+
+    .kac {
+      text-align: center;
+    }
+
+    .eac {
+      text-align: center;
+    }
+
+    .quick-buttons {
+      text-align: center;
+    }
+
+    .round {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+  }
+
+  #rounds-grid {
+    overflow: hidden;
+  }
+}

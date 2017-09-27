@@ -8,11 +8,15 @@
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
 import '../css/_site.scss';
-import * as CONSTANTS from './constants';
-import CombatTracker from './views/combat-tracker';
-import Framework from './framework/framework';
-import Bind from './framework/view/bind';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import Template from './views/template';
+// import Home from './views/home';
+// import Encounters from './views/encounters';
 
-
-const FRAMEWORK = Framework.create();
-FRAMEWORK.configure(CONSTANTS.ROUTES);
+ReactDOM.render((
+  <BrowserRouter>
+    <Template />
+  </BrowserRouter>
+), document.getElementById('app'));

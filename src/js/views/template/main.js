@@ -1,5 +1,5 @@
 /**
- * Starfinder - Template
+ * Starfinder - Main
  * ===
  *
  * @module template
@@ -9,10 +9,9 @@
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
 import React from 'react';
-import Header from './template/header';
-import Main from './template/main';
-import LeftNav from './template/left-nav';
-
+import { Switch, Route } from 'react-router-dom';
+import Home from '../home';
+import Encounters from '../encounters';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -22,14 +21,14 @@ import LeftNav from './template/left-nav';
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Template
+ * Main
  * @class
  * @extends React.Component
  */
-class Template extends React.Component {
+class Main extends React.Component {
 
   /**
-   * Template
+   * Main
    * @constructor
    */
   constructor() {
@@ -41,13 +40,12 @@ class Template extends React.Component {
   //////////////////////////////////////////////////////////////////////////////
   render() {
     return (
-      <div className="o-grid o-grid--no-spacing o-app__container">
-        <Header />
-        <header className="o-cell o-cell--column-12 o-app__title o-app__title--nav-collapsed">title</header>
-        <Main />
-        <footer className="o-cell o-cell--column-12 o-app__footer o-app__footer--nav-collapsed">footer</footer>
-        <LeftNav />
-      </div>
+      <main className="o-cell o-cell--column-12 o-grid o-app__main o-app__main--nav-collapsed">
+        <Switch>
+          <Route exact path='/' component={Home}/>
+          <Route path='/encounters' component={Encounters}/>
+        </Switch>
+      </main>
     );
   }
 
@@ -56,4 +54,4 @@ class Template extends React.Component {
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default Template;
+export default Main;

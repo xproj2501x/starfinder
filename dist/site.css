@@ -418,71 +418,110 @@ th {
   background: #FEFEFE;
   position: absolute; }
 
-.section {
-  flex: 1 1 auto; }
+.o-app {
+  height: 100%;
+  overflow: hidden;
+  width: 100%; }
+  .o-app__container {
+    height: 100%;
+    width: 100%; }
+  .o-app__header {
+    box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
+    background: #FEFEFE;
+    height: 64px;
+    z-index: 100; }
+  .o-app__title {
+    box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
+    background: #E0E0E0;
+    height: 64px;
+    z-index: 80; }
+    .o-app__title--nav-collapsed {
+      padding: 16px 0 0 80px; }
+    .o-app__title--nav-expanded {
+      padding: 16px 0 0 272px; }
+  .o-app__main {
+    box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
+    background: #F5F5F5;
+    height: calc(100% - 192px);
+    padding: 16px 0 0 64px;
+    z-index: 70; }
+    .o-app__main > .o-cell {
+      margin-bottom: 16px; }
+    .o-app__main--nav-collapsed {
+      padding: 16px 0 0 64px; }
+    .o-app__main--nav-expanded {
+      padding-left: 16px 0 0 256px; }
+  .o-app__footer {
+    background: #FEFEFE;
+    height: 64px; }
+    .o-app__footer--nav-collapsed {
+      padding: 16px 0 0 80px; }
+    .o-app__footer--nav-expanded {
+      padding-left: 16px 0 0 272px; }
+  .o-app__left-nav {
+    position: absolute;
+    background: #455A64;
+    bottom: 0;
+    top: 64px;
+    width: 256px;
+    z-index: 95; }
+    .o-app__left-nav--collapsed {
+      left: -192px;
+      padding-left: 192px; }
+    .o-app__left-nav--expanded {
+      left: 0; }
 
-.combat-tracker {
-  display: flex;
-  flex-flow: row nowrap;
-  flex: 1 1 auto; }
-  .combat-tracker > .card:first-child {
-    margin-left: 0; }
-  .combat-tracker > .card {
-    margin-right: 16px;
-    margin-left: 16px;
-    flex: 0 1 50%; }
-  .combat-tracker > .card:last-child {
-    margin-right: 0; }
-  .combat-tracker .section + .tracker {
-    display: flex;
-    flex-flow: row nowrap;
-    flex: 1 1 auto;
-    overflow: hidden; }
-  .combat-tracker .table {
-    flex: 1 1 50%; }
-  .combat-tracker .character > .initiative {
-    border-left: solid 1px #CFD8DC;
-    border-right: solid 1px #CFD8DC;
-    text-align: center;
-    width: 30px; }
-    .combat-tracker .character > .initiative input[type=text] {
-      border: 0 transparent;
-      font-family: "Roboto", "Open Sans", monospace;
-      font-size: 12px;
-      outline: none;
+.o-encounters {
+  list-style: none; }
+  .o-encounters > .o-cell {
+    margin-bottom: 16px; }
+  .o-encounters > .o-initiative-table > .o-cell {
+    margin-bottom: 16px; }
+  .o-encounters > .o-initiative-table .o-initiative-table__heading {
+    border-bottom: solid 2px #607D8B;
+    color: #212121;
+    font-weight: 600;
+    padding: 4px 8px 4px;
+    margin-bottom: 4px; }
+  .o-encounters > .o-initiative-table .o-initiative-table__body {
+    border-bottom: solid 1px #BDBDBD;
+    padding: 4px 8px 4px;
+    margin-bottom: 4px; }
+  .o-encounters > .o-initiative-table .active-character {
+    color: #212121; }
+  .o-encounters > .o-initiative-table .init {
+    text-align: center; }
+    .o-encounters > .o-initiative-table .init > input[type="number"] {
+      border: none;
+      margin: 0;
+      padding: 0;
       text-align: center;
-      width: 100%; }
-      .combat-tracker .character > .initiative input[type=text]:active, .combat-tracker .character > .initiative input[type=text]:focus, .combat-tracker .character > .initiative input[type=text]:hover {
-        border: 0 transparent; }
-  .combat-tracker .character > .name {
-    border-left: solid 1px #CFD8DC;
-    border-right: solid 1px #CFD8DC;
-    text-align: left; }
-  .combat-tracker .character > .stamina {
-    border-left: solid 1px #CFD8DC;
-    border-right: solid 1px #CFD8DC;
+      width: 15px; }
+      .o-encounters > .o-initiative-table .init > input[type="number"]::-webkit-inner-spin-button, .o-encounters > .o-initiative-table .init > input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0; }
+      .o-encounters > .o-initiative-table .init > input[type="number"]:active {
+        border: none; }
+      .o-encounters > .o-initiative-table .init > input[type="number"]:hover {
+        border: none; }
+      .o-encounters > .o-initiative-table .init > input[type="number"]:focus {
+        border: none;
+        outline: none; }
+  .o-encounters > .o-initiative-table .hit-points {
     text-align: center; }
-  .combat-tracker .character > .hit-points {
-    border-left: solid 1px #CFD8DC;
-    border-right: solid 1px #CFD8DC;
+  .o-encounters > .o-initiative-table .stamina {
     text-align: center; }
-  .combat-tracker .character > .kinetic-armor-class {
-    border-left: solid 1px #CFD8DC;
-    border-right: solid 1px #CFD8DC;
+  .o-encounters > .o-initiative-table .kac {
     text-align: center; }
-  .combat-tracker .character > .energy-armor-class {
-    border-left: solid 1px #CFD8DC;
-    border-right: solid 1px #CFD8DC;
+  .o-encounters > .o-initiative-table .eac {
     text-align: center; }
-  .combat-tracker .character > .quick-actions {
-    border-left: solid 1px #CFD8DC;
-    border-right: solid 1px #CFD8DC; }
-  .combat-tracker .rounds-section {
-    overflow: scroll; }
-  .combat-tracker .round {
-    border-left: solid 1px #CFD8DC;
-    border-right: solid 1px #CFD8DC;
+  .o-encounters > .o-initiative-table .quick-buttons {
     text-align: center; }
+  .o-encounters > .o-initiative-table .round {
+    padding-left: 8px;
+    padding-right: 8px; }
+  .o-encounters #rounds-grid {
+    overflow: hidden; }
 
 /*! Starfinder - Grid Object Styles */
 .o-grid {
@@ -901,104 +940,3 @@ th {
   -webkit-align-self: flex-end;
   -ms-flex-item-align: end;
   align-self: flex-end; }
-
-.t-app {
-  height: 100%;
-  overflow: hidden;
-  width: 100%; }
-  .t-app__header {
-    box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
-    background: #FEFEFE;
-    height: 64px;
-    z-index: 100; }
-  .t-app__title {
-    box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
-    background: #E0E0E0;
-    height: 64px;
-    z-index: 80; }
-    .t-app__title--nav-collapsed {
-      padding: 16px 0 0 80px; }
-    .t-app__title--nav-expanded {
-      padding: 16px 0 0 272px; }
-  .t-app__main {
-    box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
-    background: #F5F5F5;
-    height: calc(100% - 192px);
-    padding: 16px 0 0 64px;
-    z-index: 70; }
-    .t-app__main > .o-cell {
-      margin-bottom: 16px; }
-    .t-app__main--nav-collapsed {
-      padding: 16px 0 0 64px; }
-    .t-app__main--nav-expanded {
-      padding-left: 16px 0 0 256px; }
-  .t-app__footer {
-    background: #FEFEFE;
-    height: 64px; }
-    .t-app__footer--nav-collapsed {
-      padding: 16px 0 0 80px; }
-    .t-app__footer--nav-expanded {
-      padding-left: 16px 0 0 272px; }
-  .t-app__left-nav {
-    position: absolute;
-    background: #455A64;
-    bottom: 0;
-    top: 64px;
-    width: 256px;
-    z-index: 95; }
-    .t-app__left-nav--collapsed {
-      left: -192px; }
-    .t-app__left-nav--expanded {
-      left: 0; }
-
-.t-combat {
-  list-style: none; }
-  .t-combat > .o-cell {
-    margin-bottom: 16px; }
-  .t-combat > .o-initiative-table > .o-cell {
-    margin-bottom: 16px; }
-  .t-combat > .o-initiative-table .o-initiative-table__heading {
-    border-bottom: solid 2px #607D8B;
-    color: #212121;
-    font-weight: 600;
-    padding: 4px 8px 4px;
-    margin-bottom: 4px; }
-  .t-combat > .o-initiative-table .o-initiative-table__body {
-    border-bottom: solid 1px #BDBDBD;
-    padding: 4px 8px 4px;
-    margin-bottom: 4px; }
-  .t-combat > .o-initiative-table .active-character {
-    color: #212121; }
-  .t-combat > .o-initiative-table .init {
-    text-align: center; }
-    .t-combat > .o-initiative-table .init > input[type="number"] {
-      border: none;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      width: 15px; }
-      .t-combat > .o-initiative-table .init > input[type="number"]::-webkit-inner-spin-button, .t-combat > .o-initiative-table .init > input[type="number"]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0; }
-      .t-combat > .o-initiative-table .init > input[type="number"]:active {
-        border: none; }
-      .t-combat > .o-initiative-table .init > input[type="number"]:hover {
-        border: none; }
-      .t-combat > .o-initiative-table .init > input[type="number"]:focus {
-        border: none;
-        outline: none; }
-  .t-combat > .o-initiative-table .hit-points {
-    text-align: center; }
-  .t-combat > .o-initiative-table .stamina {
-    text-align: center; }
-  .t-combat > .o-initiative-table .kac {
-    text-align: center; }
-  .t-combat > .o-initiative-table .eac {
-    text-align: center; }
-  .t-combat > .o-initiative-table .quick-buttons {
-    text-align: center; }
-  .t-combat > .o-initiative-table .round {
-    padding-left: 8px;
-    padding-right: 8px; }
-  .t-combat #rounds-grid {
-    overflow: hidden; }

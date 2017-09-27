@@ -1,18 +1,14 @@
 /**
- * Starfinder - Template
+ * Starfinder - Header
  * ===
  *
- * @module template
+ * @module header
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
 import React from 'react';
-import Header from './template/header';
-import Main from './template/main';
-import LeftNav from './template/left-nav';
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -22,14 +18,14 @@ import LeftNav from './template/left-nav';
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Template
+ * Header
  * @class
  * @extends React.Component
  */
-class Template extends React.Component {
+class Header extends React.Component {
 
   /**
-   * Template
+   * Header
    * @constructor
    */
   constructor() {
@@ -41,13 +37,10 @@ class Template extends React.Component {
   //////////////////////////////////////////////////////////////////////////////
   render() {
     return (
-      <div className="o-grid o-grid--no-spacing o-app__container">
-        <Header />
-        <header className="o-cell o-cell--column-12 o-app__title o-app__title--nav-collapsed">title</header>
-        <Main />
-        <footer className="o-cell o-cell--column-12 o-app__footer o-app__footer--nav-collapsed">footer</footer>
-        <LeftNav />
-      </div>
+      <header className="o-cell o-cell--column-12 o-grid o-grid--no-spacing o-app__header">
+        <div className="o-cell o-cell--column-6">left</div>
+        <div className="o-cell o-cell--column-6">right</div>
+      </header>
     );
   }
 
@@ -56,4 +49,4 @@ class Template extends React.Component {
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default Template;
+export default Header;

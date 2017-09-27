@@ -1,19 +1,15 @@
 /**
- * Starfinder - Template
+ * Starfinder - Left Nav
  * ===
  *
- * @module template
+ * @module leftNav
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
 import React from 'react';
-import Header from './template/header';
-import Main from './template/main';
-import LeftNav from './template/left-nav';
-
-
+import { Link } from 'react-router-dom';
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
@@ -22,14 +18,14 @@ import LeftNav from './template/left-nav';
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Template
+ * LeftNav
  * @class
  * @extends React.Component
  */
-class Template extends React.Component {
+class LeftNav extends React.Component {
 
   /**
-   * Template
+   * LeftNav
    * @constructor
    */
   constructor() {
@@ -41,13 +37,10 @@ class Template extends React.Component {
   //////////////////////////////////////////////////////////////////////////////
   render() {
     return (
-      <div className="o-grid o-grid--no-spacing o-app__container">
-        <Header />
-        <header className="o-cell o-cell--column-12 o-app__title o-app__title--nav-collapsed">title</header>
-        <Main />
-        <footer className="o-cell o-cell--column-12 o-app__footer o-app__footer--nav-collapsed">footer</footer>
-        <LeftNav />
-      </div>
+      <nav className="o-app__left-nav o-app__left-nav--collapsed">
+        <Link to='/'>Home</Link>
+        <Link to='/encounters'>Encounters</Link>
+      </nav>
     );
   }
 
@@ -56,4 +49,4 @@ class Template extends React.Component {
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default Template;
+export default LeftNav;
