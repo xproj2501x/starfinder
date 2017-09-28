@@ -29,8 +29,7 @@
     "morgan": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-router": "latest",
-    "react-router-dom": "^4.2.2",
+    "react-router-dom": "latest",
     "serve-favicon": "latest"
   },
   "devDependencies": {

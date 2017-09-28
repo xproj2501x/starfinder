@@ -1,14 +1,14 @@
 /**
- * Starfinder - Health System
+ * Starfinder - Character
  * ===
  *
- * @module healthSystem
+ * @module character
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
-import System from '../system';
+import React from 'react';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -18,34 +18,55 @@ import System from '../system';
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * HealthSystem
+ * Character
  * @class
- * @extends System
+ * @extends React.Component
  */
-class HealthSystem extends System {
+class Character extends React.Component {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
   //////////////////////////////////////////////////////////////////////////////
+  _state;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
 
-  constructor(messageService) {
-    super(messageService);
+  /**
+   * Character
+   * @constructor
+   */
+  constructor(props) {
+    super(props);
+    this._state = this.props.value;
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
 
+  render() {
+    return (
+      <div className="o-cell o-cell--column-12 o-grid o-grid--no-spacing o-initiative-table__body">
+        <div className="o-cell o-cell--column-4">{this._state.name}</div>
+        <div className="o-cell o-cell--column-1 init"><input type="number" value={this._state.init} /></div>
+        <div className="o-cell o-cell--column-2 hit-points">{this._state.hitPoints.current} / {this._state.hitPoints.max}</div>
+        <div className="o-cell o-cell--column-2 stamina">{this._state.stamina.current} / {this._state.stamina.max}</div>
+        <div className="o-cell o-cell--column-1 kac">{this._state.kac}</div>
+        <div className="o-cell o-cell--column-1 eac">{this._state.eac}</div>
+        <div className="o-cell o-cell--column-1 quick-buttons"></div>
+      </div>
+    );
+  }
+
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default HealthSystem;
+export default Character;
