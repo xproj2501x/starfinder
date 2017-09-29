@@ -1,8 +1,8 @@
 /**
- * Starfinder - Home
+ * Starfinder - Characters View
  * ===
  *
- * @module home
+ * @module charactersView
  */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -18,11 +18,11 @@ import React from 'react';
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Home
+ * CharactersView
  * @class
  * @extends React.Component
  */
-class Home extends React.Component {
+class CharactersView extends React.Component {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
@@ -33,11 +33,13 @@ class Home extends React.Component {
   //////////////////////////////////////////////////////////////////////////////
 
   /**
-   * Home
+   * CharactersView
    * @constructor
    */
   constructor() {
     super();
+    this.state = {};
+
   }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -45,9 +47,44 @@ class Home extends React.Component {
   //////////////////////////////////////////////////////////////////////////////
   render() {
     return (
-      <div>Home</div>
+      <div className="o-cell o-cell--column-6 c-card o-characters">
+        <section>
+          General info
+        </section>
+        <section className="o-grid">
+          <div className="o-cel o-cell--column-6">
+            <section>
+              Ability Scores
+            </section>
+            <section>
+              Skills
+            </section>
+          </div>
+          <div className="o-cel o-cell--column-6">
+            <section>
+              Initiative
+            </section>
+            <section>
+              Health
+            </section>
+            <section>
+              Armor Class
+            </section>
+            <section>
+              Saves
+            </section>
+            <section>
+              Attack Bonuses
+            </section>
+            <section>
+              Weapons
+            </section>
+          </div>
+        </section>
+      </div>
     );
   }
+
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
@@ -57,4 +94,4 @@ class Home extends React.Component {
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default Home;
+export default CharactersView;

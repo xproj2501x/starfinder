@@ -471,57 +471,67 @@ th {
     .o-app__left-nav--expanded {
       left: 0; }
 
-.o-encounters {
-  list-style: none; }
-  .o-encounters > .o-cell {
-    margin-bottom: 16px; }
-  .o-encounters > .o-initiative-table > .o-cell {
-    margin-bottom: 16px; }
-  .o-encounters > .o-initiative-table .o-initiative-table__heading {
-    border-bottom: solid 2px #607D8B;
-    color: #212121;
-    font-weight: 600;
-    padding: 4px 8px 4px;
-    margin-bottom: 4px; }
-  .o-encounters > .o-initiative-table .o-initiative-table__body {
-    border-bottom: solid 1px #BDBDBD;
-    padding: 4px 8px 4px;
-    margin-bottom: 4px; }
-  .o-encounters > .o-initiative-table .active-character {
-    color: #212121; }
-  .o-encounters > .o-initiative-table .init {
-    text-align: center; }
-    .o-encounters > .o-initiative-table .init > input[type="number"] {
+.o-encounters > .o-cell {
+  margin-bottom: 16px; }
+
+.o-encounters > .o-initiative-table > .o-cell {
+  margin-bottom: 16px; }
+
+.o-encounters > .o-initiative-table .o-initiative-table__heading {
+  border-bottom: solid 2px #607D8B;
+  color: #212121;
+  font-weight: 600;
+  padding: 4px 8px 4px;
+  margin-bottom: 4px; }
+
+.o-encounters > .o-initiative-table .o-initiative-table__body {
+  border-bottom: solid 1px #BDBDBD;
+  padding: 4px 8px 4px;
+  margin-bottom: 4px; }
+
+.o-encounters > .o-initiative-table .active-character {
+  color: #212121; }
+
+.o-encounters > .o-initiative-table .init {
+  text-align: center; }
+  .o-encounters > .o-initiative-table .init > input[type="number"] {
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 15px; }
+    .o-encounters > .o-initiative-table .init > input[type="number"]::-webkit-inner-spin-button, .o-encounters > .o-initiative-table .init > input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0; }
+    .o-encounters > .o-initiative-table .init > input[type="number"]:active {
+      border: none; }
+    .o-encounters > .o-initiative-table .init > input[type="number"]:hover {
+      border: none; }
+    .o-encounters > .o-initiative-table .init > input[type="number"]:focus {
       border: none;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      width: 15px; }
-      .o-encounters > .o-initiative-table .init > input[type="number"]::-webkit-inner-spin-button, .o-encounters > .o-initiative-table .init > input[type="number"]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0; }
-      .o-encounters > .o-initiative-table .init > input[type="number"]:active {
-        border: none; }
-      .o-encounters > .o-initiative-table .init > input[type="number"]:hover {
-        border: none; }
-      .o-encounters > .o-initiative-table .init > input[type="number"]:focus {
-        border: none;
-        outline: none; }
-  .o-encounters > .o-initiative-table .hit-points {
-    text-align: center; }
-  .o-encounters > .o-initiative-table .stamina {
-    text-align: center; }
-  .o-encounters > .o-initiative-table .kac {
-    text-align: center; }
-  .o-encounters > .o-initiative-table .eac {
-    text-align: center; }
-  .o-encounters > .o-initiative-table .quick-buttons {
-    text-align: center; }
-  .o-encounters > .o-initiative-table .round {
-    padding-left: 8px;
-    padding-right: 8px; }
-  .o-encounters #rounds-grid {
-    overflow: hidden; }
+      outline: none; }
+
+.o-encounters > .o-initiative-table .hit-points {
+  text-align: center; }
+
+.o-encounters > .o-initiative-table .stamina {
+  text-align: center; }
+
+.o-encounters > .o-initiative-table .kac {
+  text-align: center; }
+
+.o-encounters > .o-initiative-table .eac {
+  text-align: center; }
+
+.o-encounters > .o-initiative-table .quick-buttons {
+  text-align: center; }
+
+.o-encounters > .o-initiative-table .round {
+  padding-left: 8px;
+  padding-right: 8px; }
+
+.o-encounters #rounds-grid {
+  overflow: hidden; }
 
 /*! Starfinder - Grid Object Styles */
 .o-grid {

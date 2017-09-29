@@ -57,6 +57,7 @@
     "mocha": "latest",
     "node-sass": "latest",
     "sass-loader": "latest",
+    "sinon": "latest",
     "style-loader": "latest",
     "webpack": "latest"
   }

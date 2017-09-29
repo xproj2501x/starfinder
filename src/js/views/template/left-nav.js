@@ -40,6 +40,7 @@ class LeftNav extends React.Component {
       <nav className="o-app__left-nav o-app__left-nav--collapsed">
         <Link to='/'>Home</Link>
         <Link to='/encounters'>Encounters</Link>
+        <Link to='/characters'>Characters</Link>
       </nav>
     );
   }
