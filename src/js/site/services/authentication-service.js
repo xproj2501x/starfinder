@@ -1,117 +1,84 @@
 /**
- * Framework - Router
+ * Starfinder - Authentication Service
  * ===
  *
- * @module router
+ * @module authenticationService
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
+import { API_HOST, API_RESOURCES } from '../../constants';
+import AjaxService from '../../services/ajax';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
-/**
- * Example Routes
- * {
- *  name: 'Home'
- *  route: '/'
- *  view: HomeView
- * }
- * {
- *  name: 'Characters'
- *  route: '/characters'
- *  view: CharactersView
- * }
- */
+const API = 'http://localhost:3099';
+const RESOURCE = '/token';
+
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
-/**
- * Router
- * @class
- */
-class Router {
+class AuthenticationService {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
   //////////////////////////////////////////////////////////////////////////////
-  _routes;
-  _path;
-  _search;
-  _hash;
+  _ajaxService;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
 
-  /**
-   * Router
-   * @constructor
-   */
   constructor() {
-    this._routes = {};
-
+    this._ajaxService = new AjaxService();
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Loads the specified route into the application
-   * @param {string} route - the name of the route
-   * @return {*}
-   */
-  loadRoute(route) {
-    if (route) return;
-    const URL = this._parseUrl();
+  login(credentials) {
+    let options = {
+      url: API_HOST + API_RESOURCES.TOKEN,
+      headers: {
+        'username': credentials.username,
+        'password': credentials.password
+      }
+    };
 
-    return this._getRoute(URL);
+    return this._ajaxService.post(options)
+      .then((data) => {
+        console.log(data);
+        console.log(data.responseText);
+      }).catch((err) => {
+        console.log(err);
+      });
   }
 
-  /**
-   * Adds the specified route into the configuration
-   * @param {object} route - settings for the route
-   */
-  addRoute(route) {
-    this._routes[route.name] = route;
+  logout(token) {
+    let options = {
+      url: API + RESOURCE,
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    }
+
+    return this._ajaxService.delete(options)
+      .then((data) => {
+
+      }).catch((err) => {
+
+      });
   }
+
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Parses the current URL of the site
-   * @private
-   * @return {string}
-   */
-  _parseUrl() {
-    return window.location.hash.split('#/')[1];
-  }
 
-  /**
-   * Gets the route configuration
-   * @private
-   * @param {string} name - the name of the route
-   * @returns {*}
-   */
-  _getRoute(name) {
-    return this._routes[name];
-  }
-  //////////////////////////////////////////////////////////////////////////////
-  // Static Methods
-  //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Static factory method
-   * @static
-   * @return {Router}
-   */
-  static create() {
-    return new Router();
-  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default Router;
+export default AuthenticationService;

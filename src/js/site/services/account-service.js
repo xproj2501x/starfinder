@@ -1,117 +1,71 @@
 /**
- * Framework - Router
+ * Starfinder - Account Service
  * ===
  *
- * @module router
+ * @module accountService
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
+import { API_HOST, API_RESOURCES } from '../../constants';
+import AjaxService from '../../services/ajax';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
-/**
- * Example Routes
- * {
- *  name: 'Home'
- *  route: '/'
- *  view: HomeView
- * }
- * {
- *  name: 'Characters'
- *  route: '/characters'
- *  view: CharactersView
- * }
- */
+
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
-/**
- * Router
- * @class
- */
-class Router {
+class AccountService {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
   //////////////////////////////////////////////////////////////////////////////
-  _routes;
-  _path;
-  _search;
-  _hash;
+  _ajaxService;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
 
-  /**
-   * Router
-   * @constructor
-   */
   constructor() {
-    this._routes = {};
-
+    this._ajaxService = new AjaxService();
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Loads the specified route into the application
-   * @param {string} route - the name of the route
-   * @return {*}
-   */
-  loadRoute(route) {
-    if (route) return;
-    const URL = this._parseUrl();
+  register(account) {
+    let options = {
+      url: API_HOST + API_RESOURCES.ACCOUNTS,
+      headers: this._buildHeaders(),
+      body: JSON.stringify(account)
+    };
 
-    return this._getRoute(URL);
+    return this._ajaxService.post(options)
+      .then((data) => {
+        console.log(data);
+      }).catch((err) => {
+        console.log(err);
+      });
   }
 
-  /**
-   * Adds the specified route into the configuration
-   * @param {object} route - settings for the route
-   */
-  addRoute(route) {
-    this._routes[route.name] = route;
-  }
+
+
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Parses the current URL of the site
-   * @private
-   * @return {string}
-   */
-  _parseUrl() {
-    return window.location.hash.split('#/')[1];
-  }
-
-  /**
-   * Gets the route configuration
-   * @private
-   * @param {string} name - the name of the route
-   * @returns {*}
-   */
-  _getRoute(name) {
-    return this._routes[name];
-  }
-  //////////////////////////////////////////////////////////////////////////////
-  // Static Methods
-  //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Static factory method
-   * @static
-   * @return {Router}
-   */
-  static create() {
-    return new Router();
+  _buildHeaders(token) {
+    let headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    };
+    return headers;
   }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default Router;
+export default AccountService;

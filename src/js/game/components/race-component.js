@@ -1,117 +1,99 @@
 /**
- * Framework - Router
+ * Starfinder - Race Component
  * ===
  *
- * @module router
+ * @module raceComponent
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
+import Component from '../../engine/component';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Example Routes
- * {
- *  name: 'Home'
- *  route: '/'
- *  view: HomeView
- * }
- * {
- *  name: 'Characters'
- *  route: '/characters'
- *  view: CharactersView
- * }
+ * Proprty names for the component
+ * @enum {string}
  */
+const KEYS = {
+  STRENGTH: 'strength',
+  DEXTERITY: 'dexterity',
+  CONSTITUTION: 'constitution',
+  INTELLIGENCE: 'intelligence',
+  WISDOM: 'wisdom',
+  CHARISMA: 'charisma'
+};
+
+/**
+ * Default values for the component
+ * @enum {*}
+ */
+const DEFAULTS = {
+  strength: 0,
+  dexterity: 0,
+  constitution: 0,
+  intelligence: 0,
+  wisdom: 0,
+  charisma: 0
+};
+
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Router
+ * RaceComponent
  * @class
+ * @extends Component
  */
-class Router {
+class RaceComponent extends Component {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
   //////////////////////////////////////////////////////////////////////////////
-  _routes;
-  _path;
-  _search;
-  _hash;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
 
-  /**
-   * Router
-   * @constructor
-   */
-  constructor() {
-    this._routes = {};
 
+  /**
+   * RaceComponent
+   * @constructor
+   * @param {string} id - the UUID of the parent entity
+   * @param {object} state - the initial state of the component
+   */
+  constructor(id, state = {}) { // eslint-disable-line id-length
+    super(id, DEFAULTS, state);
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Loads the specified route into the application
-   * @param {string} route - the name of the route
-   * @return {*}
-   */
-  loadRoute(route) {
-    if (route) return;
-    const URL = this._parseUrl();
 
-    return this._getRoute(URL);
-  }
-
-  /**
-   * Adds the specified route into the configuration
-   * @param {object} route - settings for the route
-   */
-  addRoute(route) {
-    this._routes[route.name] = route;
-  }
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Parses the current URL of the site
-   * @private
-   * @return {string}
-   */
-  _parseUrl() {
-    return window.location.hash.split('#/')[1];
-  }
 
-  /**
-   * Gets the route configuration
-   * @private
-   * @param {string} name - the name of the route
-   * @returns {*}
-   */
-  _getRoute(name) {
-    return this._routes[name];
-  }
   //////////////////////////////////////////////////////////////////////////////
   // Static Methods
   //////////////////////////////////////////////////////////////////////////////
   /**
    * Static factory method
    * @static
-   * @return {Router}
+   * @param {object} data - configuration for the component to be created
+   * @return {RaceComponent}
    */
-  static create() {
-    return new Router();
+  static create(data) {
+    if (data === null) {
+      throw new Error('Abilities component configuration missing');
+    }
+    return new RaceComponent(data.id, data.state);
   }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default Router;
+export default RaceComponent;

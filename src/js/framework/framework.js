@@ -33,6 +33,10 @@ class Framework {
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
 
+  /**
+   * Framework
+   * @constructor
+   */
   constructor() {
     this._load();
   }
@@ -40,12 +44,19 @@ class Framework {
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Starts the web application
+   */
   start() {
     const ROUTE = this._router.loadRoute();
 
     this._viewManager.loadView(ROUTE.name);
   }
 
+  /**
+   * Configures the web application
+   * @param {object} config - settings for the app
+   */
   configure(config) {
     for (const KEY in config) {
       if (config.hasOwnProperty(KEY)) {
@@ -59,6 +70,10 @@ class Framework {
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Loads dependencies for the framework
+   * @private
+   */
   _load() {
     this._container = Container.create();
     this._router = Router.create();
@@ -70,6 +85,7 @@ class Framework {
   //////////////////////////////////////////////////////////////////////////////
   /**
    * Static factory method
+   * @static
    * @return {Framework}
    */
   static create() {

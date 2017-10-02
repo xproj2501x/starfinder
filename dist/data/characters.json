@@ -1,0 +1,130 @@
+[
+  {
+    "id": 1,
+    "name": "Player 1",
+    "type": "Player",
+    "initBonus": 0,
+    "stamina": {
+      "max": 25,
+      "current": 25
+    },
+    "hitPoints": {
+      "max": 25,
+      "current": 25
+    },
+    "kac": 17,
+    "eac": 17
+  },
+  {
+    "id": 2,
+    "name": "Player 2",
+    "type": "Player",
+    "initBonus": 0,
+    "stamina": {
+      "max": 25,
+      "current": 25
+    },
+    "hitPoints": {
+      "max": 25,
+      "current": 25
+    },
+    "kac": 17,
+    "eac": 17
+  },
+  {
+    "id": 3,
+    "name": "Player 3",
+    "type": "Player",
+    "initBonus": 0,
+    "stamina": {
+      "max": 25,
+      "current": 25
+    },
+    "hitPoints": {
+      "max": 25,
+      "current": 25
+    },
+    "kac": 17,
+    "eac": 17
+  },
+  {
+    "id": 4,
+    "name": "Player 4",
+    "type": "Player",
+    "initBonus": 0,
+    "stamina": {
+      "max": 25,
+      "current": 25
+    },
+    "hitPoints": {
+      "max": 25,
+      "current": 25
+    },
+    "kac": 17,
+    "eac": 17
+  },
+  {
+    "id": 5,
+    "name": "Monster 1",
+    "type": "Monster",
+    "initBonus": 0,
+    "stamina": {
+      "max": 25,
+      "current": 25
+    },
+    "hitPoints": {
+      "max": 25,
+      "current": 25
+    },
+    "kac": 17,
+    "eac": 17
+  },
+  {
+    "id": 6,
+    "name": "Monster 2",
+    "type": "Monster",
+    "initBonus": 0,
+    "stamina": {
+      "max": 25,
+      "current": 25
+    },
+    "hitPoints": {
+      "max": 25,
+      "current": 25
+    },
+    "kac": 17,
+    "eac": 17
+  },
+  {
+    "id": 7,
+    "name": "Monster 3",
+    "type": "Monster",
+    "initBonus": 0,
+    "stamina": {
+      "max": 25,
+      "current": 25
+    },
+    "hitPoints": {
+      "max": 25,
+      "current": 25
+    },
+    "kac": 17,
+    "eac": 17
+  },
+  {
+    "id": 8,
+    "name": "Monster 4",
+    "type": "Monster",
+    "initBonus": 0,
+    "stamina": {
+      "max": 25,
+      "current": 25
+    },
+    "hitPoints": {
+      "max": 25,
+      "current": 25
+    },
+    "kac": 17,
+    "eac": 17
+  }
+]

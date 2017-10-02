@@ -470,6 +470,10 @@ th {
       padding-left: 192px; }
     .o-app__left-nav--expanded {
       left: 0; }
+    .o-app__left-nav > .menu {
+      list-style: none;
+      margin: 0;
+      padding: 0; }
 
 .o-encounters > .o-cell {
   margin-bottom: 16px; }

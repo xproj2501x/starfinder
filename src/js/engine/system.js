@@ -1,117 +1,99 @@
 /**
- * Framework - Router
+ * Starfinder - System
  * ===
  *
- * @module router
+ * @module system
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
+import { MESSAGES } from '../constants';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
-/**
- * Example Routes
- * {
- *  name: 'Home'
- *  route: '/'
- *  view: HomeView
- * }
- * {
- *  name: 'Characters'
- *  route: '/characters'
- *  view: CharactersView
- * }
- */
+
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Router
+ * System
  * @class
  */
-class Router {
+class System {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
   //////////////////////////////////////////////////////////////////////////////
-  _routes;
-  _path;
-  _search;
-  _hash;
+  /**
+   * @private
+   * @type {Logger}
+   */
+  _logger;
+
+  /**
+   * @private
+   * @type {MessageService}
+   */
+  _messageService;
+
+  /**
+   *
+   */
+  _componentManager;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
 
   /**
-   * Router
+   * System
    * @constructor
+   * @param {object} config - the message service used by the application
    */
-  constructor() {
-    this._routes = {};
-
+  constructor(config) {
+    this._logger = config.LOG_SERVICE.registerLogger(this.constructor.name);
+    this._messageService = config.MESSAGE_SERVICE;
+    this._componentManager = config.COMPONENT_MANAGER;
   }
-
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Loads the specified route into the application
-   * @param {string} route - the name of the route
-   * @return {*}
-   */
-  loadRoute(route) {
-    if (route) return;
-    const URL = this._parseUrl();
 
-    return this._getRoute(URL);
-  }
-
-  /**
-   * Adds the specified route into the configuration
-   * @param {object} route - settings for the route
-   */
-  addRoute(route) {
-    this._routes[route.name] = route;
-  }
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
   /**
-   * Parses the current URL of the site
+   * Sends an event message to notify other systems that a property has been modified
    * @private
-   * @return {string}
+   * @param {object} component - the component that has been modified
+   * event message
+   * event type:
+   * entity id:
+   * property changed:
+   * old value:
+   * new value:
    */
-  _parseUrl() {
-    return window.location.hash.split('#/')[1];
+  _raiseComponentUpdatedEvent(component) {
+    const MESSAGE = {
+      subject: MESSAGES.COMPONENT_UPDATED
+    };
+
+    this._messageService.publish(MESSAGE);
   }
 
   /**
-   * Gets the route configuration
+   * Handles a property change event from another system
    * @private
-   * @param {string} name - the name of the route
-   * @returns {*}
+   * @param {object} event - the property change event
    */
-  _getRoute(name) {
-    return this._routes[name];
-  }
-  //////////////////////////////////////////////////////////////////////////////
-  // Static Methods
-  //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Static factory method
-   * @static
-   * @return {Router}
-   */
-  static create() {
-    return new Router();
+  _handlePropertyChangeEvent(event) {
+
   }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default Router;
+export default System;

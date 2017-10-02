@@ -15,6 +15,10 @@
   "license": "MIT",
   "scripts": {
     "build": "set NODE_ENV=dev && webpack --progress --colors --profile --watch",
+    "build:development": "set NODE_ENV=dev && webpack --progress --colors --profile --watch",
+    "build:production": "set NODE_ENV=dev && webpack",
+    "build:staging": "set NODE_ENV=dev && webpack --progress --colors --profile --watch",
+    "build:test": "set NODE_ENV=dev && webpack --progress --colors --profile --watch",
     "clean": "",
     "lint": "eslint --max-warnings 100 --format compact src/**/*.js",
     "start": "babel-node index.js",

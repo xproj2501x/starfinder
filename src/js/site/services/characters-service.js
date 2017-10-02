@@ -1,117 +1,90 @@
 /**
- * Framework - Router
+ * Starfinder - Characters Service
  * ===
  *
- * @module router
+ * @module charactersService
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
+import {API_ENDPOINTS, API_HOST} from '../../constants';
+import AjaxService from '../../framework/services/ajax-service';
+import LogService from '../../framework/services/log';
+import CharacterFactory from '../../game/factories/character-factory';
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
-/**
- * Example Routes
- * {
- *  name: 'Home'
- *  route: '/'
- *  view: HomeView
- * }
- * {
- *  name: 'Characters'
- *  route: '/characters'
- *  view: CharactersView
- * }
- */
+const LOG_SERVICE = LogService.create();
+
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Router
+ * CharactersService
  * @class
  */
-class Router {
+class CharactersService {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
   //////////////////////////////////////////////////////////////////////////////
-  _routes;
-  _path;
-  _search;
-  _hash;
+  _logger;
+  _ajaxService;
+  _characterFactory;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
 
   /**
-   * Router
+   * CharactersService
    * @constructor
    */
   constructor() {
-    this._routes = {};
-
+    this._logger = LOG_SERVICE.registerLogger(this.constructor.name);
+    this._ajaxService = new AjaxService();
+    this._characterFactory = new CharacterFactory();
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Loads the specified route into the application
-   * @param {string} route - the name of the route
-   * @return {*}
-   */
-  loadRoute(route) {
-    if (route) return;
-    const URL = this._parseUrl();
-
-    return this._getRoute(URL);
+  createCharacter() {
+    this._characterFactory.createCharacter();
   }
 
-  /**
-   * Adds the specified route into the configuration
-   * @param {object} route - settings for the route
-   */
-  addRoute(route) {
-    this._routes[route.name] = route;
+  getCharacters() {
+    let OPTIONS = {
+      url: API_HOST + API_ENDPOINTS.CHARACTERS + '.json',
+      headers: this._buildHeaders()
+    };
+
+    return this._ajaxService.get(OPTIONS)
+      .then((response) => {
+        this._logger.log(response);
+        return JSON.parse(response.responseText);
+      }).catch((err) => {
+        this._logger.error(err);
+        throw err;
+      });
   }
+
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Parses the current URL of the site
-   * @private
-   * @return {string}
-   */
-  _parseUrl() {
-    return window.location.hash.split('#/')[1];
-  }
-
-  /**
-   * Gets the route configuration
-   * @private
-   * @param {string} name - the name of the route
-   * @returns {*}
-   */
-  _getRoute(name) {
-    return this._routes[name];
-  }
-  //////////////////////////////////////////////////////////////////////////////
-  // Static Methods
-  //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Static factory method
-   * @static
-   * @return {Router}
-   */
-  static create() {
-    return new Router();
+  _buildHeaders(token) {
+    let headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    };
+    return headers;
   }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default Router;
+export default CharactersService;

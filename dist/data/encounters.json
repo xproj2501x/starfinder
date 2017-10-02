@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Encounter 1",
+    "monsters": [5, 6, 7, 8]
+  },
+  {
+    "id": 2,
+    "name": "Encounter 2",
+    "monsters": [5, 6, 7, 8]
+  },
+  {
+    "id": 3,
+    "name": "Encounter 3",
+    "monsters": [5, 6, 7, 8]
+  },
+  {
+    "id": 4,
+    "name": "Encounter 4",
+    "monsters": [5, 6, 7, 8]
+  }
+]

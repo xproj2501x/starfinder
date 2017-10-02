@@ -1,117 +1,78 @@
 /**
- * Framework - Router
+ * Engine - Engine
  * ===
  *
- * @module router
+ * @module engine
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
+import { MESSAGES } from './constants';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
-/**
- * Example Routes
- * {
- *  name: 'Home'
- *  route: '/'
- *  view: HomeView
- * }
- * {
- *  name: 'Characters'
- *  route: '/characters'
- *  view: CharactersView
- * }
- */
+
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Router
+ * Engine
  * @class
  */
-class Router {
+class Engine {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
   //////////////////////////////////////////////////////////////////////////////
-  _routes;
-  _path;
-  _search;
-  _hash;
+  /**
+   * @type {Logger}
+   */
+  _logger;
+
+  /**
+   * @type {MessageService}
+   */
+  _messageService;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
 
   /**
-   * Router
+   * Engine
    * @constructor
+   * @param {object} config - configuration for the engine
    */
-  constructor() {
-    this._routes = {};
-
+  constructor(config) {
+    this._logger = config.LOG_SERVICE.registerLogger(this.constructor.name);
+    this._messageService = config.MESSAGE_SERVICE;
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Loads the specified route into the application
-   * @param {string} route - the name of the route
-   * @return {*}
-   */
-  loadRoute(route) {
-    if (route) return;
-    const URL = this._parseUrl();
 
-    return this._getRoute(URL);
-  }
-
-  /**
-   * Adds the specified route into the configuration
-   * @param {object} route - settings for the route
-   */
-  addRoute(route) {
-    this._routes[route.name] = route;
-  }
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Parses the current URL of the site
-   * @private
-   * @return {string}
-   */
-  _parseUrl() {
-    return window.location.hash.split('#/')[1];
-  }
 
-  /**
-   * Gets the route configuration
-   * @private
-   * @param {string} name - the name of the route
-   * @returns {*}
-   */
-  _getRoute(name) {
-    return this._routes[name];
-  }
   //////////////////////////////////////////////////////////////////////////////
   // Static Methods
   //////////////////////////////////////////////////////////////////////////////
   /**
    * Static factory method
    * @static
-   * @return {Router}
+   * @param {object} config - configuration for the engine
+   * @return {Engine}
    */
-  static create() {
-    return new Router();
+  static create(config) {
+    return new Engine(config);
   }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default Router;
+export default Engine;

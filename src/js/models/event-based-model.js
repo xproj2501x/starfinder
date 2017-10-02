@@ -56,13 +56,17 @@ class EventBasedModel {
   constructor(entity) {
     this._id = entity.id;
     this._version = 0;
-    this._base = Object.assign({}, entity.data);
+    this._base = Object.assign({}, entity.state);
     this._events = [];
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Applies a property change event and updates the model
+   * @param {objemct} event - the property change event
+   */
   applyEvent(event) {
     if (this._version++ === 5) {
      this._replayEvents();
@@ -72,6 +76,11 @@ class EventBasedModel {
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
+  /**
+   * Gets the property value for the specified key
+   * @private
+   * @param {string} key
+   */
   _getProperty(key) {
     let property = Object.assign({}, this._base);
 
@@ -82,6 +91,10 @@ class EventBasedModel {
     });
   }
 
+  /**
+   * Rebuilds the model from a collection of events
+   * @private
+   */
   _replayEvents() {
     if (this._events.length !== this._version) {
       throw new Error(`Invalid state for entity: ${this.id}`);

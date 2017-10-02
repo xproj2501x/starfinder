@@ -2,7 +2,7 @@
  * Framework - Container
  * ===
  *
- * @module constaier
+ * @module contanier
  */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ class Container {
   constructor() {
     if (!instance) {
       this._dependencies = [];
-      instance = this;
+      instance = this; // eslint-disable-line consistent-this
     }
     return instance;
   }
@@ -48,7 +48,7 @@ class Container {
   //////////////////////////////////////////////////////////////////////////////
   /**
    * Registers a class with the container
-   * @param {class} target - the class to be registered   *
+   * @param {class} target - the class to be registered
    */
   register(target) {
     const INDEX = this._dependencies.indexOf(target);
@@ -62,7 +62,6 @@ class Container {
   /**
    * Instantiates an instance of the specified class and resolves any dependencies
    * @param {class} target - the class to be resolved
-   * @return {*}
    */
   resolve(target) {
     const CONSTRUCTOR = this._findClass(target);
@@ -90,7 +89,7 @@ class Container {
   /**
    * Finds the specified class in the class collection
    * @private
-   * @param {class} name - the name of the class
+   * @param {string} name - the name of the class
    * @return {*}
    */
   _findClass(name) {
@@ -106,6 +105,7 @@ class Container {
   //////////////////////////////////////////////////////////////////////////////
   /**
    * Static factory method
+   * @static
    * @return {Container}
    */
   static create() {

@@ -1,117 +1,87 @@
 /**
- * Framework - Router
+ * Starfinder - CharacterFactory
  * ===
  *
- * @module router
+ * @module characterFactory
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
+import {MESSAGES} from '../../engine/constants';
+import MessageService from '../../framework/services/message';
+import CharacterModel from '../models/character-model';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
-/**
- * Example Routes
- * {
- *  name: 'Home'
- *  route: '/'
- *  view: HomeView
- * }
- * {
- *  name: 'Characters'
- *  route: '/characters'
- *  view: CharactersView
- * }
- */
+
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Router
+ * CharacterFactory
  * @class
  */
-class Router {
+class CharacterFactory {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
   //////////////////////////////////////////////////////////////////////////////
-  _routes;
-  _path;
-  _search;
-  _hash;
+  _messageService;
+  _characterModel;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
 
   /**
-   * Router
+   * CharacterFactory
    * @constructor
    */
   constructor() {
-    this._routes = {};
-
+    this._messageService = MessageService.create();
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Loads the specified route into the application
-   * @param {string} route - the name of the route
-   * @return {*}
-   */
-  loadRoute(route) {
-    if (route) return;
-    const URL = this._parseUrl();
-
-    return this._getRoute(URL);
+  createCharacter() {
+    this._messageService.subscribe(MESSAGES.ENTITY_CREATED, (message) => this.handleEntityCreated(message));
+    this._messageService.subscribe(MESSAGES.COMPONENT_CREATED, (message) => this.handleComponentCreated(message));
+    this._messageService.publish({
+      subject: MESSAGES.CREATE_ENTITY
+    });
   }
 
-  /**
-   * Adds the specified route into the configuration
-   * @param {object} route - settings for the route
-   */
-  addRoute(route) {
-    this._routes[route.name] = route;
+  handleEntityCreated(message) {
+    const BASE = {
+      id: message.id,
+      state: {}
+    };
+
+    this._characterModel = CharacterModel.create(BASE);
+    this._messageService.unsubscribe(MESSAGES.ENTITY_CREATED, (message) => this.handleEntityCreated(message));
+
+  }
+
+  handleComponentCreated(message) {
+    const EVENT = message.body;
+
+    console.log(EVENT);
+    // this._characterModel.applyEvent(EVENT);
   }
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Parses the current URL of the site
-   * @private
-   * @return {string}
-   */
-  _parseUrl() {
-    return window.location.hash.split('#/')[1];
-  }
 
-  /**
-   * Gets the route configuration
-   * @private
-   * @param {string} name - the name of the route
-   * @returns {*}
-   */
-  _getRoute(name) {
-    return this._routes[name];
-  }
   //////////////////////////////////////////////////////////////////////////////
   // Static Methods
   //////////////////////////////////////////////////////////////////////////////
-  /**
-   * Static factory method
-   * @static
-   * @return {Router}
-   */
-  static create() {
-    return new Router();
-  }
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default Router;
+export default CharacterFactory;

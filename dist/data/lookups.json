@@ -1,0 +1,51 @@
+{
+  "abilities": [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+    "Intelligence",
+    "Wisdom",
+    "Charisma"
+  ],
+  "sizes": [],
+  "alignments": [
+    "Lawful Good",
+    "Neutral Good",
+    "Chaotic Good",
+    "Lawful Neutral",
+    "True Neutral",
+    "Chaotic Neutral",
+    "Lawful Evil",
+    "Neutral Evil",
+    "Chaotic Evil"
+  ],
+  "races": [
+    "Android",
+    "Human",
+    "Kasatha",
+    "Lashunta",
+    "Shirren",
+    "Vesk",
+    "Ysoki"
+  ],
+  "themes": [
+    "Ace Pilot",
+    "Bounty Hunter",
+    "Icon",
+    "Mercenary",
+    "Outlaw",
+    "Priest",
+    "Scholar",
+    "Spacefarer",
+    "Xenoseeker",
+    "Themeless"
+  ],
+  "classes": [
+    "Envoy",
+    "Mystic",
+    "Operative",
+    "Solarian",
+    "Solider",
+    "Technomancer"
+  ]
+}

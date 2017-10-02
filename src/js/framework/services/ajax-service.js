@@ -19,8 +19,6 @@
 const METHOD = {
   DELETE: 'DELETE',
   GET: 'GET',
-  HEAD: 'HEAD',
-  PATCH: 'PATCH',
   POST: 'POST',
   PUT: 'PUT'
 };
@@ -69,24 +67,6 @@ class AjaxService {
    */
   get(options) {
     return this._send(METHOD.GET, options);
-  }
-
-  /**
-   * Sends a head request to the specified resource
-   * @param {object} options - options for the request
-   * @return {Promise}
-   */
-  head(options) {
-    return this._send(METHOD.HEAD, options);
-  }
-
-  /**
-   * Sends a patch request to the specified resource
-   * @param {object} options - options for the request
-   * @return {Promise}
-   */
-  patch(options) {
-    return this._send(METHOD.PATCH, options);
   }
 
   /**
@@ -153,6 +133,7 @@ class AjaxService {
   //////////////////////////////////////////////////////////////////////////////
   /**
    * Static factory method
+   * @static
    * @return {AjaxService}
    */
   static create() {
