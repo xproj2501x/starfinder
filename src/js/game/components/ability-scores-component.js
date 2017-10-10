@@ -1,8 +1,8 @@
 /**
- * Starfinder - Abilities Component
+ * Starfinder - Abilities Scores Component
  * ===
  *
- * @module abilitiesComponent
+ * @module abilitiesScoresComponent
  */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -31,23 +31,23 @@ const KEYS = {
  * @enum {*}
  */
 const DEFAULTS = {
-  strength: 0,
-  dexterity: 0,
-  constitution: 0,
-  intelligence: 0,
-  wisdom: 0,
-  charisma: 0
+  strength: 10,
+  dexterity: 10,
+  constitution: 10,
+  intelligence: 10,
+  wisdom: 10,
+  charisma: 10
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * AbilitiesComponent
+ * AbilitiesScoresComponent
  * @class
- * @extends ComponentModel
+ * @extends Component
  */
-class AbilitiesComponent extends Component {
+class AbilitiesScoresComponent extends Component {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
@@ -112,12 +112,12 @@ class AbilitiesComponent extends Component {
 
 
   /**
-   * AttributesComponent
+   * AttributesScoresComponent
    * @constructor
    * @param {string} id - the UUID of the parent entity
    * @param {object} state - the initial state of the component
    */
-  constructor(id, state = {}) { // eslint-disable-line id-length
+  constructor(id, state) { // eslint-disable-line id-length
     super(id, DEFAULTS, state);
   }
 
@@ -136,17 +136,15 @@ class AbilitiesComponent extends Component {
    * Static factory method
    * @static
    * @param {object} data - configuration for the component to be created
-   * @return {AbilitiesComponent}
+   * @return {AbilitiesScoresComponent}
    */
-  static create(data) {
-    if (data === null) {
-      throw new Error('Abilities component configuration missing');
-    }
-    return new AbilitiesComponent(data.id, data.state);
+  static create({id, state}) {
+
+    return new AbilitiesScoresComponent(id, state);
   }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default AbilitiesComponent;
+export default AbilitiesScoresComponent;

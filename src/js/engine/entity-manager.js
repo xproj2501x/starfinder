@@ -34,6 +34,13 @@ class EntityManager {
   _messageService;
 
   /**
+   * Collection of entity builders
+   * @private
+   * @type {object}
+   */
+  _assemblages;
+
+  /**
    * Collection of entities
    * @private
    * @type {Array}
@@ -58,6 +65,7 @@ class EntityManager {
     this._messageService.subscribe(MESSAGES.COMPONENT_CREATED, (message) => this.attachComponentToEntity(message));
     this._messageService.subscribe(MESSAGES.COMPONENT_DESTROYED, (message) => this.detachComponentFromEntity(message));
     this._entities = [];
+    this._assemblages = config.assemblages;
   }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -68,12 +76,24 @@ class EntityManager {
    * @param {object} message - the command message to create a new entity
    */
   createEntity(message) {
+    const ASSEMBLAGE = this._assemblages[message.assemblage];
     const ENTITY = Entity.create();
 
     this._entities.push(ENTITY);
+    ASSEMBLAGE.forEach((component) => {
+      this._messageService.publish({
+        subject: MESSAGES.CREATE_COMPONENT,
+        body: {
+          id: ENTITY.id,
+          type: component,
+          state: {}
+        }
+      });
+    });
+
     this._messageService.publish({
       subject: MESSAGES.ENTITY_CREATED,
-      body: { id: ENTITY.id }
+      body: { entity: ENTITY }
     });
   }
 
@@ -107,9 +127,9 @@ class EntityManager {
    * state: state object
    */
   attachComponentToEntity(message) {
-    const ENTITY = this._getEntity(message.body.id);
+    const ENTITY = this._getEntity(message.component.id);
 
-    ENTITY.attachComponent(message.state);
+    ENTITY.attachComponent(message.type, message.component);
   }
 
   /**

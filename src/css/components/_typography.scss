@@ -1,0 +1,18 @@
+.c-icon {
+  color: $secondary-text-color;
+  display: inline-block;
+  font-family: 'Material Icons';
+  font-feature-settings: 'liga';
+  font-weight: normal;
+  font-size: $x-large-text;
+  font-style: normal;
+  height: 1em;
+  letter-spacing: normal;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  white-space: nowrap;
+  width: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

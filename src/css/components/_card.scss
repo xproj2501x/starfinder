@@ -5,15 +5,26 @@
 .c-card {
    @include box-shadow();
    background: $white;
-   overflow: hidden;
 
    &__heading{
-     background: $accent-color;
+     background: $primary-color;
      color: $white;
-     padding: $gutter;
+     font-size: $medium-text;
+     font-weight: $semi-bold-font;
+     padding: 10px $gutter;
+
+     & > .c-button--collapse {
+       border: none;
+       float: right;
+       padding: 0 4px;
+     }
    }
 
    &__body{
-     padding-top: $gutter;
+     padding: ($gutter / 2) ($gutter / 2) $gutter;
+
+     & > .o-cell {
+       padding: ($gutter / 2);
+     }
    }
  }

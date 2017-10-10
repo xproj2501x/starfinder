@@ -37,9 +37,11 @@ class Header extends React.Component {
   //////////////////////////////////////////////////////////////////////////////
   render() {
     return (
-      <header className="o-cell o-cell--column-12 o-grid o-grid--no-spacing o-app__header">
-        <div className="o-cell o-cell--column-6">left</div>
-        <div className="o-cell o-cell--column-6">right</div>
+      <header className="o-grid o-grid--no-spacing o-app__header">
+        <div className="o-cell o-cell--column-6">
+          <i className="c-icon">menu</i>
+        </div>
+        <div className="o-cell o-cell--column-6">col 2</div>
       </header>
     );
   }

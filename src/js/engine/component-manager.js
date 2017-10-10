@@ -61,7 +61,7 @@ class ComponentManager {
     this._messageService.subscribe(MESSAGES.CREATE_COMPONENT, (message) => this.createComponent(message));
     this._messageService.subscribe(MESSAGES.DESTROY_COMPONENT, (message) => this.destroyComponent(message));
     this._messageService.subscribe(MESSAGES.ENTITY_DESTROYED, (message) => this.destroyComponent(message));
-    this._templates = [];
+    this._templates = config.templates;
     this._components = [];
   }
 
@@ -76,16 +76,14 @@ class ComponentManager {
    * state:  object
    */
   createComponent(message) {
-    const ID = message.id;
-    const TYPE = message.type;
-    const STATE = message.state;
-    const TEMPLATE = this._getTemplate(TYPE);
-    const COMPONENT = TEMPLATE.create(ID, STATE);
+    const TEMPLATE = this._getTemplate(message.type);
+    const COMPONENT = TEMPLATE.create({id: message.id, state: message.state});
 
     this._components.push(COMPONENT);
-    this._messageService.publish(MESSAGES.COMPONENT_CREATED, {
+    this._messageService.publish({
       subject: MESSAGES.COMPONENT_CREATED,
-      body: { id: ID, type: TYPE, state: COMPONENT.state }
+      body: { type: message.type,
+        component: COMPONENT }
     });
   }
 

@@ -15,14 +15,13 @@ html, body {
 body {
   color: $secondary-text-color;
   font-family: $primary-font;
-  font-size: $medium-text;
+  font-size: $small-text;
 }
 
 p {
   margin: 0;
   padding: 0;
 }
-
 
 .hidden {
   display: none !important;

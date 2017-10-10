@@ -8,14 +8,20 @@
   -webkit-flex-flow: row wrap;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
+  margin: -$gutter;
 }
 
 .o-grid--no-spacing {
   margin: 0;
+
+  &>.o-cell {
+    //padding: 0;
+  }
 }
 
 .o-cell {
-  flex: 0 0 auto;
+  //flex: 0 0 auto;
+  padding: $gutter;
 }
 
 // xs - mobile portrait: 0 - 480px
@@ -67,12 +73,6 @@
       }
 
       &--column-#{$idx} {
-        margin: 0 $gutter;
-        width: calc(#{$width} - #{$gutter * 2});
-      }
-
-      .o-grid--no-spacing>&--column-#{$idx} {
-        margin: 0;
         width: $width;
       }
 
@@ -103,7 +103,7 @@
 
 @include makeGrid();
 .o-grid.o-grid--no-spacing {
-    padding: 0;
+    //padding: 0;
 }
 
 [class*="o-cell"] {

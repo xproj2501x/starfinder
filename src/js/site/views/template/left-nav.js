@@ -37,11 +37,13 @@ class LeftNav extends React.Component {
   //////////////////////////////////////////////////////////////////////////////
   render() {
     return (
-      <nav className="o-app__left-nav o-app__left-nav--collapsed">
+      <nav className="o-app__left-nav">
         <ul className="menu">
           <li><Link to='/'>Home</Link></li>
           <li><Link to='/encounters'>Encounters</Link></li>
+          <li><Link to='/campaigns'>Campaigns</Link></li>
           <li><Link to='/characters'>Characters</Link></li>
+          <li><Link to='/starships'>Starships</Link></li>
         </ul>
       </nav>
     );

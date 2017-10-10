@@ -18,7 +18,7 @@ import Component from '../../engine/component';
  * @enum {string}
  */
 const KEYS = {
-  EXPERIENCE: 'experience'
+  VALUE: 'value'
 };
 
 /**
@@ -26,7 +26,7 @@ const KEYS = {
  * @enum {*}
  */
 const DEFAULTS = {
-  experience: 0
+  value: ''
 };
 
 ////////////////////////////////////////////////////////////////////////////////

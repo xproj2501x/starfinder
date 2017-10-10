@@ -50,9 +50,9 @@ class Entity {
    * EntityModel
    * @constructor
    */
-  constructor() { // eslint-disable-line id-length
-    this._id = createUUID();
-    this._components = [];
+  constructor(id) { // eslint-disable-line id-length
+    this._id = id || createUUID();
+    this._components = {};
   }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -62,13 +62,11 @@ class Entity {
    * Attaches a component to the entity
    * @param {Component} component - the component to be attached
    */
-  attachComponent(component) {
-    const TYPE = typeof component;
-
-    if (this._findComponent(TYPE)) {
-      throw new Error(`Component type: ${TYPE} already attached to entity id: ${this.id}`);
+  attachComponent(type, component) {
+    if (this._findComponent(type)) {
+      throw new Error(`Component type: ${type} already attached to entity id: ${this.id}`);
     }
-    this._components.push(component);
+    this._components[type] = component;
   }
 
   /**
@@ -76,15 +74,10 @@ class Entity {
    * @param {string} type - the component type to be detached
    */
   detachComponent(type) {
-    const COMPONENT = this._findComponent(type);
-
-    if (!COMPONENT) {
+    if (!this._findComponent(type)) {
       throw new Error(`Component type: ${type} is not attached to entity id: ${this.id}`);
     }
-
-    const INDEX = this._components.indexOf(COMPONENT);
-
-    this._components.slice(INDEX, 1);
+    delete this._components[type];
   }
 
   /**
@@ -112,11 +105,7 @@ class Entity {
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
   _findComponent(type) {
-    const COMPONENT = this._components.find((component) => {
-      return component instanceof type;
-    });
-
-    return COMPONENT ? COMPONENT : null;
+    return this._components[type];
   }
   //////////////////////////////////////////////////////////////////////////////
   // Static Methods

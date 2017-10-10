@@ -1,14 +1,15 @@
 /**
- * Starfinder - Health System
+ * Starfinder - Ability Scores System
  * ===
  *
- * @module healthSystem
+ * @module abilityScoresSystem
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
 import System from '../../engine/system';
+import AbilityScoresComponent from '../components/ability-scores-component';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -18,11 +19,11 @@ import System from '../../engine/system';
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * HealthSystem
+ * AbilityScoresSystem
  * @class
  * @extends System
  */
-class HealthSystem extends System {
+class AbilityScoresSystem extends System {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
@@ -40,28 +41,29 @@ class HealthSystem extends System {
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
   handleComponentCreated(message) {
-    if (message.type === 'health') {
+    if (message.type === 'abilityScores') {
       this._components[message.component.id] = message.component;
-      console.log('happy happy joy joy');
     }
   }
 
   handleComponentUpdated(message) {
-    if (message.type === 'health') {
+    if (message.type === 'abilityScores') {
 
     }
   }
-
-
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
+  _getComponent(id) {
+    return this._components[id];
+  }
+
   static create(config) {
-    return new HealthSystem(config);
+    return new AbilityScoresSystem(config);
   }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default HealthSystem;
+export default AbilityScoresSystem;

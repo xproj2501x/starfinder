@@ -40,9 +40,45 @@
 }
 
 
-.form-group {
+.c-form{
+  //position: relative;
 
-  position: relative;
+  &__control {
+    background: transparent;
+    border-bottom: 1px solid $divider-color;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    box-shadow: none;
+    display: block;
+    font-size: $small-text;
+    height: 20px;
+    line-height: 1.846153846;
+    transition: border-color ease-in-out .25s, box-shadow ease-in-out .25s;
+    width: 100%;
+
+    & ~ .c-form__control__label {
+      font-size: $small-text;
+      font-weight: $normal-font;
+      pointer-events: none;
+      //position: absolute;
+      transition: 0.2s ease all;
+      opacity: 0.5;
+    }
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: none;
+      outline: 0;
+
+      & ~ .c-form__control__label {
+        color: $primary-color;
+        opacity: 1;
+      }
+    }
+
+
+  }
 }
 
 .form-control {
@@ -58,27 +94,7 @@
   height: 20px;
   line-height: 1.846153846;
   transition: border-color ease-in-out .25s, box-shadow ease-in-out .25s;
-
   width: 100%;
-}
-
-.form-control:focus{
-  border-color: $gray-dark;
-  box-shadow: none;
-  outline: 0;
-}
-
-.form-control ~ label {
-  bottom: 0;
-  font-size: 10px;
-  font-weight: 400;
-  left: 0;
-  margin-bottom: 0;
-  pointer-events: none;
-  position: absolute;
-  transition: 0.2s ease all;
-  opacity: 0.5;
-  top: 0;
 }
 
 .form-control:focus ~ label {

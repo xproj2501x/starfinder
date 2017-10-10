@@ -48,20 +48,18 @@ class CharacterFactory {
   //////////////////////////////////////////////////////////////////////////////
   createCharacter() {
     this._messageService.subscribe(MESSAGES.ENTITY_CREATED, (message) => this.handleEntityCreated(message));
-    this._messageService.subscribe(MESSAGES.COMPONENT_CREATED, (message) => this.handleComponentCreated(message));
     this._messageService.publish({
-      subject: MESSAGES.CREATE_ENTITY
+      subject: MESSAGES.CREATE_ENTITY,
+      body: {
+        assemblage: 'character',
+        state: {}
+      }
     });
   }
 
   handleEntityCreated(message) {
-    const BASE = {
-      id: message.id,
-      state: {}
-    };
-
-    this._characterModel = CharacterModel.create(BASE);
     this._messageService.unsubscribe(MESSAGES.ENTITY_CREATED, (message) => this.handleEntityCreated(message));
+    console.log(message);
 
   }
 

@@ -5,7 +5,41 @@
 
   &__container {
     height: 100%;
+    overflow: hidden;
     width: 100%;
+
+    &--nav-collapsed {
+      & > .o-app__main {
+        padding: 32px 32px 32px 96px;
+      }
+
+      & > .o-app__title,
+      & > .o-app__footer {
+        padding: 10px 16px 10px 80px;
+      }
+
+      & > .o-app__left-nav {
+        left: -192px;
+        padding: 16px 8px 16px 200px;
+
+      }
+    }
+
+    &--nav-expanded {
+      & > .o-app__main {
+        padding: 32px 32px 32px 288px;
+      }
+
+      & > .o-app__title,
+      & > .o-app__footer {
+        padding: 10px 16px 10px 272px;
+      }
+
+      & > .o-app__left-nav {
+        left: 0;
+        padding: 16px 8px;
+      }
+    }
   }
 
   &__header {
@@ -13,6 +47,18 @@
     background: $white;
     height: 64px;
     z-index: 100;
+
+    & > .c-button--toggle-button {
+      color: $primary-color;
+      font-size: $x-large-text;
+    }
+    & > .o-cell:first-child {
+
+    }
+
+    & > .o-cell:last-child {
+
+    }
   }
 
   &__title {
@@ -20,47 +66,19 @@
     background: $gray-light;
     height: 64px;
     z-index: 80;
-
-    &--nav-collapsed {
-      padding: $gutter 0 0 (64px + $gutter);
-    }
-
-    &--nav-expanded {
-      padding: $gutter 0 0 (256px + $gutter);
-    }
   }
 
   &__main {
     @include box-shadow();
     background: $gray-bright;
     height: calc(100% - 192px);
-    padding: $gutter 0 0 64px;
+    overflow: auto;
     z-index: 70;
-
-    >.o-cell {
-      margin-bottom: $gutter;
-    }
-
-    &--nav-collapsed {
-      padding: $gutter 0 0 64px;
-    }
-
-    &--nav-expanded {
-      padding-left: $gutter 0 0 256px;
-    }
   }
 
   &__footer {
     background: $white;
     height: 64px;
-
-    &--nav-collapsed {
-      padding: $gutter 0 0 (64px + $gutter);
-    }
-
-    &--nav-expanded {
-      padding-left: $gutter 0 0 (256px + $gutter);
-    }
   }
 
   &__left-nav {
@@ -70,15 +88,6 @@
     top: 64px;
     width: 256px;
     z-index: 95;
-
-    &--collapsed {
-      left: -192px;
-      padding-left: 192px;
-    }
-
-    &--expanded {
-      left: 0;
-    }
 
     &>.menu {
       list-style: none;

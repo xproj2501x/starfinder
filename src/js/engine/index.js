@@ -29,12 +29,12 @@ const SERVICES = {
 /**
  *
  */
-function buildEngine(templates) {
+function buildEngine(config) {
   const CONFIG = Object.assign({}, SERVICES);
   const ENGINE = Engine.create(CONFIG);
-  const ENTITY_MANAGER = EntityManager.create(CONFIG);
-  const COMPONENT_MANAGER = ComponentManager.create(Object.assign(CONFIG, {templates: templates}));
-  const SYSTEM_MANAGER = SystemManager.create(CONFIG);
+  const ENTITY_MANAGER = EntityManager.create(Object.assign(CONFIG, {assemblages: config.ASSEMBLAGES}));
+  const COMPONENT_MANAGER = ComponentManager.create(Object.assign(CONFIG, {templates: config.COMPONENTS}));
+  const SYSTEM_MANAGER = SystemManager.create(Object.assign(CONFIG, {systems: config.SYSTEMS}));
 
   return ENGINE;
 }

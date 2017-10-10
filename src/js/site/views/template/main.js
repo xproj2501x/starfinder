@@ -11,8 +11,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import HomeView from '../home-view';
-import EncountersView from '../encounters-view';
 import CharactersView from '../characters-view';
+import CampaignsView from '../campaigns-view';
+import EncountersView from '../encounters-view';
+import StarshipsView from '../starships-view';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -41,11 +43,13 @@ class Main extends React.Component {
   //////////////////////////////////////////////////////////////////////////////
   render() {
     return (
-      <main className="o-cell o-cell--column-12 o-grid o-app__main o-app__main--nav-collapsed">
+      <main className="o-app__main">
         <Switch>
           <Route exact path='/' component={HomeView}/>
-          <Route path='/encounters' component={EncountersView}/>
+          <Route path='/campaigns' component={CampaignsView}/>
           <Route path='/characters' component={CharactersView}/>
+          <Route path='/encounters' component={EncountersView}/>
+          <Route path='/starships' component={StarshipsView}/>
         </Switch>
       </main>
     );

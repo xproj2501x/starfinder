@@ -28,6 +28,11 @@
     "Vesk",
     "Ysoki"
   ],
+  "genders": [
+    "Male",
+    "Female",
+    "Neutral"
+  ],
   "themes": [
     "Ace Pilot",
     "Bounty Hunter",
@@ -47,5 +52,49 @@
     "Solarian",
     "Solider",
     "Technomancer"
+  ],
+  "skills": [
+    "Acrobatics",
+    "Athletics",
+    "Bluff",
+    "Computers",
+    "Culture",
+    "Diplomacy",
+    "Disguise",
+    "Engineering",
+    "Intimidate",
+    "Life Science",
+    "Medicine",
+    "Mysticism",
+    "Perception",
+    "Physical Science",
+    "Piloting",
+    "Profession",
+    "Sense Motive",
+    "Sleight of Hand",
+    "Stealth",
+    "Survival"
+  ],
+  "deities": [
+    "Hylax",
+    "Iomedae",
+    "Sarenrae",
+    "Yaresa",
+    "Desna",
+    "Weydan",
+    "Abadar",
+    "Talavet",
+    "Eloritu",
+    "Ibra",
+    "Pharasma",
+    "Triune",
+    "Besmara",
+    "Oras",
+    "Damoritosh",
+    "Zon-Kuthon",
+    "Lao Shu Po",
+    "Urgathoa",
+    "The Devourer",
+    "Nyarlathotep"
   ]
 }

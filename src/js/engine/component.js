@@ -8,7 +8,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
-import ModifierModel from '../models/modifier-model';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -75,15 +74,6 @@ class Component {
    * @param {object} state - the initial state of the component
    */
   constructor(id, config, state) { // eslint-disable-line id-length
-    if (id === null) {
-      throw new Error('Component id cannot be null');
-    }
-    if (config === null) {
-      throw new Error('Component configuration cannot be null');
-    }
-    if (state === null) {
-      throw new Error('Component state cannot be null');
-    }
     this._id = id;
     this._state = Object.assign({}, config);
     this.update(state);

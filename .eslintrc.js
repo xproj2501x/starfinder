@@ -1,5 +1,5 @@
 /**
- * Imperium 4X - Configuration for ESLint
+ * Starfinder - Configuration for ESLint
  * ===
  * This file defines linting rules for the ESLint software.
  * Our rules are based off of Google's ESLint configuration.

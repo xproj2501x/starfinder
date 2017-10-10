@@ -8,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
-import { MESSAGES } from '../constants';
+import { MESSAGES } from './constants';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -38,10 +38,7 @@ class System {
    */
   _messageService;
 
-  /**
-   *
-   */
-  _componentManager;
+  _components;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
@@ -55,12 +52,20 @@ class System {
   constructor(config) {
     this._logger = config.LOG_SERVICE.registerLogger(this.constructor.name);
     this._messageService = config.MESSAGE_SERVICE;
-    this._componentManager = config.COMPONENT_MANAGER;
+    this._messageService.subscribe(MESSAGES.COMPONENT_CREATED, (message) => this.handleComponentCreated(message));
+    this._messageService.subscribe(MESSAGES.COMPONENT_UPDATED, (message) => this.handleComponentUpdated(message));
+    this._components = {};
   }
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
+  handleComponentCreated(message) {
+    throw new Error('handleComponentCreated() called from base System class');
+  }
 
+  handleComponentUpdated(message) {
+    throw Error('handleComponentCreated() called from base System class');
+  }
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
@@ -90,6 +95,10 @@ class System {
    */
   _handlePropertyChangeEvent(event) {
 
+  }
+
+  static create(config) {
+    return new System(config);
   }
 }
 

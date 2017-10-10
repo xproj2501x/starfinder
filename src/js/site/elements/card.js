@@ -1,14 +1,15 @@
 /**
- * Starfinder - Health System
+ * Starfinder - Card
  * ===
  *
- * @module healthSystem
+ * @module card
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
-import System from '../../engine/system';
+import { MESSAGES } from '../../engine/constants';
+import React from 'react';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -18,11 +19,11 @@ import System from '../../engine/system';
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * HealthSystem
+ * Card
  * @class
- * @extends System
+ * @extends React.Component
  */
-class HealthSystem extends System {
+class Card extends React.Component {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
@@ -32,36 +33,57 @@ class HealthSystem extends System {
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
 
-  constructor(config) {
-    super(config);
+  /**
+   * Card
+   * @constructor
+   */
+  constructor(props) {
+    super(props);
+    this.state = {
+      isCollapsed: false
+    };
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
-  handleComponentCreated(message) {
-    if (message.type === 'health') {
-      this._components[message.component.id] = message.component;
-      console.log('happy happy joy joy');
-    }
+  toggle() {
+    this.setState({isCollapsed: !this.state.isCollapsed});
   }
 
-  handleComponentUpdated(message) {
-    if (message.type === 'health') {
+  render() {
+    const IS_COLLAPSED = this.state.isCollapsed;
+    let body;
 
+    if (IS_COLLAPSED) {
+      body = null;
+    } else {
+      body = <div className="c-card__body o-grid o-grid--no-spacing">
+        {this.props.children}
+      </div>
     }
+
+    return (
+      <section className="c-card">
+        <div className="c-card__heading">
+          {this.props.title}
+          <button className="c-button c-button--primary-dark--flat c-button--collapse" onClick={() => this.toggle()}>
+            +
+          </button>
+        </div>
+        {body}
+      </section>
+    );
   }
 
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
-  static create(config) {
-    return new HealthSystem(config);
-  }
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default HealthSystem;
+export default Card;

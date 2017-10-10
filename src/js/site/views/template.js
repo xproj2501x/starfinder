@@ -41,11 +41,11 @@ class Template extends React.Component {
   //////////////////////////////////////////////////////////////////////////////
   render() {
     return (
-      <div className="o-grid o-grid--no-spacing o-app__container">
+      <div className="o-app__container o-app__container--nav-collapsed">
         <Header />
-        <header className="o-cell o-cell--column-12 o-app__title o-app__title--nav-collapsed">title</header>
+        <header className="o-app__title">title</header>
         <Main />
-        <footer className="o-cell o-cell--column-12 o-app__footer o-app__footer--nav-collapsed">footer</footer>
+        <footer className="o-app__footer">footer</footer>
         <LeftNav />
       </div>
     );

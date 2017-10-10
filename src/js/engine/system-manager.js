@@ -41,20 +41,6 @@ class SystemManager {
    */
   _systems;
 
-  /**
-   * The name of the module that is currently active
-   * @private
-   * @type {string}
-   */
-  _currentModule;
-
-  /**
-   * Collection of systems that are currently active
-   * @private
-   * @type {Array}
-   */
-  _activeSystems;
-
   ////////////////////////////////////////////////////////////////////////////////
   // Public Properties
   ////////////////////////////////////////////////////////////////////////////////
@@ -71,30 +57,21 @@ class SystemManager {
     this._messageService.subscribe(MESSAGES.UNLOAD_MODULE, (message) => this.unloadModule(message));
 
     this._systems = [];
+    config.systems.forEach((system) => {
+      this._loadSystem(system, config);
+    });
     this._activeSystems = [];
   }
 
   ////////////////////////////////////////////////////////////////////////////////
   // Public Methods
   ////////////////////////////////////////////////////////////////////////////////
-  /**
-   * Loads a new module into the engine
-   * @param {object} message - the command message to create a new entity
-   * name: module name
-   *
-   */
-  loadModule(message) {
 
-  }
-
-  unloadModule(message) {
-
-  }
   ///////////////////////////////////////////////////////////////////////////////
   // Private Methods
   ///////////////////////////////////////////////////////////////////////////////
-  _loadSystem(type) {
-
+  _loadSystem(system, config) {
+    this._systems.push(system.create(config));
   }
 
   //////////////////////////////////////////////////////////////////////////////
