@@ -1,8 +1,8 @@
 /**
- * Starfinder - Card
+ * Starfinder - Drop Down
  * ===
  *
- * @module card
+ * @module dropDown
  */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -18,11 +18,11 @@ import React from 'react';
 // Class
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Card
+ * DropDown
  * @class
  * @extends React.Component
  */
-class Card extends React.Component {
+class DropDown extends React.Component {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
@@ -33,34 +33,19 @@ class Card extends React.Component {
   //////////////////////////////////////////////////////////////////////////////
 
   /**
-   * Card
+   * DropDown
    * @constructor
    */
   constructor(props) {
     super(props);
-    this.state = {
-      isCollapsed: false
-    };
+
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
-  toggle() {
-    this.setState({isCollapsed: !this.state.isCollapsed});
-  }
 
   render() {
-    const IS_COLLAPSED = this.state.isCollapsed;
-    let body;
-
-    if (IS_COLLAPSED) {
-      body = null;
-    } else {
-      body = <div className="c-card__body o-grid o-grid--no-spacing">
-        {this.props.children}
-      </div>
-    }
 
     return (
       <section className="c-card">
@@ -85,4 +70,4 @@ class Card extends React.Component {
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default Card;
+export default DropDown;

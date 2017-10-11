@@ -37,5 +37,6 @@ class CharacterModel {
   get abilityScores() {
 
   }
-                                                                                                                    
+}
+
 export default CharacterModel;
