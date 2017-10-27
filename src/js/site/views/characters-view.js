@@ -139,9 +139,7 @@ class CharactersView extends React.Component {
           </Card>
           <div className="o-grid">
             <div className="o-cell o-cell--column-6">
-              <Card title="Ability Scores">
-                <AbilityScores abilities={LOOKUPS.abilities} onChange={(event) => this._changeProperty(event)}></AbilityScores>
-              </Card>
+              <AbilityScores abilities={LOOKUPS.abilities} onChange={(event) => this._changeProperty(event)}></AbilityScores>
               <Card title="Skills">
                 <Skills skills={LOOKUPS.skills} onChange={(event) => this._changeProperty(event)}></Skills>
               </Card>

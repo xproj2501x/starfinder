@@ -9,6 +9,7 @@
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
 import React from 'react';
+import PropTypes from 'prop-types';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -67,6 +68,19 @@ class DropDown extends React.Component {
 
 }
 
+DropDown.propTypes = {
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  disabled: PropTypes.bool,
+  required: PropTypes.bool
+};
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////

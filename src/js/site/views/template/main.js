@@ -15,6 +15,7 @@ import CharactersView from '../characters-view';
 import CampaignsView from '../campaigns-view';
 import EncountersView from '../encounters-view';
 import StarshipsView from '../starships-view';
+import ActionBar from '../../elements/action-bar';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -44,12 +45,11 @@ class Main extends React.Component {
   render() {
     return (
       <main className="o-app__main">
+        main
         <Switch>
-          <Route exact path='/' component={HomeView}/>
-          <Route path='/campaigns' component={CampaignsView}/>
-          <Route path='/characters' component={CharactersView}/>
-          <Route path='/encounters' component={EncountersView}/>
-          <Route path='/starships' component={StarshipsView}/>
+          <Route path="/" component={HomeView} />
+          <Route path='/characters' component={CharactersView} />
+          <Route path='/encounters' component={EncountersView} />
         </Switch>
       </main>
     );

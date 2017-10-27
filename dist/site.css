@@ -128,6 +128,23 @@ p {
   .hidden-dekstop-large {
     display: none; } }
 
+.c-action-bar {
+  align-items: center;
+  display: flex;
+  padding: 0 16px;
+  transition-duration: 0.5s;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+  .c-action-bar__left-icon {
+    margin-right: 16px; }
+  .c-action-bar__title {
+    flex-grow: 1;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .c-action-bar__right-icon {
+    margin-left: 16px; }
+
 /*! Starfinder - Button Component Styles */
 /* VARIABLES */
 :root {
@@ -299,6 +316,29 @@ p {
     .c-card__body > .o-cell {
       padding: 8px; }
 
+.c-drawer {
+  display: block;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0s;
+  will-change: transform;
+  z-index: 90; }
+  .c-drawer--active {
+    pointer-events: all;
+    transform: translateX(0);
+    transition: delay 0.07; }
+  .c-drawer--left {
+    left: 0; }
+    .c-drawer--left:not(.c-drawer--active) {
+      transform: translateX(-100%); }
+  .c-drawer--right {
+    right: 0; }
+    .c-drawer--right:not(.c-drawer--active) {
+      transform: translateX(100%); }
+
 /*! Starfinder - Form Component Styles */
 /* VARIABLES */
 :root {
@@ -445,11 +485,6 @@ th {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.window {
-  border: solid 1px #0A0A0A;
-  background: #FEFEFE;
-  position: absolute; }
-
 .o-app {
   height: 100%;
   overflow: hidden;
@@ -458,31 +493,22 @@ th {
     height: 100%;
     overflow: hidden;
     width: 100%; }
-    .o-app__container--nav-collapsed > .o-app__main {
-      padding: 32px 32px 32px 96px; }
-    .o-app__container--nav-collapsed > .o-app__title,
-    .o-app__container--nav-collapsed > .o-app__footer {
-      padding: 10px 16px 10px 80px; }
-    .o-app__container--nav-collapsed > .o-app__left-nav {
-      left: -192px;
-      padding: 16px 8px 16px 200px; }
-    .o-app__container--nav-expanded > .o-app__main {
-      padding: 32px 32px 32px 288px; }
-    .o-app__container--nav-expanded > .o-app__title,
-    .o-app__container--nav-expanded > .o-app__footer {
-      padding: 10px 16px 10px 272px; }
-    .o-app__container--nav-expanded > .o-app__left-nav {
-      left: 0;
-      padding: 16px 8px; }
   .o-app__header {
     box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
     background: #FEFEFE;
     height: 64px;
-    z-index: 100; }
+    z-index: 100;
+    color: #607D8B;
+    font-size: 12px;
+    font-weight: 900; }
     .o-app__header > .c-button--toggle-button {
       color: #607D8B;
       font-size: 24px; }
   .o-app__title {
+    color: #607D8B;
+    font-size: 32px;
+    font-weight: 900; }
+  .o-app__bread-crumb {
     box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
     background: #E0E0E0;
     height: 64px;
@@ -493,17 +519,33 @@ th {
     height: calc(100% - 192px);
     overflow: auto;
     z-index: 70; }
+  .o-app__panel {
+    box-shadow: 0 3px 4px 0.08px rgba(10, 10, 10, 0.33);
+    background: #FEFEFE;
+    bottom: 0;
+    left: 720px;
+    position: absolute;
+    right: 0;
+    top: 80px;
+    z-index: 91; }
   .o-app__footer {
     background: #FEFEFE;
     height: 64px; }
   .o-app__left-nav {
-    position: absolute;
     background: #455A64;
     bottom: 0;
+    position: absolute;
     top: 64px;
     width: 256px;
     z-index: 95; }
-    .o-app__left-nav > .menu {
+    .o-app__left-nav__overlay {
+      background: #455A64;
+      bottom: 0;
+      position: fixed;
+      top: 64px;
+      width: 64px;
+      z-index: 96; }
+    .o-app__left-nav__menu {
       list-style: none;
       margin: 0;
       padding: 0; }

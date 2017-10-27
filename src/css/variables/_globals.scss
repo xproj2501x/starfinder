@@ -1,6 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
+$unit: 10px !default;
+
 $gutter: 16px !default;
 
 // breakpoints
@@ -78,3 +80,41 @@ $medium-text: 12px;
 $large-text: 18px;
 $x-large-text: 24px;
 $xx-large-text: 32px;
+
+// box shadows
+$shadow-2px:
+  0 2px 2px 0 rgba(0, 0, 0, 0.14),
+  0 3px 1px -2px rgba(0, 0, 0, 0.2),
+  0 1px 5px 0 rgba(0, 0, 0, 0.12) !default;
+
+$shadow-3px:
+  0 3px 4px 0 rgba(0, 0, 0, 0.14),
+  0 3px 3px -2px rgba(0, 0, 0, 0.2),
+  0 1px 8px 0 rgba(0, 0, 0, 0.12) !default;
+
+$shadow-4px:
+  0 4px 5px 0 rgba(0, 0, 0, 0.14),
+  0 1px 10px 0 rgba(0, 0, 0, 0.12),
+  0 2px 4px -1px rgba(0, 0, 0, 0.2) !default;
+
+$shadow-6px:
+  0 6px 10px 0 rgba(0, 0, 0, 0.14),
+  0 1px 18px 0 rgba(0, 0, 0, 0.12),
+  0 2px 4px -1px rgba(0, 0, 0, 0.2) !default;
+
+$shadow-8px:
+  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+  0 3px 14px 2px rgba(0, 0, 0, 0.12),
+  0 3px 5px -3px rgba(0, 0, 0, 0.2) !default;
+
+$shadow-16px:
+  0 16px 24px 2px rgba(0, 0, 0, 0.14),
+  0 6px 30px 5px rgba(0, 0, 0, 0.12),
+  0 8px 10px -5px rgba(0, 0, 0, 0.2) !default;
+
+// animations
+$animation-duration: 0.35s;
+$animation-delay: ($animation-duration / 5);
+$animation-curve-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1);
+$animation-curve-linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1);
+$animation-curve-fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1);

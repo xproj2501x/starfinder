@@ -9,10 +9,12 @@
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
 import React from 'react';
-import Header from './template/header';
-import Main from './template/main';
+import {Link} from 'react-router-dom';
+import ActionBar from '../elements/action-bar';
+import Drawer from '../elements/drawer';
+import Icon from '../elements/icon';
 import LeftNav from './template/left-nav';
-
+import Main from './template/main';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -34,6 +36,10 @@ class Template extends React.Component {
    */
   constructor(props) {
     super(props);
+    this.state = {
+      menuCollapsed: false,
+      panelCollapsed: false
+    };
   }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -41,16 +47,31 @@ class Template extends React.Component {
   //////////////////////////////////////////////////////////////////////////////
   render() {
     return (
-      <div className="o-app__container o-app__container--nav-collapsed">
-        <Header />
-        <header className="o-app__title">title</header>
+      <div className="o-app__container">
+        <header className="o-app__header">
+          <ActionBar
+            title="Starfinder"
+            leftIcon="menu"
+            onLeftIconClick={(event) => this.toggleMenu(event)} >
+            <Icon value="search" />
+          </ActionBar>
+        </header>
+        <header className="o-app__bread-crumb">title</header>
         <Main />
-        <footer className="o-app__footer">footer</footer>
-        <LeftNav />
+        <footer className="o-app__footer">
+          <ActionBar
+            title="footer"
+            rightIcon="settings" />
+        </footer>
       </div>
     );
   }
 
+  toggleMenu(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.setState({menuCollapsed: !this.state.menuCollapsed});
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

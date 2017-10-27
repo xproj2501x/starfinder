@@ -8,38 +8,38 @@
     overflow: hidden;
     width: 100%;
 
-    &--nav-collapsed {
-      & > .o-app__main {
-        padding: 32px 32px 32px 96px;
-      }
-
-      & > .o-app__title,
-      & > .o-app__footer {
-        padding: 10px 16px 10px 80px;
-      }
-
-      & > .o-app__left-nav {
-        left: -192px;
-        padding: 16px 8px 16px 200px;
-
-      }
-    }
-
-    &--nav-expanded {
-      & > .o-app__main {
-        padding: 32px 32px 32px 288px;
-      }
-
-      & > .o-app__title,
-      & > .o-app__footer {
-        padding: 10px 16px 10px 272px;
-      }
-
-      & > .o-app__left-nav {
-        left: 0;
-        padding: 16px 8px;
-      }
-    }
+    //&--nav-collapsed {
+    //  & > .o-app__main {
+    //    padding: 32px 32px 32px 96px;
+    //  }
+    //
+    //  & > .o-app__title,
+    //  & > .o-app__footer {
+    //    padding: 10px 16px 10px 80px;
+    //  }
+    //
+    //  & > .o-app__left-nav {
+    //    left: -192px;
+    //    padding: 16px 8px 16px 200px;
+    //
+    //  }
+    //}
+    //
+    //&--nav-expanded {
+    //  & > .o-app__main {
+    //    padding: 32px 32px 32px 288px;
+    //  }
+    //
+    //  & > .o-app__title,
+    //  & > .o-app__footer {
+    //    padding: 10px 16px 10px 272px;
+    //  }
+    //
+    //  & > .o-app__left-nav {
+    //    left: 0;
+    //    padding: 16px 8px;
+    //  }
+    //}
   }
 
   &__header {
@@ -48,20 +48,23 @@
     height: 64px;
     z-index: 100;
 
+    color: $primary-color;
+    font-size: $medium-text;
+    font-weight: $extra-bold-font;
+
     & > .c-button--toggle-button {
       color: $primary-color;
       font-size: $x-large-text;
     }
-    & > .o-cell:first-child {
-
-    }
-
-    & > .o-cell:last-child {
-
-    }
   }
 
   &__title {
+    color: $primary-color;
+    font-size: $xx-large-text;
+    font-weight: $extra-bold-font;
+  }
+
+  &__bread-crumb {
     @include box-shadow();
     background: $gray-light;
     height: 64px;
@@ -76,23 +79,45 @@
     z-index: 70;
   }
 
+  &__panel {
+    @include box-shadow();
+    background: $white;
+    bottom: 0;
+    left: 720px;
+    position: absolute;
+    right: 0;
+    top: 80px;
+    z-index: 91;
+
+  }
+
   &__footer {
     background: $white;
     height: 64px;
   }
 
   &__left-nav {
-    position: absolute;
     background: $primary-color-dark;
     bottom: 0;
+    position: absolute;
     top: 64px;
     width: 256px;
     z-index: 95;
 
-    &>.menu {
+    &__overlay {
+      background: $primary-color-dark;
+      bottom: 0;
+      position: fixed;
+      top: 64px;
+      width: 64px;
+      z-index: 96;
+
+    }
+    &__menu {
       list-style: none;
       margin: 0;
       padding: 0;
     }
+
   }
 }

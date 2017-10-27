@@ -1,0 +1,23 @@
+.c-action-bar {
+  align-items: center;
+  display: flex;
+  padding: 0 16px;
+  transition-duration: 0.5s;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  &__left-icon {
+    margin-right: $gutter;
+  }
+
+  &__title {
+    flex-grow: 1;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__right-icon {
+    margin-left: $gutter;
+  }
+}
